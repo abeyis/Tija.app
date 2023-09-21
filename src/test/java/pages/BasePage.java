@@ -73,6 +73,7 @@ public abstract class BasePage {
      */
 
     protected List<String> getElementsTexts(List<WebElement> elements) {
+        // test
         return elements.stream()
                 .map(element -> getElementText(element))
                 .collect(Collectors.toList());
