@@ -1,7 +1,6 @@
 package pages;
 
 import utilities.TestUtils;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,7 +30,7 @@ public abstract class BasePage {
      * @param element
      * @author Charlie Alpha
      */
-    protected void click(WebElement element) {
+    protected static void click(WebElement element) {
         TestUtils.waitForClickablility(element, 15).click();
     }
 
@@ -73,7 +72,6 @@ public abstract class BasePage {
      */
 
     protected List<String> getElementsTexts(List<WebElement> elements) {
-        // test
         return elements.stream()
                 .map(element -> getElementText(element))
                 .collect(Collectors.toList());
