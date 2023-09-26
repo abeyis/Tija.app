@@ -35,6 +35,26 @@ public abstract class BasePage {
     }
 
     /**
+     * <h2>Type Text To Web Element</h2>
+     * This method using for type text to the web element.
+     * <p>
+     * <h4>Description Of Method :
+     * <h4/>
+     * It takes 'element' WebElement and 'text' String parameters.
+     * <p>
+     * Then waits to element clickable within 15 seconds.
+     * <p>
+     * And sends the text to the element.
+     * <p>
+     * 
+     * @param element
+     * @author Charlie Alpha
+     */
+    protected static void type(WebElement element, String text) {
+        TestUtils.waitForClickablility(element, 15).sendKeys(text);
+    }
+
+    /**
      * <h2>Get The Element Text
      * <h2/>
      * <h4>Description Of Method :
