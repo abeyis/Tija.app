@@ -16,6 +16,8 @@ import java.util.function.Function;
 
 public class TestUtils {
 
+    static Actions actions = new Actions(Driver.getDriver());
+
     /*
      * String getScreenshot(String name) 68.satır
      * void switchToWindow(String targetTitle) 87.satir
@@ -535,6 +537,40 @@ public class TestUtils {
             return true;
         }
         return false;
+    }
+
+
+    public static void loginToGmail(String username,String password){
+        waitForClickablility(By.cssSelector("span.gb_Hd"),15).click();
+        waitForClickablility(By.name("identifier"),15).sendKeys(username);
+        waitForClickablility(By.xpath("//span[text()='Sonraki' or text()='Next']"),15).click();
+        waitForClickablility(By.name("Passwd"),15).sendKeys(password);
+        waitForClickablility(By.xpath("//span[text()='Sonraki' or text()='Next']"),15).click();
+    }
+
+
+    public static String getOtp(String username,String password){
+
+        String originalWindow = Driver.getDriver().getWindowHandle();
+
+        Driver.getDriver().switchTo().newWindow(WindowType.TAB);
+        Driver.getDriver().get("https://www.google.com/");
+
+        loginToGmail(username,password);
+
+        waitForClickablility(By.xpath("//a[text()='Gmail']"),15).click();
+        waitForClickablility(By.xpath("(//span[@name='Tija'])[2]"),30).click();
+
+        waitForPageToLoad(30);
+
+        List<String> elmTexts = getElementsText(By.xpath("//a[contains(@id,'clickCode')]//strong"));
+        String otp = elmTexts.get(elmTexts.size()-1);
+
+        Driver.getDriver().close();
+
+        Driver.getDriver().switchTo().window(originalWindow);
+
+        return otp;
     }
 
 }
