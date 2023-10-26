@@ -8,26 +8,24 @@ import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 public class Hooks {
 
     @Before
-    public void setUp(){
-        Driver.getDriver().manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    public void setUp() {
+        Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         Driver.getDriver().manage().window().maximize();
         Driver.getDriver().get(ConfigReader.getProperty("appUrl"));
     }
 
     @After
-    public void tearDown(Scenario scenario){
-        if(scenario.isFailed()){
-            final byte[] screenshot = ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+    public void tearDown(Scenario scenario) {
+        if (scenario.isFailed()) {
+            final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", "screenshot");
         }
-
-        //Driver.closeDriver();
+        Driver.closeDriver();
     }
-
 
 }

@@ -1,6 +1,5 @@
 package pages;
 
-import utilities.ConfigReader;
 import utilities.TestUtils;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -98,16 +97,3 @@ public abstract class BasePage {
                 .collect(Collectors.toList());
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
