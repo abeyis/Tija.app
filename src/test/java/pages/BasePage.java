@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import utilities.TestUtils;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -96,4 +97,23 @@ public abstract class BasePage {
                 .map(element -> getElementText(element))
                 .collect(Collectors.toList());
     }
+
+    /**
+     * <h2>Click Button in the Main Panel
+     * <h2/>
+     *
+     * <h4>Description Of Method :
+     * <h4/>
+     * This method clicks the button
+     * taking 'visible button text' parameter
+     * <p>
+     *
+     * @param buttonText Text of the Button
+     */
+    public void clickPanelButton(String buttonText) {
+        WebElement element = Driver.getDriver().findElement(By.xpath(
+                                    "//a[text()='"+ buttonText + "']"));
+        TestUtils.waitForClickablility(element, 15).click();
+    }
+
 }

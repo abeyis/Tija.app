@@ -29,13 +29,5 @@ public class LoginPage extends BasePage {
                 TestUtils.getOtp(ConfigReader.getProperty("testUser"), ConfigReader.getProperty("testPassword")));
         click(nextBtn);
     }
-//    public void login(String name) {
-//        type(emailBox, ConfigReader.getProperty("testUser"));
-//        click(nextBtn);
-//
-//        type(confirmationBox,
-//                TestUtils.getOtp(ConfigReader.getProperty("testUser."+name), ConfigReader.getProperty("testPassword."+name)));
-//        click(nextBtn);
-//    }
 
 }
