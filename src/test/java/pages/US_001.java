@@ -5,11 +5,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
-public class MainPanelPage extends BasePage {
-    public MainPanelPage() {
+public class US_001 extends BasePage {
+    public US_001() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
+
+    //  Home-->Online Mağaza-->Kupon
     @FindBy(xpath = "(//div//span[@class = 'ng-arrow-wrapper'])[1]")
     public WebElement webSitesiListTri;
     @FindBy (xpath= "//div/span[contains(text(), 'Web : abeyis-web')]")
