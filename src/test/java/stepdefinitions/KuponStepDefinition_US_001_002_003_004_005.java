@@ -5,15 +5,15 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import pages.MainPanelPage;
+import pages.US_001;
 import utilities.TestUtils;
 
 import java.util.Random;
 
 
-public class KuponPageStepDefs {
+public class KuponStepDefinition_US_001_002_003_004_005 {
 
-    MainPanelPage mp = new MainPanelPage();
+    US_001 mp = new US_001();
     Random random = new Random();
 
     @Given("User click the Online Magaza button")
