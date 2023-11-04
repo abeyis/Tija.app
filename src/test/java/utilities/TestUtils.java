@@ -304,6 +304,7 @@ public class TestUtils {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
+
     public static void executeJScommand(WebElement element, String command) {
         JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
         jse.executeScript(command, element);

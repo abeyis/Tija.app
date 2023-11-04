@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import utilities.TestUtils;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,6 +51,8 @@ public abstract class BasePage {
      * @param element
      * @author Charlie Alpha
      */
+
+
     protected static void type(WebElement element, String text) {
         TestUtils.waitForClickablility(element, 15).sendKeys(text);
     }
@@ -95,5 +98,28 @@ public abstract class BasePage {
         return elements.stream()
                 .map(element -> getElementText(element))
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * <h2>Clicks on Buttons Common to Text</h2>
+     * This method using for clicking to the web element.
+     * <p>
+     * <h4>Description Of Method :
+     * <h4/>
+     * It takes 'element' WebElement parameter.
+     *
+     * And click that.
+     * <p>
+     *
+     * @param moduleName
+
+     */
+
+    protected static void goToElement(String moduleName) {
+       WebElement element = Driver.getDriver().findElement(By.xpath("//*[text()='"+moduleName+"']"));
+       TestUtils.waitForClickablility(element,15).click();
+
+
+
     }
 }
