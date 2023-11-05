@@ -18,14 +18,14 @@ public class DizaynPage extends  BasePage{
 
     }
 
-    @FindBy(xpath = "//a[text()='Web : abeyis-web'")
+    @FindBy(xpath = "//*[text()='Web : abeyis-web']")
     WebElement websayfası;
 
 
     AnasayfaPage anasayf = new AnasayfaPage();
 
 
-    public void clickToDizayn() throws InterruptedException {
+    public void clickToDizaynSayfa() throws InterruptedException {
 
 //        anasayf.onlineMagazaButton.click();
 //        anasayf.dizaynButton.click();

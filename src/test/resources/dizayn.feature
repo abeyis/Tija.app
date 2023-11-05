@@ -1,5 +1,5 @@
 @Dizayn
-Feature: Dizayn butonuna tıklar
+Feature: Dizayn
 
 
   Background: login_ol
