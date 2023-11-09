@@ -5,7 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import pages.US_001;
+import pages.KuponPage;
 import utilities.TestUtils;
 
 import java.util.Random;
@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class KuponStepDefinition_US_001_002_003_004_005 {
 
-    US_001 mp = new US_001();
+    KuponPage mp = new KuponPage();
     Random random = new Random();
 
     @Given("User click the Online Magaza button")
@@ -70,7 +70,7 @@ public class KuponStepDefinition_US_001_002_003_004_005 {
 
     @Then("Verify that Kaydet button is not clickable")
     public void verifyThatKaydetButtonIsNotClickable() {
-        Assert.assertFalse("TC_002 | Eksik veri girildiğinde kayıt yapılamadığı doğrulandı", 
+        Assert.assertFalse("TC_002 | Eksik veri girildiğinde kayıt yapılamadığı doğrulanamadı",
                 mp.kaydetButton.isEnabled());
     }
 }

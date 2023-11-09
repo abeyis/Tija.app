@@ -5,8 +5,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
-public class US_001 extends BasePage {
-    public US_001() {
+public class KuponPage extends BasePage {
+    public KuponPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
