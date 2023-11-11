@@ -58,6 +58,7 @@ public class DizaynSayfaAyarlarıStepDefs {
     @And("Kullanıcı açılan pencerede {string} sorusunu görüp evet butonuna tıklar")
     public void kullanıcıAçılanPenceredeSorusunuGörüpEvetButonunaTıklar(String arg0) {
 
+
     }
 
 
