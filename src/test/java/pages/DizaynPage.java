@@ -21,10 +21,6 @@ public class DizaynPage extends  BasePage{
     @FindBy(xpath = "(//*[text()='Web : abeyis-web']")
     public WebElement websayfası;
 
-    @FindBy(xpath = "//*[@lang='tr']")
-    public WebElement dizaynSayfaDogulama;
-
-
 
 }
 

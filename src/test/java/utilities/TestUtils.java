@@ -523,7 +523,7 @@ public class TestUtils {
 
         Driver.getDriver().close();
         Driver.getDriver().switchTo().window(originalWindow);
-        TestUtils.bekle(3);
+
         return otp;
     }
 
