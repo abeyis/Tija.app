@@ -13,16 +13,16 @@ public class DizaynBolumuneGirisStepDefs {
 
     DizaynPage dzyn = new DizaynPage();
     AnasayfaPage anasayf = new AnasayfaPage();
-    BasePage basePage = new BasePage();
+
 
     @Given("Kullanıcı Online Magaza butonuna tıklar")
     public void kullanıcı_online_magaza_butonuna_tıklar() {
 
-        basePage.clickPanelButton("Online Mağaza");
+        dzyn.clickPanelButton("Online Mağaza");
     }
     @When("Kullanıcı Dizayn butonuna tıklar")
     public void kullanıcı_dizayn_butonuna_tıklar() {
-        basePage.clickPanelButton("Dizayn");
+        dzyn.clickPanelButton("Dizayn");
 
     }
     @When("Kullanıcı dizayn etmek istediği sayfaya tıklar")

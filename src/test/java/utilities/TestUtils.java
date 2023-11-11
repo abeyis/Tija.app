@@ -522,9 +522,8 @@ public class TestUtils {
         String otp = elmTexts.get(elmTexts.size()-1);
 
         Driver.getDriver().close();
-
         Driver.getDriver().switchTo().window(originalWindow);
-
+        TestUtils.bekle(3);
         return otp;
     }
 

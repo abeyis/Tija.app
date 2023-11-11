@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
-public class BasePage {
+public abstract class BasePage {
 
     public BasePage() {
         PageFactory.initElements(Driver.getDriver(), this);

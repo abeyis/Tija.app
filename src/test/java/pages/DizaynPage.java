@@ -18,7 +18,7 @@ public class DizaynPage extends  BasePage{
 
     }
 
-    @FindBy(xpath = "(//*[@class='contents d-flex align-items-center py-2'])[1]")
+    @FindBy(xpath = "(//*[text()='Web : abeyis-web']")
     public WebElement websayfası;
 
     @FindBy(xpath = "//*[@lang='tr']")
