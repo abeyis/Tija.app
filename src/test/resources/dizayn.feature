@@ -6,5 +6,8 @@ Feature: Dizayn
     Given login to app
 
   @dizaynButton
-  Scenario: test
-    When Dizayn Button Tıklar
+  Scenario: Dizayn sayfasına git
+    Given Kullanıcı Online Magaza butonuna tıklar
+    When Kullanıcı Dizayn butonuna tıklar
+    And  Kullanıcı dizayn etmek istediği sayfaya tıklar
+    Then Kullanıcı Dizayn sayfasında oldugunu dogrular

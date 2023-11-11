@@ -513,7 +513,7 @@ public class TestUtils {
 
         loginToGmail(username,password);
 
-        waitForClickablility(By.xpath("//a[text()='Gmail']"),15).click();
+        waitForClickablility(By.xpath("//*[text()='Gmail']"),15).click();
         waitForClickablility(By.xpath("(//span[@name='Tija'])[2]"),30).click();
 
         waitForPageToLoad(30);

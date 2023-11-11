@@ -26,18 +26,7 @@ public class DizaynSayfaAyarlarıPage extends BasePage{
 
 
 
-    public void clickToAltBilgiSayfa () {
 
-        goToElement("Alt Bilgi");
-        goToElement(" Sayfa Ayarları ");
-        baslıkText.sendKeys("Kubra Deniyor");
-        goToElement("Full");
-        goToElement(" Aktif ");
-        goToElement("Kaydet");
-        Assert.assertTrue(islemBasarılı.isDisplayed());
-
-
-    }
 }
 
 

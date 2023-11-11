@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
-public abstract class BasePage {
+public class BasePage {
 
     public BasePage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -101,6 +101,7 @@ public abstract class BasePage {
     }
 
     /**
+<<<<<<< HEAD
      * <h2>Clicks on Buttons Common to Text</h2>
      * This method using for clicking to the web element.
      * <p>
@@ -115,11 +116,22 @@ public abstract class BasePage {
 
      */
 
-    protected static void goToElement(String moduleName) {
-       WebElement element = Driver.getDriver().findElement(By.xpath("//*[text()='"+moduleName+"']"));
-       TestUtils.waitForClickablility(element,15).click();
-
-
-
+    /**
+     * <h2>Click Button in the Main Panel
+     * <h2/>
+     *
+     * <h4>Description Of Method :
+     * <h4/>
+     * This method clicks the button
+     * taking 'visible button text' parameter
+     * <p>
+     *
+     * @param buttonText Text of the Button
+     */
+    public void clickPanelButton(String buttonText) {
+        WebElement element = Driver.getDriver().findElement(By.xpath("//*[text()='"+ buttonText + "']"));
+        TestUtils.waitForClickablility(element, 15).click();
     }
+
+
 }

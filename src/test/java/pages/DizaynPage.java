@@ -18,27 +18,15 @@ public class DizaynPage extends  BasePage{
 
     }
 
-    @FindBy(xpath = "//*[text()='Web : abeyis-web']")
-    WebElement websayfası;
+    @FindBy(xpath = "(//*[@class='contents d-flex align-items-center py-2'])[1]")
+    public WebElement websayfası;
 
+    @FindBy(xpath = "//*[@lang='tr']")
+    public WebElement dizaynSayfaDogulama;
 
-    AnasayfaPage anasayf = new AnasayfaPage();
-
-
-    public void clickToDizaynSayfa() throws InterruptedException {
-
-//        anasayf.onlineMagazaButton.click();
-//        anasayf.dizaynButton.click();
-
-        goToElement("Online Mağaza");
-
-        goToElement("Dizayn");
-
-        goToElement("Web : abeyis-web");
-
-
-
-    }
 
 
 }
+
+
+
