@@ -527,4 +527,19 @@ public class TestUtils {
         return otp;
     }
 
+    public static List<String> getAttributeListfromListElement(List<WebElement> list, String attribute) {
+        List<String> elemTexts = new ArrayList<>();
+        for (WebElement el : list) {
+//            if (!el.getAttribute(attribute).isEmpty() || el.getAttribute(attribute) == null) {
+                elemTexts.add(el.getAttribute(attribute));
+//            }
+        }
+        return elemTexts;
+    }
+
+    public static void scrollToElement(WebElement element){
+            ((JavascriptExecutor) Driver.getDriver())
+                    .executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
 }
