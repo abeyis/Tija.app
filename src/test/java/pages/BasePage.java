@@ -1,5 +1,7 @@
 package pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.FindBy;
 import utilities.TestUtils;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,8 +13,7 @@ import utilities.Driver;
 public abstract class BasePage {
 
     public BasePage() {
-        PageFactory.initElements(Driver.getDriver(), this);
-    }
+        PageFactory.initElements(Driver.getDriver(), this);}
 
     /**
      * <h2>Click To Web Element</h2>
@@ -96,4 +97,40 @@ public abstract class BasePage {
                 .map(element -> getElementText(element))
                 .collect(Collectors.toList());
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @FindBy(xpath = "//a[text()='Online Mağaza']")
+    private WebElement onlineMagazaBtn;
+    public void clickPanel(String panelText){
+
+        click(onlineMagazaBtn);
+        TestUtils.waitForClickablility(By.xpath("//a[text()='"+ panelText + "']"),15).click();
+    }
+
+
+
+
+
+    
+
 }
