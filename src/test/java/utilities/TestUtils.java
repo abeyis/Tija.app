@@ -520,6 +520,9 @@ public class TestUtils {
         List<String> elmTexts = getElementsText(By.xpath("//a[contains(@id,'clickCode')]//strong"));
         String otp = elmTexts.get(elmTexts.size()-1);
 
+        waitForClickablility(By.xpath("(//div[@title='Delete'])[2]"),15).click();
+        wait(1);
+
         Driver.getDriver().close();
 
         Driver.getDriver().switchTo().window(originalWindow);
