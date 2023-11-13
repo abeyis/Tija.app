@@ -18,52 +18,6 @@ public class TestUtils {
 
     static Actions actions = new Actions(Driver.getDriver());
 
-    /*
-     * String getScreenshot(String name) 68.satır
-     * void switchToWindow(String targetTitle) 87.satir
-     * void hover(WebElement element) 100.satir
-     * List<String> getElementsText(List<WebElement> list) 107.satir
-     * List<String> getElementsText(By locator) 119. satir
-     * void waitFor(int sec) 132.satir
-     * WebElement waitForVisibility(WebElement element, int timeToWaitInSec) 142.
-     * satir
-     * WebElement waitForVisibility(WebElement element, int timeToWaitInSec)
-     * 148.satir
-     * void waitForPageToLoad(long timeOutInSeconds) 166.satir
-     * WebElement fluentWait(final WebElement webElement, int timeinsec) 184.satir
-     * void doubleClick(WebElement element) 193.satir
-     * void selectCheckBox(WebElement element, boolean check) 212.satir
-     * WebElement selectRandomTextFromDropdown(Select select) 220.satir
-     * void waitAndClick(WebElement element, int timeout) 232.satir
-     * void waitAndClick(WebElement element) 244.satir
-     * void waitAndSendText(WebElement element, String text, int timeout) 257.satir
-     * void waitAndSendText(WebElement element, String text) 269.satir
-     * void waitAndSendTextWithDefaultTime(WebElement element, String text)
-     * 281.satir
-     * String waitAndGetText(WebElement element, int timeout) 300.satir
-     * void wait2(int sec) 319.satir
-     * void waitAndClickElement(WebElement element, int seconds) 333.satir
-     * void wait(int secs) 351.satir
-     * WebElement waitForVisibility(By locator, int timeout) 356.satir
-     * Boolean waitForInVisibility(By locator, int timeout) 361.satir
-     * WebElement waitForClickablility(WebElement element, int timeout) 366.satir
-     * WebElement waitForClickablility(By locator, int timeout) 372.satir
-     * void executeJScommand(WebElement element, String command) 378.satir
-     * void selectAnItemFromDropdown(WebElement item, String selectableItem)
-     * 396.satir
-     * void clickWithJS(WebElement element) 407.satir
-     * void clickWithJSAsList(List<WebElement> elements) 418.satir
-     * void selectByVisibleText(WebElement element, String text) 427.satir
-     * void selectByIndex(WebElement element, int index) 436.satir
-     * void selectByValue(WebElement element, String value) 444.satir
-     * void sleep(int timeOut) 453.satir
-     * void waitAndClickLocationText(WebElement element, String value) 459.satir
-     * 
-     * 
-     * 
-     * 
-     */
-
     private static int timeout = 5;
 
     public static String getScreenshot(String name) throws IOException {
@@ -565,6 +519,9 @@ public class TestUtils {
 
         List<String> elmTexts = getElementsText(By.xpath("//a[contains(@id,'clickCode')]//strong"));
         String otp = elmTexts.get(elmTexts.size()-1);
+
+        waitForClickablility(By.xpath("(//div[@title='Delete'])[2]"),15).click();
+        wait(1);
 
         Driver.getDriver().close();
 

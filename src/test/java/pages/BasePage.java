@@ -99,26 +99,6 @@ public abstract class BasePage {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @FindBy(xpath = "//a[text()='Online Mağaza']")
     private WebElement onlineMagazaBtn;
     public void clickPanel(String panelText){
@@ -127,10 +107,22 @@ public abstract class BasePage {
         TestUtils.waitForClickablility(By.xpath("//a[text()='"+ panelText + "']"),15).click();
     }
 
-
-
-
-
-    
+    /**
+     * <h2>Click Button in the Main Panel
+     * <h2/>
+     *
+     * <h4>Description Of Method :
+     * <h4/>
+     * This method clicks the button
+     * taking 'visible button text' parameter
+     * <p>
+     *
+     * @param buttonText Text of the Button
+     */
+    public void clickPanelButton(String buttonText) {
+        WebElement element = Driver.getDriver().findElement(By.xpath(
+                                    "//a[text()='"+ buttonText + "']"));
+        TestUtils.waitForClickablility(element, 15).click();
+    }
 
 }

@@ -1,44 +1,28 @@
-# DIKKAT EDILMESI GEREKENLER
+<p align="center">
+    <img src="src/images/tijapng.png" alt="Tija App"/>
+</p>
+<br>
 
-*
-
-**GITHUB DA DIKKAT EDILMESI GEREKENLER**
-> Projede calismaya baslamadan once mutlaka
->
->      1- master/main branch 'inde "git pull" islemi yapilmalidir
->      2- kendi branch 'imize gecip "git merge master/main" islemi yapilmalidir.
->      3- zip kaydetme isleme yapilmalidir 
->
-**COMMIT ETME ISLEMI**
-> **git add .
-
-> 
-> *git commit -m"GG.AA.YY/name-2"* (-2 --> gün içinde push etme sayısına göre)
-"11.05.23/inci-1"
-"11.05.23/inci-2"
-"12.05.23/inci-1"
->
-> *git push*
-
-*
-> -Her islemden once mutlaka master/main branch 'inde olunmadigi kontrol edilmelidir.
->
-> -Master/main branch'inde degisiklik gerekiyorsa lead ile iletisime gecilmeli
-*
+# Summary of Project
+Tija is a management tool solution for e-commers industry. It is providing several functions to users. We can list the solutions of tija at the below:
+* Logistics integrations
+* 3rd party ERP app integrations
+* Inventory management
+* E-commerce web sites integration
+* B2B/B2C management
+* Customized Web site, mobile app and shopify solutions
+### Decription of Repository
+This test project created for test to Tija "Online mağaza" module. Implementing UI and API tests.
+### Tools
+* JVM distribution -> [Oracle Java 11 jdk]("https://www.oracle.com/tr/java/technologies/javase/jdk11-archive-downloads.html")
+* Build Management Tool -> [Apache Maven v3.9.5]("https://maven.apache.org/download.cgi")
+* Version Control -> [Git v2.42.1]("https://git-scm.com/downloads")
+* CI tool -> [Jenkins]("")
+* Test Framework -> [Cucumber dependency]("https://mvnrepository.com/artifact/io.cucumber/cucumber-java") (jenkins url)
+* UI automation tool -> [Selenium dependency]("https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java")
+* API automation tool -> [RestAssured dependency]("https://mvnrepository.com/artifact/io.rest-assured/rest-assured")
+* Bacuse of usage selenium 4.11, there is no additional webdriver dependency
+* 
 
 
 
-# Class Isimlendirmeleri
->  PAGES paketinde isimlendirme *US_001* seklinde olacak!                        
->
->  STEPDEFINITIONS paketinde isimlendirme *SikayetVarStepdefinition_US_001_002_003* seklinde olacak!    
->
->  FEATURE paketinde isimlendirme *US_001_sikayetVar.feature* seklinde olacak!           
-
-# Pages'taki class'larda locate belirtme
-> // Home-->Profil ikonu-->Sikayetlerim-->Sikayet Hazirlaniyor-->Tesekkur   Locate in üstü
->  home_profilikonu_sikayetlerim_sikayethazirlaniyor_tesekkur            Locate in altı
-
-
-# Method isimlendirme
-> kullanici_basarili_bir_sekilde_login_olunabildigini_dogrular()
