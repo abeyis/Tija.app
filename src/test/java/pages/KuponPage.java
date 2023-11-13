@@ -54,7 +54,7 @@ public class KuponPage extends BasePage {
     public  WebElement koleksiyonKayitlariSecButton;
     @FindBy(xpath = "//div[@class='modal-content']//button[contains(text(), 'Sil')]")
     public  WebElement kuponKayitlariSilOnayButton;
-    @FindBy(xpath = "//table[@class='table table-borderless']//td[(.='Kupon-ZorunluGirişler')]")
+    @FindBy(xpath = "//table//tr//td[.='Kupon-BütünGirişler']")
     public  WebElement kuponKayitlariSilinenKupon;
     @FindBy(xpath = "(//table[contains(@class, 'table-borderless')])//tr/td[1]")
     public List<WebElement> kuponKayitlariBaslikList;
@@ -69,7 +69,7 @@ public class KuponPage extends BasePage {
 
 
 
-    public void selectDropDownOption(String dropDownOption) {
+    public void selectdropDownOption(String dropDownOption) {
         WebElement element = Driver.getDriver().findElement(By.xpath(
                 "//div/span[contains(text(), '" + dropDownOption + "')]"));
         TestUtils.waitAndClick(element);
@@ -91,7 +91,7 @@ public class KuponPage extends BasePage {
         return strNo;
     }
 
-    public List<WebElement> getElementListFromString(String listName) {
+    public List<WebElement> getElementListfromString(String listName) {
         switch (listName) {
             case "Güncelle": return kuponKayitlariGuncelleButtonList;
             case "Sil": return kuponKayitlariSilButtonList;
@@ -100,3 +100,4 @@ public class KuponPage extends BasePage {
         return null;
     }
 }
+

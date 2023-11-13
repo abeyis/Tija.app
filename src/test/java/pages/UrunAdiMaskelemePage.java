@@ -8,7 +8,7 @@ import utilities.Driver;
 import java.util.List;
 
 public class UrunAdiMaskelemePage extends BasePage{
-    public UrunAdiMaskelemePage() {
+        public UrunAdiMaskelemePage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 

@@ -32,7 +32,7 @@ public class KuponPageStepDefs {
     public void enterTestDataToSomeRequiredFields() {
 
         TestUtils.waitAndClick(mp.webSitesiListTri);
-        mp.selectDropDownOption("Web : abeyis-web");
+        mp.selectdropDownOption("Web : abeyis-web");
 
         int randomNo = random.nextInt(9);
 
@@ -44,23 +44,23 @@ public class KuponPageStepDefs {
 
         if (randomNo != 2)
         {TestUtils.waitAndClick(mp.tipListTri);
-            mp.selectDropDownOption("Ücretsiz Kargo");}
+            mp.selectdropDownOption("Ücretsiz Kargo");}
 
         if (randomNo != 3)
         {TestUtils.waitAndClick(mp.uygulamaAlaniListTri);
-            mp.selectDropDownOption("Mevcut Siparişe");}
+            mp.selectdropDownOption("Mevcut Siparişe");}
 
         if (randomNo != 4)
         {TestUtils.waitAndClick(mp.minGereksinimListTri);
-            mp.selectDropDownOption("Yok");}
+            mp.selectdropDownOption("Yok");}
 
         if (randomNo != 5)
         {TestUtils.waitAndClick(mp.musteriUygunluguListTri);
-            mp.selectDropDownOption("Herkes");}
+            mp.selectdropDownOption("Herkes");}
 
         if (randomNo != 6)
         {TestUtils.waitAndClick(mp.kullanimLimitiListTri);
-            mp.selectDropDownOption("Toplamda x adet kadar uygulanabilir");}
+            mp.selectdropDownOption("Toplamda x adet kadar uygulanabilir");}
 
         if (randomNo != 7)
             TestUtils.waitAndSendText(mp.baslangicTarihiInputBox, "01-12-2023");
@@ -79,22 +79,22 @@ public class KuponPageStepDefs {
     @And("Select Web:abeyis-web option from Web sitesi dropdown list")
     public void selectWebAbeyisWebOptionFromWebSitesiDropdownList() {
         TestUtils.waitAndClick(mp.webSitesiListTri);
-        mp.selectDropDownOption("Web : abeyis-web");    }
+        mp.selectdropDownOption("Web : abeyis-web");    }
 
     @Then("Click {string} button for {string} in list")
     public void clickButtonForInList(String butonAdi, String kuponAdi) {
-        List<WebElement> kuponList = mp.getElementListFromString("Başlık");
+        List<WebElement> kuponList = mp.getElementListfromString("Başlık");
         String siraNo = mp.getIndexNoFromListElement(kuponList, kuponAdi);
         if (siraNo != null){
             int index = Integer.parseInt(siraNo);
-            TestUtils.waitAndClick(mp.getElementListFromString(butonAdi).get(index));
+            TestUtils.waitAndClick(mp.getElementListfromString(butonAdi).get(index));
         }
     }
 
     @And("Select {string} option from Uygulama Alanı dropdown list")
     public void selectOptionFromUygulamaAlanıDropdownList(String secimAdi) {
         TestUtils.waitAndClick(mp.uygulamaAlaniListTri);
-        mp.selectDropDownOption(secimAdi);
+        mp.selectdropDownOption(secimAdi);
     }
 
     @And("Click the {string} button")
