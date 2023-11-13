@@ -304,6 +304,7 @@ public class TestUtils {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
+
     public static void executeJScommand(WebElement element, String command) {
         JavascriptExecutor jse = (JavascriptExecutor) Driver.getDriver();
         jse.executeScript(command, element);
@@ -512,7 +513,7 @@ public class TestUtils {
 
         loginToGmail(username,password);
 
-        waitForClickablility(By.xpath("//a[text()='Gmail']"),15).click();
+        waitForClickablility(By.xpath("//*[text()='Gmail']"),15).click();
         waitForClickablility(By.xpath("(//span[@name='Tija'])[2]"),30).click();
 
         waitForPageToLoad(30);
@@ -524,7 +525,6 @@ public class TestUtils {
         wait(1);
 
         Driver.getDriver().close();
-
         Driver.getDriver().switchTo().window(originalWindow);
 
         return otp;

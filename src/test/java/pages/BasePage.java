@@ -51,6 +51,8 @@ public abstract class BasePage {
      * @param element
      * @author Charlie Alpha
      */
+
+
     protected static void type(WebElement element, String text) {
         TestUtils.waitForClickablility(element, 15).sendKeys(text);
     }
@@ -108,6 +110,22 @@ public abstract class BasePage {
     }
 
     /**
+<<<<<<< HEAD
+     * <h2>Clicks on Buttons Common to Text</h2>
+     * This method using for clicking to the web element.
+     * <p>
+     * <h4>Description Of Method :
+     * <h4/>
+     * It takes 'element' WebElement parameter.
+     *
+     * And click that.
+     * <p>
+     *
+     * @param moduleName
+
+     */
+
+    /**
      * <h2>Click Button in the Main Panel
      * <h2/>
      *
@@ -120,8 +138,7 @@ public abstract class BasePage {
      * @param buttonText Text of the Button
      */
     public void clickPanelButton(String buttonText) {
-        WebElement element = Driver.getDriver().findElement(By.xpath(
-                                    "//a[text()='"+ buttonText + "']"));
+        WebElement element = Driver.getDriver().findElement(By.xpath("//*[text()='"+ buttonText + "']"));
         TestUtils.waitForClickablility(element, 15).click();
     }
 

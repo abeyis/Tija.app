@@ -27,6 +27,7 @@ public class LoginPage extends BasePage {
 
         type(confirmationBox,
                 TestUtils.getOtp(ConfigReader.getProperty("testUser"), ConfigReader.getProperty("testPassword")));
+
         click(nextBtn);
     }
 
