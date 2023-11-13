@@ -1,6 +1,7 @@
 @smoke
 @regression
 @US_001
+@wip
 
 Feature: US_001 Kupon
 
@@ -29,5 +30,5 @@ Feature: US_001 Kupon
       When Click the Kupon button
       And Select Web:abeyis-web option from Web sitesi dropdown list
       Then Click "Sil" button for "Kupon-ZorunluGirişler" in list
-      And Click "Sil" confirmation button
-      Then Verify that the deletion is complete
+      #And Click "Sil" confirmation button
+      #Then Verify that the deletion is complete

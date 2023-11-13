@@ -1,7 +1,7 @@
 @smoke
 @regression
 @US_006
-
+@wip
 Feature: US_006 Urun Adi Maskeleme
 
   Background: Her senaryo öncesi login işlemi gerçekleştir
