@@ -520,14 +520,34 @@ public class TestUtils {
         List<String> elmTexts = getElementsText(By.xpath("//a[contains(@id,'clickCode')]//strong"));
         String otp = elmTexts.get(elmTexts.size()-1);
 
-        waitForClickablility(By.xpath("(//div[@title='Delete'])[2]"),15).click();
-        wait(1);
-
         Driver.getDriver().close();
 
         Driver.getDriver().switchTo().window(originalWindow);
 
         return otp;
     }
+
+    public static List<String> getAttributeListFromListElement(List<WebElement> list, String attribute) {
+        List<String> elemTexts = new ArrayList<>();
+        for (WebElement el : list) {
+            elemTexts.add(el.getAttribute(attribute));
+        }
+        return elemTexts;
+    }
+
+    public static void scrollToElement(WebElement element){
+        ((JavascriptExecutor) Driver.getDriver())
+                .executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public static boolean isElementPresent(WebElement element){
+        try {
+            return element.isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException | org.openqa.selenium.StaleElementReferenceException e) {
+            return false;
+        }
+    }
+
+
 
 }
