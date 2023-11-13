@@ -123,8 +123,8 @@ public class KuponPageStepDefs {
         TestUtils.waitAndClick(mp.koleksiyonKayitlariSecButton);
     }
 
-    @Then("Verify that the selection is recorded")
-    public void verifyThatTheSelectionIsRecorded() {
+    @Then("Verify that the selection is complete")
+    public void verifyThatTheSelectionIsComplete() {
         String expectedText = "Koleksiyon Seç (2 Adet Seçili)";
         String actualText = mp.functionButtonWebElement("Koleksiyon Seç").getText();
         Assert.assertEquals(expectedText, actualText);
