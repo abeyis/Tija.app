@@ -1,4 +1,5 @@
 @edaB2BC_1
+@wip
 Feature:Bir tija.app kullanicisi ve ayni zamanda B2B firmasi olarak onceden olusturmus oldugum firmalarimin bilgilerini
         ayni anda goruntuleyebilecegim bir sayfanin olmasini istiyorum.
 

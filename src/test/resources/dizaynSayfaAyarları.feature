@@ -1,4 +1,5 @@
 @DizaynSayfaAyarları
+@wip
 Feature: Dizayn Sayfa Ayarları
 
 

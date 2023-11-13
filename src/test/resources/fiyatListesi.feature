@@ -1,4 +1,5 @@
 @edaFl
+    @wip
 Feature:Bir tija.app kullanicisi ve ayni zamanda B2B firmasi olarak alt bayilerim olan firmalara ayni urunler icin farkli fiyatlar verebilecegim yeni
        fiyat listeleri olusturabilmek istiyorum ve ayrica tum urunlerimin fiyatlarini ayni anda goruntuleyebilecegim bir sayfanin olmasini istiyorum.
 

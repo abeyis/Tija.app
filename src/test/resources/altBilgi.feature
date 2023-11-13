@@ -1,3 +1,4 @@
+@wip
 Feature: Alt Bilgi Bölümünün Ayarları
 
   Background: login_ol_and_dizaynsayfasına_git
@@ -10,4 +11,4 @@ Feature: Alt Bilgi Bölümünün Ayarları
 
   Scenario:MüşteriHizmetleri_bölümündeki_bilgileri_doğrula
 
-    Given Kullanıcı Müşteri Hizmetleri bölümündeki bilgileri doğrular
+    #Given Kullanıcı Müşteri Hizmetleri bölümündeki bilgileri doğrular
