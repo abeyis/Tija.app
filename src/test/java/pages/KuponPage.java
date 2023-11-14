@@ -54,6 +54,8 @@ public class KuponPage extends BasePage {
     public  WebElement koleksiyonKayitlariSecButton;
     @FindBy(xpath = "//div[@class='modal-content']//button[contains(text(), 'Sil')]")
     public  WebElement kuponKayitlariSilOnayButton;
+    @FindBy(xpath = "//table//tr//td[.='Kupon-BütünGirişler']")
+    public  WebElement kuponKayitlariSilinenKupon;
     @FindBy(xpath = "(//table[contains(@class, 'table-borderless')])//tr/td[1]")
     public List<WebElement> kuponKayitlariBaslikList;
     @FindBy(xpath = "//tbody/tr/td/button[.='Güncelle']")

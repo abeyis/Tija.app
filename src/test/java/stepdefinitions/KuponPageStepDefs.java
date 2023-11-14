@@ -43,23 +43,23 @@ public class KuponPageStepDefs {
             TestUtils.waitAndSendText(mp.kuponKoduInputBox, "1");
 
         if (randomNo != 2)
-            {TestUtils.waitAndClick(mp.tipListTri);
+        {TestUtils.waitAndClick(mp.tipListTri);
             mp.selectdropDownOption("Ücretsiz Kargo");}
 
         if (randomNo != 3)
-            {TestUtils.waitAndClick(mp.uygulamaAlaniListTri);
+        {TestUtils.waitAndClick(mp.uygulamaAlaniListTri);
             mp.selectdropDownOption("Mevcut Siparişe");}
 
         if (randomNo != 4)
-            {TestUtils.waitAndClick(mp.minGereksinimListTri);
+        {TestUtils.waitAndClick(mp.minGereksinimListTri);
             mp.selectdropDownOption("Yok");}
 
         if (randomNo != 5)
-            {TestUtils.waitAndClick(mp.musteriUygunluguListTri);
+        {TestUtils.waitAndClick(mp.musteriUygunluguListTri);
             mp.selectdropDownOption("Herkes");}
 
         if (randomNo != 6)
-            {TestUtils.waitAndClick(mp.kullanimLimitiListTri);
+        {TestUtils.waitAndClick(mp.kullanimLimitiListTri);
             mp.selectdropDownOption("Toplamda x adet kadar uygulanabilir");}
 
         if (randomNo != 7)
@@ -107,8 +107,8 @@ public class KuponPageStepDefs {
         List<String> checkedList;
         List<String> colectionList;
 
-        checkedList = TestUtils.getAttributeListfromListElement(mp.koleksiyonKayitlariCheckedList, "ng-reflect-model");
-        colectionList = TestUtils.getAttributeListfromListElement(mp.koleksiyonKayitlariBaslikList, "textContent");
+        checkedList = TestUtils.getAttributeListFromListElement(mp.koleksiyonKayitlariCheckedList, "ng-reflect-model");
+        colectionList = TestUtils.getAttributeListFromListElement(mp.koleksiyonKayitlariBaslikList, "textContent");
         String[] koleksiyon = {"Apple Watch", "Xiaomi"};
 
         for (int i=0; i<checkedList.size(); i++){
@@ -128,5 +128,17 @@ public class KuponPageStepDefs {
         String expectedText = "Koleksiyon Seç (2 Adet Seçili)";
         String actualText = mp.functionButtonWebElement("Koleksiyon Seç").getText();
         Assert.assertEquals(expectedText, actualText);
+    }
+
+    @And("Click {string} confirmation button")
+    public void clickConfirmationButton(String butonName) {
+        TestUtils.waitAndClick(mp.kuponKayitlariSilOnayButton);
+        TestUtils.waitFor(1);
+    }
+
+    @Then("Verify that the deletion is complete")
+    public void verifyThatTheDeletionIsComplete() {
+        Assert.assertFalse("TC_011 | Kupon-ZorunluGirişler kaydının silindiği doğrulanamadı"
+                ,TestUtils.isElementPresent(mp.kuponKayitlariSilinenKupon));
     }
 }
