@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.FindBy;
 import utilities.TestUtils;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,8 +13,7 @@ import utilities.Driver;
 public abstract class BasePage {
 
     public BasePage() {
-        PageFactory.initElements(Driver.getDriver(), this);
-    }
+        PageFactory.initElements(Driver.getDriver(), this);}
 
     /**
      * <h2>Click To Web Element</h2>
@@ -51,6 +51,8 @@ public abstract class BasePage {
      * @param element
      * @author Charlie Alpha
      */
+
+
     protected static void type(WebElement element, String text) {
         TestUtils.waitForClickablility(element, 15).sendKeys(text);
     }
@@ -98,6 +100,31 @@ public abstract class BasePage {
                 .collect(Collectors.toList());
     }
 
+
+    @FindBy(xpath = "//a[text()='Online Mağaza']")
+    private WebElement onlineMagazaBtn;
+    public void clickPanel(String panelText){
+
+        click(onlineMagazaBtn);
+        TestUtils.waitForClickablility(By.xpath("//a[text()='"+ panelText + "']"),15).click();
+    }
+
+    /**
+<<<<<<< HEAD
+     * <h2>Clicks on Buttons Common to Text</h2>
+     * This method using for clicking to the web element.
+     * <p>
+     * <h4>Description Of Method :
+     * <h4/>
+     * It takes 'element' WebElement parameter.
+     *
+     * And click that.
+     * <p>
+     *
+     * @param moduleName
+
+     */
+
     /**
      * <h2>Click Button in the Main Panel
      * <h2/>
@@ -111,10 +138,8 @@ public abstract class BasePage {
      * @param buttonText Text of the Button
      */
     public void clickPanelButton(String buttonText) {
-        WebElement element = Driver.getDriver().findElement(By.xpath(
-                                    "//a[text()='"+ buttonText + "']"));
+        WebElement element = Driver.getDriver().findElement(By.xpath("//*[text()='"+ buttonText + "']"));
         TestUtils.waitForClickablility(element, 15).click();
     }
-
 
 }

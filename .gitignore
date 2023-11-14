@@ -33,7 +33,6 @@ build/
 ### Mac OS ###
 .DS_Store
 *.html
-*.png
 /.idea/vcs.xml
 target/json-reports/cucumber.json
 target/xml-report/cucumber.xml
