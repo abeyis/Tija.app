@@ -10,8 +10,4 @@ public class LoginPageStepDefs {
         lp.login();
     }
 
-//    @Given("login to app with {string}")
-//    public void loginToAppWith(String name) {
-//        lp.login(name);
-//    }
 }

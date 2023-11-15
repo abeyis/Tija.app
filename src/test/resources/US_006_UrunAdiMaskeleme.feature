@@ -11,5 +11,5 @@ Feature: US_006 Urun Adi Maskeleme
       Given Click the Online Magaza button
       When Click Urun Adi Maskeleme button
       And Enter "Galaksi Bads Live" and "15" for "Galaxy Buds Live" to Mask fields
-      Then Click the "Ekle" button
+      And Click the "Ekle" button
       Then Verify that Urun Adi Maskeleme Data is recorded
