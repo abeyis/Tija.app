@@ -516,7 +516,7 @@ public class TestUtils {
         waitForClickablility(By.xpath("(//span[@name='Tija'])[2]"),30).click();
 
         waitForPageToLoad(30);
-
+        TestUtils.bekle(3);
         List<String> elmTexts = getElementsText(By.xpath("//a[contains(@id,'clickCode')]//strong"));
         String otp = elmTexts.get(elmTexts.size()-1);
 

@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import utilities.TestUtils;
@@ -137,9 +138,17 @@ public abstract class BasePage {
      *
      * @param buttonText Text of the Button
      */
-    public void clickPanelButton(String buttonText) {
+    public static void clickPanelButton(String buttonText) {
         WebElement element = Driver.getDriver().findElement(By.xpath("//*[text()='"+ buttonText + "']"));
         TestUtils.waitForClickablility(element, 15).click();
+    }
+
+    public static void verifyPopUpIsDisplayed(String message){
+        WebElement element = Driver.getDriver().findElement(By.xpath(
+                "//div[starts-with(@aria-label, '"+ message +"')]"));
+        Assert.assertTrue(element.isDisplayed());
+        TestUtils.waitForInVisibility(By.xpath(
+                "//div[starts-with(@aria-label, '"+ message +"')]"),5);
     }
 
 }

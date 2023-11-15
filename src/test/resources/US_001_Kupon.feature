@@ -16,7 +16,7 @@ Feature: US_001 Kupon
   Scenario: TC_004 Kupon için özel koleksiyon seçimi yapılabildiğini doğrula
     And Select Web:abeyis-web option from Web sitesi dropdown list
     Then Click "Güncelle" button for "Kupon-ZorunluGirişler" in list
-    And Select "Özel Koleksiyona" option from Uygulama Alanı dropdown list
+    And Select "Özel Koleksiyona" option from "Uygulama Alanı" dropdown list
     And Click the "Koleksiyon Seç" button
     Then Select koleksiyon members on the pop-up window
     And Click the "Seç" button
