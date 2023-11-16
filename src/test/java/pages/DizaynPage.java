@@ -102,7 +102,7 @@ public class DizaynPage extends  BasePage {
 
     public void sayfaDogrulama(String text) {
         String baslikUrl = Driver.getDriver().getCurrentUrl();
-        Assert.assertTrue(baslıkUrl.contains(text));
+        Assert.assertTrue(baslikUrl.contains(text));
     }
 
     public void baslikTikla() {
@@ -130,7 +130,7 @@ public class DizaynPage extends  BasePage {
 
     public void popUpValid() {
         TestUtils.wait(3000);
-        Assert.assertTrue(islemBasarılı.isDisplayed());
+        Assert.assertTrue(islemBasarili.isDisplayed());
     }
 
     public void tiklaMain() {
@@ -164,7 +164,7 @@ public class DizaynPage extends  BasePage {
     }
 
     public void dogrulaVeOnayla() {
-        String expected = silmeMesajı.getText();
+        String expected = silmeMesaji.getText();
         Assert.assertEquals(expected, "Sayfayı silmek istediğinize emin misiniz?");
         evetButon.click();
     }
