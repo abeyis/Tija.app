@@ -5,7 +5,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pages.AnasayfaPage;
-import pages.BasePage;
 import pages.DizaynPage;
 import utilities.Driver;
 
@@ -16,30 +15,30 @@ public class DizaynBolumuneGirisStepDefs {
 
 
     @Given("Kullanıcı Online Magaza butonuna tıklar")
-    public void kullanıcı_online_magaza_butonuna_tıklar() {
+    public void kullanici_online_magaza_butonuna_tiklar() {
 
         dzyn.clickPanelButton("Online Mağaza");
     }
     @When("Kullanıcı Dizayn butonuna tıklar")
-    public void kullanıcı_dizayn_butonuna_tıklar() {
+    public void kullanici_dizayn_butonuna_tiklar() {
         dzyn.clickPanelButton("Dizayn");
 
     }
     @When("Kullanıcı dizayn etmek istediği sayfaya tıklar")
-    public void kullanıcı_dizayn_etmek_istediği_sayfaya_tıklar() {
+    public void kullanici_dizayn_etmek_istedigi_sayfaya_tiklar() {
         //      clickPanelButton("Web : abeyis-web");
-           dzyn.websayfası.click();
+           dzyn.websayfasi.click();
 
     }
     @Then("Kullanıcı Dizayn sayfasında oldugunu dogrular")
-    public void kullanıcı_dizayn_sayfasında_oldugunu_dogrular() {
-        String baslıkUrl = Driver.getDriver().getCurrentUrl();
-        Assert.assertTrue(baslıkUrl.contains("b2c/theme"));
+    public void kullanici_dizayn_sayfasinda_oldugunu_dogrular() {
+        String baslikUrl = Driver.getDriver().getCurrentUrl();
+        Assert.assertTrue(baslikUrl.contains("b2c/theme"));
 
     }
 
     @Given("Kullanıcı Bolum Ekle butonuna tıklar")
-    public void kullanıcı_bolum_ekle_butonuna_tıklar() {
+    public void kullanici_bolum_ekle_butonuna_tiklar() {
         dzyn.bolumEkleButonTikla();
     }
 
