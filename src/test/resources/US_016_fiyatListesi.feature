@@ -4,8 +4,10 @@ Feature:Bir tija.app kullanicisi ve ayni zamanda B2B firmasi olarak alt bayileri
        fiyat listeleri olusturabilmek istiyorum ve ayrica tum urunlerimin fiyatlarini ayni anda goruntuleyebilecegim bir sayfanin olmasini istiyorum.
 
     Background:
-    * login to app
-    * Click panel Fiyat Listesi
+        * login to app
+        * Click the Online Magaza button
+        * Click panel Fiyat Listesi
+
 
     Scenario:TC0113 Fiyat Listesi butonunun fiyat listesi sayfasina yonlendirdigini dogrulama testi.
     * Verify that it goes to the Fiyat Listesi Page
@@ -17,9 +19,6 @@ Feature:Bir tija.app kullanicisi ve ayni zamanda B2B firmasi olarak alt bayileri
     Scenario:TC0116 Fiyat Listesi sayfasinda arama cubugu ile urun aramasini ara butonu ile yapabilme testi
     * The product name is written in the Ne Aramistiniz textbox and the click on the Ara button
     * Verifies that product information is displayed on the page
-
-    Scenario:TC0117 Fiyat Listesi sayfasinda arama cubugu ile urun aramasini enter tusu ile yapabilme testi.
-     ## Fail
 
     Scenario:TC0107 Yeni fiyat listesi ekleme testi
     * Click on the Yeni Fiyat button

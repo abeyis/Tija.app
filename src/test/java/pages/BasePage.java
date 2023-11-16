@@ -102,13 +102,7 @@ public abstract class BasePage {
     }
 
 
-    @FindBy(xpath = "//a[text()='Online Mağaza']")
-    private WebElement onlineMagazaBtn;
-    public void clickPanel(String panelText){
 
-        click(onlineMagazaBtn);
-        TestUtils.waitForClickablility(By.xpath("//a[text()='"+ panelText + "']"),15).click();
-    }
 
     /**
 <<<<<<< HEAD
@@ -142,6 +136,7 @@ public abstract class BasePage {
         WebElement element = Driver.getDriver().findElement(By.xpath("//*[text()='"+ buttonText + "']"));
         TestUtils.waitForClickablility(element, 15).click();
     }
+
 
     public static void verifyPopUpIsDisplayed(String message){
         WebElement element = Driver.getDriver().findElement(By.xpath(
