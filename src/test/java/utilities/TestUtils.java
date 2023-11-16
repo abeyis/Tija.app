@@ -547,6 +547,15 @@ public class TestUtils {
             return false;
         }
     }
+    public static void clickInCycle(WebElement el){
+        try {
+            clickWithJS(el);
+            if(el.isDisplayed())
+                throw new RuntimeException();
+        }catch (RuntimeException e){
+            clickInCycle(el);
+        }
+    }
 
 
 

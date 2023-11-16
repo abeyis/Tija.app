@@ -38,8 +38,44 @@ public class DizaynBolumuneGirisStepDefs {
 
     }
 
+    @Given("Kullanıcı Bolum Ekle butonuna tıklar")
+    public void kullanıcı_bolum_ekle_butonuna_tıklar() {
+        dzyn.bolumEkleButonTikla();
+    }
 
+    @Given("Kullanıcı Urun Listesi butonuna tıklar")
+    public void kullanici_urun_listesi_butonuna_tiklar() {
+        dzyn.UrunListesiButonTikla();
+    }
 
+    @Given("Kullanıcı Urun Listesi butonunun eklendigini dogrular")
+    public void kullanici_urun_listesi_butonunun_eklendigini_dogrular() {
+        dzyn.UrunListesiEklendiginiDogrula();
+    }
+    @Given("Kullanici Urun Listesini gizler")
+    public void kullanici_urun_listesini_gizler() {
+        dzyn.UrunListesiGizle();
+    }
 
+    @Given("Kullanici Urun Listesini gizledigini dogrular")
+    public void kullanici_urun_listesini_gizlendigini_dogrular() {
+        dzyn.UrunListesiGizlediginiDogrula();
+    }
 
+    @Given("Kullanici Urun Listesini siler")
+    public void kullanici_urun_listesini_siler() {
+        dzyn.UrunListesiSilme();
+    }
+
+    @Given("Kullanici Urun Listesini sildigini dogrular")
+    public void kullanici_urun_listesini_sildigini_dogrular() {
+        dzyn.UrunListesiSildiginiDogrula();
+    }
 }
+
+
+
+
+
+
+
