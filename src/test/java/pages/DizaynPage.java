@@ -21,18 +21,18 @@ public class DizaynPage extends  BasePage {
     }
 
     @FindBy(xpath = "//div[text()='Web : abeyis-web']/ancestor::div[@class='contents d-flex align-items-center py-2']")
-    private WebElement websayfası;
+    private WebElement websayfasi;
     @FindBy(xpath = "(//div[@class='item ng-star-inserted'])[1]")
-    private WebElement baslıkButon;
+    private WebElement baslikButon;
 
     @FindBy(xpath = "(//div[@class='text'])[3]")
     private WebElement maindenSec;
     @FindBy(xpath = "//*[text()='Alt Bilgi']")
     private WebElement altBilgiButon;
     @FindBy(xpath = "(//input[@type='text'])[1]")
-    private WebElement baslıkText;
+    private WebElement baslikText;
     @FindBy(xpath = "//*[@class='mat-select-arrow-wrapper ng-tns-c344-8']")
-    private WebElement sayfaGenişligiButon;
+    private WebElement sayfaGenisligiButon;
     @FindBy(xpath = "(//*[text()='Full'])[2]")
     private WebElement fullsec;
     @FindBy(xpath = "//*[text()=' Aktif ']")
@@ -44,7 +44,7 @@ public class DizaynPage extends  BasePage {
     @FindBy(xpath = "(//*[text()='Kaydet'])[1]")
     private WebElement kaydetButon;
     @FindBy(xpath = "//div[@aria-label='İşlem başarılı.']")
-    private WebElement islemBasarılı;
+    private WebElement islemBasarili;
     @FindBy(xpath = "(//*[text()='Ürün listesi'])[1]")
     private WebElement mainList;
     @FindBy(xpath = "//div[@role='listbox']//span")
@@ -52,7 +52,7 @@ public class DizaynPage extends  BasePage {
     @FindBy(xpath = "//div[@class='pageAdd mb-2']")
     private WebElement magazalarselectbuton;
     @FindBy(xpath = "//div[@class='modal-header']")
-    private WebElement silmeMesajı;
+    private WebElement silmeMesaji;
     @FindBy(xpath = "//div[@class='btn btn-primary']")
     private WebElement evetButon;
     @FindBy(xpath = "(//ul[@class='footer-links__list'])[2]")
@@ -64,7 +64,7 @@ public class DizaynPage extends  BasePage {
     @FindBy(xpath = "//li[@class='px-3 item border-top position-relative ng-star-inserted active text-primary']")
     private WebElement webSitesi;
     @FindBy(xpath = "//span[@class='link hover-line ng-tns-c178-14'][1]")
-    private WebElement düzenleButon;
+    private WebElement duzenleButon;
     @FindBy(xpath = "//input[@id='exampleInput18']")
     private WebElement huaweiTextBox;
     @FindBy(xpath = "//input[@id='exampleInput19']")
@@ -84,7 +84,7 @@ public class DizaynPage extends  BasePage {
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement sosyalMedyaKaydet;
     @FindBy(xpath = "//div[@aria-label='Bilgiler güncellendi.']")
-    private WebElement bilgilerGüncellendi;
+    private WebElement bilgilerGuncellendi;
     @FindBy(xpath = "//div[@class='col-12 col-md-12 col-lg-2']")
     private WebElement sosyalMedyaIkon;
 
@@ -96,27 +96,27 @@ public class DizaynPage extends  BasePage {
     Actions actions = new Actions(Driver.getDriver());
 
     public void clickWebAbeyis() {
-        click(websayfası);
+        click(websayfasi);
 
     }
 
     public void sayfaDogrulama(String text) {
-        String baslıkUrl = Driver.getDriver().getCurrentUrl();
+        String baslikUrl = Driver.getDriver().getCurrentUrl();
         Assert.assertTrue(baslıkUrl.contains(text));
     }
 
-    public void baslıkTıkla() {
-        baslıkButon.click();
+    public void baslikTikla() {
+        baslikButon.click();
 
     }
 
     public void yaz() {
-        baslıkText.clear();
-        baslıkText.sendKeys("Abeyis Deneme");
+        baslikText.clear();
+        baslikText.sendKeys("Abeyis Deneme");
     }
 
     public void genislikSec() {
-        sayfaGenişligiButon.click();
+        sayfaGenisligiButon.click();
         fullsec.click();
     }
 
@@ -124,7 +124,7 @@ public class DizaynPage extends  BasePage {
         aktifButon.click();
     }
 
-    public void kaydeteTıkla() {
+    public void kaydeteTikla() {
         kaydetButon.click();
     }
 
@@ -133,11 +133,11 @@ public class DizaynPage extends  BasePage {
         Assert.assertTrue(islemBasarılı.isDisplayed());
     }
 
-    public void tıklaMain() {
+    public void tiklaMain() {
         maindenSec.click();
     }
 
-    public void tıklaAltBilgi() {
+    public void tiklaAltBilgi() {
         altBilgiButon.click();
     }
 
@@ -193,22 +193,22 @@ public class DizaynPage extends  BasePage {
 
     }
 
-    public void ucCızgiTıkla() {
+    public void ucCizgiTikla() {
         Driver.getDriver().switchTo().parentFrame();
         sideicon.click();
     }
 
-    public void ayarlarTıkla() {
+    public void ayarlarTikla() {
         clickPanelButton(" Ayarlar ");
     }
 
-    public void webSitesiTıkla() {
+    public void webSitesiTikla() {
 
         webSitesi.click();
     }
 
     public void duzenleTıkla() {
-        düzenleButon.click();
+        duzenleButon.click();
     }
 
     public void huaweiText() {
@@ -259,7 +259,7 @@ public class DizaynPage extends  BasePage {
         youtubeTextBox.sendKeys("www.youtube.com");
     }
 
-    public void kaydetTıkla() {
+    public void kaydetTikla() {
 
         actions.sendKeys(Keys.PAGE_DOWN);
         sosyalMedyaKaydet.click();
@@ -270,7 +270,7 @@ public class DizaynPage extends  BasePage {
 
     }
 
-    public void ikonlarıDogrula() {
+    public void ikonlariDogrula() {
         sosyalMedyaIkon.isDisplayed();
     }
 }
