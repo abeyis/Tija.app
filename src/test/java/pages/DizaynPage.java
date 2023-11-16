@@ -142,6 +142,7 @@ public class DizaynPage extends  BasePage{
 
 
     public void VerifyDeletedLogo() {
+
         TestUtils.bekle(2);
         try {
             Assert.assertFalse(logoGorseliDogrulama.isDisplayed());
@@ -211,4 +212,25 @@ public class DizaynPage extends  BasePage{
         Assert.assertEquals(ilkUrunListesiSayisi-1,sonUrunListesiSayisi);
 
     }
+
+
+    /// eda
+
+
+    public void deleteLogoImage() {
+        click(logoGorselKaldirButton);
+        click(yesilKaydetButton);
+    }
+
+
+    public void updateLoginTitle() {
+
+        click(loginTitleTextBox);
+        loginTitleTextBox.clear();
+        loginTitleTextBox.sendKeys(ConfigReader.getProperty("loginTitle"));
+        click(yesilKaydetButton);
+        TestUtils.bekle(3);
+
+    }
+
 }

@@ -1,48 +1,38 @@
-@edaFl
-    @wip
-Feature:Bir tija.app kullanicisi ve ayni zamanda B2B firmasi olarak alt bayilerim olan firmalara ayni urunler icin farkli fiyatlar verebilecegim yeni
-       fiyat listeleri olusturabilmek istiyorum ve ayrica tum urunlerimin fiyatlarini ayni anda goruntuleyebilecegim bir sayfanin olmasini istiyorum.
+
+Feature: New price lists should be able to be added, deleted and updated for companies that are sub-company
 
     Background:
-        * login to app
-        * Click the Online Magaza button
-        * Click panel Fiyat Listesi
+       * login to app
+       * Click the Online Magaza button
+       * Click panel Fiyat Listesi
 
-
-    Scenario:TC0113 Fiyat Listesi butonunun fiyat listesi sayfasina yonlendirdigini dogrulama testi.
+    Scenario: TC0113 Testing redirect to price list page
     * Verify that it goes to the Fiyat Listesi Page
 
-    Scenario:TC0114 Fiyat Listesi sayfasinda bulunan Dashbord sayfa linkinin Dashbord sayfasina yonlendirdigini dogrulama testi.
+    Scenario: TC0114 Testing redirect to dashboard page
     * Click on the Dashboard page link
     * Verify that it goes to the Dashboard Page
 
-    Scenario:TC0116 Fiyat Listesi sayfasinda arama cubugu ile urun aramasini ara butonu ile yapabilme testi
-    * The product name is written in the Ne Aramistiniz textbox and the click on the Ara button
+    Scenario: TC0116 Testing to search product with Ara button
+    * Search Product With Ara Button
     * Verifies that product information is displayed on the page
 
-    Scenario:TC0107 Yeni fiyat listesi ekleme testi
-    * Click on the Yeni Fiyat button
-    * Fill in the relevant fields in the window that opens and click on the Olustur button
+    Scenario: TC0107 Testing to add price list
+    * Add New Price List
     * Verify that the Kolon guncellendi pop-up is displayed
-    * Verify that the new Fiyat listesi has been added
+    * Verify that the new Price list has been added
 
-    Scenario:TC0121 Fiyat listesi silme testi
-    * Click on Silinecek Fiyat Listesi
-    * Click on the Duzenle button
-    * Click on the Sil button
-    * Click on the second Sil button
+    Scenario: TC0121 Testing to delete price list
+    * Delete price list
     * Verify that the Kolon Silindi pop-up is displayed
-    * Verify that the Silinecek Fiyat listesi has been deleted
+    * Verify that the new Price list has been deleted
 
-    Scenario:TC0122 Fiyat listesi bilgileri uzerinde guncelleme ("kolon liste adi,kolon aciklama,kolon sira") yapma testi.
-    * Click on Guncellenecek Fiyat Listesi
-    * Click on the Duzenle button
-    * Fill in the relevant fields in the window that opens and click on the Guncelle button
+    Scenario: TC0122 Testing to update price list information
+    * Update price list information
     * Verify that the Kolon guncellendi pop-up is displayed
-    * Verify the updates made on the Fiyat Listesi information
+    * Verify that the Price list has been updated
 
-    Scenario:TC0123 Fiyat listelerindeki urun fiyatlarinda guncelleme yapabilme testi.
-    * Click on GalaxyBudsLiveFiyatTextBox,delete the old price and enter the new price
-    * Click on DegisiklikleriKaydet Button
+    Scenario: TC0123 Testing to update product list
+    * Update product price
     * Verify that the Fiyatlar Guncellendi pop-up is displayed
-    * Verify the updates made on the GalaxyBudsLiveFiyat information
+    * Verify that the product price has been updated
