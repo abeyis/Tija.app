@@ -37,79 +37,79 @@ public class DizaynStepDefs  {
     }
 
     @Given("Başlık butonuna tıkla")
-    public void başlıkButonunaTıkla() {
-        dzyn.baslıkTıkla();
+    public void baslikButonunaTikla() {
+        dzyn.baslikTikla();
 
     }
 
     @When("Sayfa Ayarları butonuna tıkla")
-    public void sayfaAyarlarıButonunaTıkla() {
+    public void sayfaAyarlariButonunaTikla() {
         dzyn.clickPanelButton(" Sayfa Ayarları ");
     }
 
     @And("Başlık text box'ına valid bir değer gir")
-    public void başlıkTextBoxInaValidBirDeğerGir() {
+    public void baslikTextBoxInaValidBirDegerGir() {
         dzyn.yaz();
     }
 
     @And("Sayfa genişliğini seç")
-    public void sayfaGenişliğiniSeç() {
+    public void sayfaGenisliginiSec() {
         dzyn.genislikSec();
     }
 
     @And("Aktif butonuna tıkla")
-    public void aktifButonunaTıkla() {
+    public void aktifButonunaTikla() {
         dzyn.aktifSec();
     }
 
     @And("Kaydet butonuna tıkla")
-    public void kaydetButonunaTıkla() {
-        dzyn.kaydetTıkla();
+    public void kaydetButonunaTikla() {
+        dzyn.kaydetTikla();
     }
 
     @And("İşlem başarılı pop up ının görüldüğünü dogrula")
-    public void işlemBaşarılıPopUpInınGörüldüğünüDogrula() {
+    public void islemBasariliPopUpIninGoruldugunuDogrula() {
         dzyn.popUpValid();
     }
 
     @Given("Main bölümünden bir görsel veya bir ürüne tıkla")
-    public void mainBölümündenBirGörselVeyaBirÜrüneTıkla() {
-        dzyn.tıklaMain();
+    public void mainBolumundenBirGorselVeyaBiruruneTikla() {
+        dzyn.tiklaMain();
     }
 
     @Given("Alt Bilgi butonuna tıkla")
-    public void altBilgiButonunaTıkla() {
-        dzyn.tıklaAltBilgi();
+    public void altBilgiButonunaTikla() {
+        dzyn.tiklaAltBilgi();
     }
 
     @And("Kopya oluştur butonuna tıkla")
-    public void kopyaOluşturButonunaTıkla() {
+    public void kopyaOlusturButonunaTikla() {
         dzyn.kopyaOlustur();
 
     }
 
     @Then("Sayfanın kopyalandıgını dogrula")
-    public void sayfanınKopyalandıgınıDogrula() {
+    public void sayfaninKopyalandiginiDogrula() {
         dzyn.kopyaOlustugunuDogrula();
 
     }
 
     @And("Sayfayı sil butonuna tıkla")
-    public void sayfayıSilButonunaTıkla() {
+    public void sayfayiSilButonunaTikla() {
         dzyn.sayfaSil();
     }
 
     @And("Sayfayı silmek istediğinize emin misiniz? sorusunu görüp evet butonuna tıkla")
-    public void sayfayıSilmekIstediğinizeEminMisinizSorusunuGörüpEvetButonunaTıkla() {
+    public void sayfayiSilmekIstediginizeEminMisinizSorusunuGorupEvetButonunaTikla() {
         dzyn.dogrulaVeOnayla();
     }
 
     @Then("Sayfanın silindigini dogrula")
-    public void sayfanınSilindiginiDogrula() {
+    public void sayfaninSilindiginiDogrula() {
         dzyn.silindiginiDogrula();
     }
     @Given("Bilgileri doğrula")
-    public void bilgileriDoğrula() {
+    public void bilgileriDogrula() {
         dzyn.gorunurluguDogrula();
     }
 
@@ -119,22 +119,22 @@ public class DizaynStepDefs  {
     }
 
     @Given("Sol üst köşedeki üç çizgiye tıkla")
-    public void solÜstKöşedekiÜçÇizgiyeTıkla() {
-        dzyn.ucCızgiTıkla();
+    public void solUstKosedekiUcCizgiyeTikla() {
+        dzyn.ucCizgiTikla();
     }
 
     @When("Ayarlar butonuna tıkla")
-    public void ayarlarButonunaTıkla() {
-        dzyn.ayarlarTıkla();
+    public void ayarlarButonunaTikla() {
+        dzyn.ayarlarTikla();
     }
 
     @And("Web Sitesi butonuna tıkla")
-    public void webSitesiButonunaTıkla() {
-        dzyn.webSitesiTıkla();
+    public void webSitesiButonunaTikla() {
+        dzyn.webSitesiTikla();
     }
 
     @And("Web sitesinin Düzenle butonuna tıkla")
-    public void webSitesininDüzenleButonunaTıkla() {
+    public void webSitesininDuzenleButonunaTikla() {
         dzyn.duzenleTıkla();
     }
 
@@ -160,7 +160,7 @@ public class DizaynStepDefs  {
     }
 
     @And("ETBIS Link textine link gir")
-    public void etbısLinkTextineLinkGir() {
+    public void etbisLinkTextineLinkGir() {
         dzyn.etbisText();
     }
 
@@ -175,7 +175,7 @@ public class DizaynStepDefs  {
     }
 
     @And("Instagram Link textine link gir")
-    public void ınstagramLinkTextineLinkGir() {
+    public void instagramLinkTextineLinkGir() {
         dzyn.instagramText();
     }
 
@@ -184,14 +184,14 @@ public class DizaynStepDefs  {
         dzyn.youtubeText();
     }
     @And("Kaydete tıkla")
-    public void kaydeteTıkla() {
-        dzyn.kaydeteTıkla();
+    public void kaydeteTikla() {
+        dzyn.kaydeteTikla();
 
     }
 
     @And("ikonlarının görüldüğünü doğrula")
-    public void ikonlarınınGörüldüğünüDoğrula() {
-        dzyn.ikonlarıDogrula();
+    public void ikonlarininGoruldugunuDogrula() {
+        dzyn.ikonlariDogrula();
     }
 
 }
