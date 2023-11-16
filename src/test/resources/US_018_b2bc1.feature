@@ -5,6 +5,7 @@ Feature:Bir tija.app kullanicisi ve ayni zamanda B2B firmasi olarak onceden olus
 
   Background:
     * login to app
+    * Click the Online Magaza button
     * Click panel BtwoBC
 
   Scenario:TC0126 B2BC butonunun B2BC sayfasina yonlendirdigini dogrulama testi
