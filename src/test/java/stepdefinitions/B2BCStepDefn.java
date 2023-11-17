@@ -1,8 +1,7 @@
 package stepdefinitions;
-
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import pages.B2BCPage;
+import pages.BasePage;
 import utilities.ConfigReader;
 
 public class B2BCStepDefn {
@@ -11,7 +10,9 @@ public class B2BCStepDefn {
 
     @Given("Click panel BtwoBC")
     public void clickPanelBtwoBC() {
-        b2bc.clickPanel("B2BC");
+
+        BasePage.clickPanelButton("B2BC");
+
     }
 
 
@@ -21,23 +22,24 @@ public class B2BCStepDefn {
         
     }
 
-    @Given("The firma name is written in the Firma arayin textbox and the click on the Ara button")
-    public void theFirmaNameIsWrittenInTheFirmaArayinTextboxAndTheClickOnTheAraButton() {
-        b2bc.firmaArayinTextBoxinaFirmaAdiYazAraButonunaTikla(ConfigReader.getProperty("aranacakFirmaAdi"));
+    @Given("Search Company With Ara Button")
+    public void Search_Company_With_Ara_Button() {
+
+        b2bc.SearchCompanyWithAraButton(ConfigReader.getProperty("aranacakFirmaAdi"));
     }
 
-    @Given("Verify that firma information is displayed on the page")
-    public void verifyThatFirmaInformationIsDisplayedOnThePage() {
-        b2bc.arananFirmaBilgilerininSayfadaGoruntulendiginiDogrula();
+    @Given("Verify that company information is displayed on the page")
+    public void Verify_that_company_information_is_displayed_on_the_page() {
+        b2bc.verifyCompanyInformation();
     }
 
-    @Given("The firma name is written in the Firma arayin textbox and press enter")
-    public void theFirmaNameIsWrittenInTheFirmaArayinTextboxAndPressEnter() {
-        b2bc.firmaArayinTextBoxinaFirmaAdiYazEnterTusunaBas(ConfigReader.getProperty("aranacakFirmaAdi"));
+    @Given("Search Company With Enter Key")
+    public void Search_Company_With_Enter_Key() {
+        b2bc.SearchCompanyWithEnterKey(ConfigReader.getProperty("aranacakFirmaAdi"));
     }
 
     @Given("Verify that previously added companies are displayed")
     public void verifyThatPreviouslyAddedCompaniesAreDisplayed() {
-        b2bc.EklenmisTumFirmalarinSayfadaGoruntulendiginiDogrula();
+        b2bc.VerifyaAllCompaniesIsVisible();
     }
 }

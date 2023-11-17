@@ -51,7 +51,7 @@ public class B2BCPage extends BasePage{
     }
 
 
-    public void firmaArayinTextBoxinaFirmaAdiYazAraButonunaTikla(String aranacakFirmaAdi) {
+    public void SearchCompanyWithAraButton(String aranacakFirmaAdi) {
 
         type(firmaArayinTextbox,aranacakFirmaAdi);
         TestUtils.bekle(3);
@@ -59,13 +59,13 @@ public class B2BCPage extends BasePage{
         TestUtils.bekle(3);
     }
 
-    public void arananFirmaBilgilerininSayfadaGoruntulendiginiDogrula() {
+    public void verifyCompanyInformation() {
 
         Assert.assertTrue(arananFirma.isDisplayed());
     }
 
 
-    public void firmaArayinTextBoxinaFirmaAdiYazEnterTusunaBas(String aranacakFirmaAdi) {
+    public void SearchCompanyWithEnterKey(String aranacakFirmaAdi) {
         type(firmaArayinTextbox,aranacakFirmaAdi);
         firmaArayinTextbox.sendKeys(Keys.ENTER);
         TestUtils.bekle(3);
@@ -73,15 +73,14 @@ public class B2BCPage extends BasePage{
     }
 
 
-    public void EklenmisTumFirmalarinSayfadaGoruntulendiginiDogrula() {
+    public void VerifyaAllCompaniesIsVisible() {
 
         for (WebElement firma: tumFirmalarinListesi) {
             Assert.assertTrue(firma.isDisplayed());
         }
 
-
-
-
-
     }
+
+
 }
+
