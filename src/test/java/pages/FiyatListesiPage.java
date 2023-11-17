@@ -119,7 +119,7 @@ public class FiyatListesiPage  extends BasePage{
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("dashboard"));
     }
 
-    public void neAramistinizTextBoxinaUrunAdiYazAraButonunaTikla(String aranacakUrunAdi){
+    public void SearchProductWithAraButton(String aranacakUrunAdi){
 
         type(neAramistinizTextBox,aranacakUrunAdi);
         TestUtils.bekle(3);
@@ -127,29 +127,25 @@ public class FiyatListesiPage  extends BasePage{
         TestUtils.bekle(3);
 
     }
-    public void ilgiliUrunBilgilerininSayfadaGoruntulendigiDogrulanir() {
+    public void verifyProductInformation() {
 
         Assert.assertTrue(arananUrunStokAdiText.isDisplayed());
     }
 
-    public void yenifiyatbutonunatiklanir() {
 
+    public void addNewPriceList() {
         click(yeniFiyatButton);
-    }
-
-    public void fiyatListesiEklemePencereVerilerGirveOlusturButtonTikla() {
-
         type(kolonListeAdiTextBox, ConfigReader.getProperty("kolonListeAdi"));
         type(kolonAciklamaTextBox, ConfigReader.getProperty("kolonAciklama"));
         type(kolonSiraTextBox, ConfigReader.getProperty("kolonSira"));
         click(olusturButton);
     }
-    public void validationKolonGuncellendiPopUp() {
+    public void VerifyKolonGuncellendiPopUp() {
 
        Assert.assertTrue(kolonGuncellendiPopUp.isDisplayed());
 
    }
-    public void validationFiyatListesiEkle() {
+    public void verifyNewPriceAdded() {
 
         List<String> elmTexts = getElementsText(fiyatListesiList);
         System.out.println("elmtext : "+elmTexts);
@@ -160,31 +156,26 @@ public class FiyatListesiPage  extends BasePage{
     }
 
 
-    public void silinecekFiyatListesineTikla() {
+    public void deletePriceList() {
 
        fiyatListesiEkle(ConfigReader.getProperty("kolonListeAdiSilPreCondition"),
                         ConfigReader.getProperty("kolonAciklamaSilPreCondition"),
                         ConfigReader.getProperty("kolonSiraSilPreCondition"));
-       TestUtils.bekle(2);
-       click(SilinecekFiyatListesi);
+        TestUtils.bekle(2);
 
-    }
-
-    public void DuzenleButonunaTikla() {
+        click(SilinecekFiyatListesi);
 
         TestUtils.bekle(2);
         click(duzenleButton);
-    }
-
-    public void silButonunaTikla() {
-       click(silButtonFirst);
-    }
-
-    public void ikinciSilButonunaTikla()
-    {
-
+        click(silButtonFirst);
         click(silButtonSecond);
-    }
+
+
+      }
+
+
+
+
 
     public void validationKolonSilindiPopUp() {
 
@@ -208,7 +199,7 @@ public class FiyatListesiPage  extends BasePage{
     }
 
 
-    public void silinecekFiyatListesininSilindiginiDogrula() {
+    public void verifyPriceListDeleted() {
 
        TestUtils.bekle(2);
         try {
@@ -219,7 +210,7 @@ public class FiyatListesiPage  extends BasePage{
     }
 
 
-    public void guncellenecekFiyatListesineTikla() {
+    public void UpdatePriceList() {
 
         fiyatListesiEkle(ConfigReader.getProperty("kolonListeAdiUpdatePreCondition"),
                          ConfigReader.getProperty("kolonAciklamaUpdatePreCondition"),
@@ -229,9 +220,7 @@ public class FiyatListesiPage  extends BasePage{
         click(guncellenecekFiyatListesiButton);
         TestUtils.bekle(2);
 
-    }
-
-    public void acilanPenceredekiBosluklariDoldurVeGuncelleButonunaTikla() {
+        click(duzenleButton);
 
         click(kolonListeAdiTextBox);
         kolonListeAdiTextBox.clear();
@@ -246,9 +235,12 @@ public class FiyatListesiPage  extends BasePage{
         kolonSiraTextBox.sendKeys(ConfigReader.getProperty("kolonSiraUpdate"));
         click(guncelleButton);
 
+
     }
 
-    public void fiyatListesiBilgilerindeYapilanDegisikliklerinGuncellendigiDogrula() {
+
+
+    public void verifyPriceListInformationUpdate() {
 
         TestUtils.bekle(2);
         click(guncellendiFiyatListesiButton);
@@ -264,20 +256,19 @@ public class FiyatListesiPage  extends BasePage{
    }
 
 
-    public void galaxyBudsLiveFiyatTextBoxinaTiklaEskiFiyatiSilveYeniFiyatBilgisiniGir(String urunYeniFiyatBilgisi) {
+    public void updateProductPrice(String urunYeniFiyatBilgisi) {
 
        click(galaxyBudsLiveFiyatTextBox);
        galaxyBudsLiveFiyatTextBox.clear();
        galaxyBudsLiveFiyatTextBox.sendKeys(urunYeniFiyatBilgisi);
        TestUtils.bekle(2);
 
-    }
-    public void degisiklikleriKaydetButonunaTikla() {
+        click(DegisiklikleriKaydetButton);
+        TestUtils.bekle(2);
 
-       click(DegisiklikleriKaydetButton);
-       TestUtils.bekle(2);
-   }
-   public void galaxyBudsLiveUrunFiyatBilgisindeYapilanDegisiklikliginGuncellendigiDogrula() {
+    }
+
+   public void verifyProductPriceUpdated() {
 
        Assert.assertEquals(ConfigReader.getProperty("urunYeniFiyatBilgisi"),galaxyBudsLiveFiyatTextBox.getAttribute("value"));
        System.out.println("acl "+galaxyBudsLiveFiyatTextBox.getAttribute("value"));

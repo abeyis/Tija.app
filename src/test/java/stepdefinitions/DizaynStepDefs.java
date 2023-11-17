@@ -56,6 +56,44 @@ public class DizaynStepDefs {
 
     }
 
+    // eda
+
+
+    @Given("Delete logo image")
+
+    public void Delete_logo_image() {
+
+        dzyn.deleteLogoImage();
+    }
+
+
+    @Given("Verify that the Logo Image has been deleted")
+    public void verifyThatTheLogoImageHasBeenDeleted() {
+        dzyn.VerifyDeletedLogo();
+
+    }
+
+
+
+    @Given("Update Login Title")
+    public void Update_Login_Title() {
+
+        dzyn.updateLoginTitle();
+
+    }
+
+
+    @Given("Verify that the login title has updated")
+    public void Verify_that_the_login_title_has_updated() {
+        dzyn.VerifyUpdatedLoginTitle();
+
+    }
+
+
+
+
+
+
 
 
 

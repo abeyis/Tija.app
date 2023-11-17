@@ -143,6 +143,7 @@ public class DizaynPage extends  BasePage{
 
 
     public void VerifyDeletedLogo() {
+
         TestUtils.bekle(2);
         try {
             Assert.assertFalse(logoGorseliDogrulama.isDisplayed());
@@ -213,46 +214,24 @@ public class DizaynPage extends  BasePage{
 
     }
 
+/// eda
 
 
+    public void deleteLogoImage() {
+        click(logoGorselKaldirButton);
+        click(yesilKaydetButton);
+    }
 
 
+    public void updateLoginTitle() {
 
+        click(loginTitleTextBox);
+        loginTitleTextBox.clear();
+        loginTitleTextBox.sendKeys(ConfigReader.getProperty("loginTitle"));
+        click(yesilKaydetButton);
+        TestUtils.bekle(3);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
     @FindBy(xpath = "//span[normalize-space()='Özel Koleksiyon']")
@@ -355,4 +334,5 @@ public class DizaynPage extends  BasePage{
         Driver.getDriver().switchTo().frame(griDikdortgenIframe);
         Assert.assertTrue(resimliGriDik.isDisplayed());
     }
+  
 }
