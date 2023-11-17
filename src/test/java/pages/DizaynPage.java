@@ -1,6 +1,7 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 
 import org.openqa.selenium.WebElement;
@@ -210,5 +211,148 @@ public class DizaynPage extends  BasePage{
         System.out.println(sonUrunListesiSayisi);
         Assert.assertEquals(ilkUrunListesiSayisi-1,sonUrunListesiSayisi);
 
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @FindBy(xpath = "//span[normalize-space()='Özel Koleksiyon']")
+    private WebElement dropOzelKoleksiyon;
+
+
+    public void OzelKoleksiyonSec() {
+        TestUtils.clickWithJS(sagUrunListesi);
+        TestUtils.wait(2);
+        if (dropOzelKoleksiyon.isDisplayed()){
+
+        }else {
+            TestUtils.clickWithJS(dropdownMenu);
+            TestUtils.wait(2);
+            TestUtils.clickWithJS(dropOzelKoleksiyon);
+        }
+    }
+
+    @FindBy(xpath = "//span[normalize-space()='Ürün Seç']")
+    private WebElement dropUrunSec;
+
+    @FindBy(xpath = "//a[contains(text(),'Ürün seçmek için tıklayın')]")
+    private WebElement urunSecmekIcinTiklayinButonu;
+    @FindBy(xpath = "(//div[contains(@class, 'mat-select-arrow-wrapper')])[3]")
+    private WebElement dropdownMenu;
+    public void DropUrunSec() {
+        TestUtils.clickWithJS(sagUrunListesi);
+        TestUtils.wait(2);
+
+        TestUtils.clickWithJS(dropdownMenu);
+        TestUtils.wait(2);
+        TestUtils.clickWithJS(dropUrunSec);
+    }
+    public void UrunSecTiklayinButon() {
+        TestUtils.wait(2);
+        click(urunSecmekIcinTiklayinButonu);
+    }
+
+    @FindBy(xpath = "//div[3]//div[2]//p[1]")
+    private WebElement ekranUrunGalaxyButonu;
+    @FindBy(xpath = "//div[@class='column-add mt-3 mb-5 ng-star-inserted']")
+    private WebElement dahaFazlaEkleButonu;
+    public void EkranUrunSecGalaxyButon() {
+        TestUtils.wait(2);
+        click(ekranUrunGalaxyButonu);
+    }
+    public void DahaFazlaEkleButon() {
+        TestUtils.wait(2);
+        click(dahaFazlaEkleButonu);
+    }
+    @FindBy(xpath = "//div[@class='theme-text mt-3 page productSelect text-truncate ng-star-inserted']")
+    private WebElement koleksiyonSecButon ;
+
+    //div[@class='d-flex align-items-center selectItem']//span[contains(text(),'Ürün listesi')
+    @FindBy(xpath = "(//div[@class='drag'])[5]")
+    private WebElement sagUrunListesi;
+    @FindBy(xpath = "//button[normalize-space()='Onay']")
+    private WebElement ekranOnayButon ;
+    public void KoleksiyonSecButonTiklama() {
+        TestUtils.wait(2);
+        click(koleksiyonSecButon);
+    }
+    @FindBy(xpath = "//app-collection-select//div[2]")
+    private WebElement samsungWButon ;
+
+    @FindBy(xpath = "(//span[@class='mat-slider-thumb-label-text'])[2]")
+    private WebElement satirUSayisiSlider;
+    @FindBy( xpath = "(//span[@class='mat-slider-thumb-label-text'])[1]")
+    private WebElement urunSayisiSlider;
+    public void EkranKoleksiyonSec() {
+        TestUtils.wait(2);
+        click(samsungWButon);
+        TestUtils.wait(2);
+        click(ekranOnayButon);
+    }
+    public void UrunSSliderSec() {
+        TestUtils.wait(2);
+        Actions action =new Actions(Driver.getDriver());
+        action.moveToElement(urunSayisiSlider).sendKeys(Keys.RIGHT).sendKeys(Keys.RIGHT).build().perform();
+
+    }
+    public void SatirUrunSSliderSec() {
+        Actions action =new Actions(Driver.getDriver());
+        action.moveToElement(urunSayisiSlider).sendKeys(Keys.RIGHT).sendKeys(Keys.RIGHT).build().perform();
+    }
+    @FindBy(xpath = "//div[@class='btn saveBtn mr-2']")
+    private WebElement kaydetButon;
+    public void KaydetButonTikla() {
+        click(kaydetButon);
+    }
+
+    public void OzelKolEklendiginiDogrula() {
+        Driver.getDriver().switchTo().frame(griDikdortgenIframe);
+        Assert.assertFalse(urunListesiGriDikdortgen.isDisplayed());
+    }
+    @FindBy(xpath = "//img[@alt='...']")
+    private WebElement resimliGriDik;
+
+    public void EklenenUrunDogrula() {
+        Driver.getDriver().switchTo().frame(griDikdortgenIframe);
+        Assert.assertTrue(resimliGriDik.isDisplayed());
     }
 }

@@ -62,4 +62,120 @@ public class DizaynStepDefs {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Given("Dropdown menuden Ozel Koleksiyon secilir")
+    public void dropdown_menuden_ozel_koleksiyon_secilir() {
+        dzyn.OzelKoleksiyonSec();
+    }
+    @Given("Koleksiyon sec butonuna tiklanir")
+    public void koleksiyon_sec_butonuna_tiklanir() {
+        dzyn.KoleksiyonSecButonTiklama();
+    }
+    @Given("Acilan ekranda herhangi bir koleksiyon secilir")
+    public void acilan_ekranda_herhangi_bir_koleksiyon_secilir() {
+        dzyn.EkranKoleksiyonSec();
+
+    }
+    @Given("Urun Sayisi sliderindan urun sayisi secilir")
+    public void urun_sayisi_sliderindan_urun_sayisi_secilir() {
+        dzyn.UrunSSliderSec();
+    }
+    @Given("Satir Urun Sayisi sliderindan urun sayisi secilir")
+    public void satir_urun_sayisi_sliderindan_urun_sayisi_secilir() {
+        dzyn.SatirUrunSSliderSec();
+    }
+    @Given("Ekranin sag ust tarafinda bulunan Kaydet secenegine tiklanir")
+    public void ekranin_sag_ust_tarafinda_bulunan_kaydet_secenegine_tiklanir() {
+        dzyn.KaydetButonTikla();
+    }
+    @Given("Eklenen Ozel Koleksiyonun eklendigi dogrulanir")
+    public void eklenen_ozel_koleksiyonun_eklendigi_dogrulanir() {
+
+    }
+    @Given("Dropdown menuden Urun Sec secilir")
+    public void dropdown_menuden_urun_sec_secilir() {
+        dzyn.DropUrunSec();
+    }
+    @Given("Urun secmek icin tiklayin butonuna tiklanir")
+    public void urun_secmek_icin_tiklayin_butonuna_tiklanir() {
+        dzyn.UrunSecTiklayinButon();
+    }
+    @Given("Acilan ekranda herhangi bir urun secilir")
+    public void acilan_ekranda_herhangi_bir_urun_secilir() {
+        dzyn.EkranUrunSecGalaxyButon();
+    }
+    @Given("Daha fazla ekle butonuna tiklanir")
+    public void daha_fazla_ekle_butonuna_tiklanir() {
+        dzyn.DahaFazlaEkleButon();
+    }
+    @Given("Eklenen urunlerin eklendigi dogrulanir")
+    public void eklenen_urunlerin_eklendigi_dogrulanir() {
+        dzyn.EklenenUrunDogrula();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
