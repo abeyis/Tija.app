@@ -393,9 +393,16 @@ public class TestUtils {
         }
     }
 
-    // Sayfayi asagi kaydirma methodu Kubra ekledi
-    public static void scrollToBottom(WebDriver driver) {
-        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+    // Sayfayi asagi yukarı kaydirma methodu Kubra ekledi
+    public static void scrollDownByJS() {
+        JavascriptExecutor jsexecutor = ((JavascriptExecutor) Driver.getDriver());
+        jsexecutor.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+    }
+
+    //    Scroll al the way up of a page
+    public static void scrollAllUpByJS() {
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("window.scrollTo(0,-document.body.scrollHeight)");
     }
 
     public static boolean LeavesTitelchec(String data) {
