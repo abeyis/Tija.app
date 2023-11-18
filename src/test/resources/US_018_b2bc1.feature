@@ -1,6 +1,6 @@
 @edaB2BC_1
 @wip
-
+@regression
 Feature: The information of the added sub-companies should be able to be viewed and searched
 
     Background:

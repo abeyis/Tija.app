@@ -1,5 +1,5 @@
 @dzynLoginTitle
-
+@regression
 Feature:[TG7-58] Login Title should be able to be update on the design page
 
         Background:

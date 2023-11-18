@@ -1,4 +1,5 @@
 @Dizayn
+@regression
 Feature: Dizayn Page Verification Test
 
   Background: Login to Tija
