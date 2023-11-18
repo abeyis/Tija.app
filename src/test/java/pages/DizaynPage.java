@@ -12,7 +12,6 @@ import utilities.Driver;
 import utilities.TestUtils;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Random;
 
 import static org.junit.Assert.*;
@@ -37,7 +36,7 @@ public class DizaynPage extends  BasePage {
     private WebElement baslikText;
     @FindBy(xpath = "//*[@class='mat-select-arrow-wrapper ng-tns-c344-8']")
     private WebElement sayfaGenisligiButon;
-    @FindBy(xpath = "(//*[text()='Full'])[2]")
+    @FindBy(xpath = "(//span[text()='Full'])[2]")
     private WebElement fullsec;
     @FindBy(xpath = "//*[text()=' Aktif ']")
     private WebElement aktifButon;
@@ -45,7 +44,7 @@ public class DizaynPage extends  BasePage {
     private WebElement kopyaOlusturButon;
     @FindBy(xpath = "//a[text()='Sayfayı sil']")
     private WebElement sayfaSilButon;
-    @FindBy(xpath = "//a[text()='Kaydet']")
+    @FindBy(xpath = "//div[text()='Kaydet']")
     private WebElement kaydetButon;
     /*@FindBy(xpath = "//div[@aria-label='İşlem başarılı']")
     private WebElement islemBasarili;*/
@@ -161,7 +160,7 @@ public class DizaynPage extends  BasePage {
     @FindBy(xpath = "(//span[@class='loader pulse'])[1]")
     private WebElement urunListesiGriDikdortgen;
 
-    @FindBy(xpath = "//iframe[@class='iframe-web']")
+    @FindBy(css = ".flex-grow-1.col-8.px-0>iframe")
     private WebElement griDikdortgenIframe ;
 
     @FindBy(xpath = "//span[@class='loader pulse']")
@@ -170,7 +169,7 @@ public class DizaynPage extends  BasePage {
     @FindBy(xpath = "(//div[@class='drag'])[7]")
     private WebElement UrunListesiGizlemeIconu;
 
-    @FindBy(xpath = "(//div[@class='drag'])[6]")
+    @FindBy(xpath = "(//div[@class='drag'])[6]/..")
     private WebElement urunSil;
 
     @FindBy(xpath = "//div[@class='cdk-drag item_body ng-star-inserted'][1]/descendant::div[@class='drag'][2]")
@@ -179,7 +178,7 @@ public class DizaynPage extends  BasePage {
     @FindBy(css = ".pageAdd.mb-2>mat-form-field")
             private WebElement pageListOpener;
 
-    int ilkUrunListesiSayisi;
+    static int ilkUrunListesiSayisi = 0;
     int sonUrunListesiSayisi;
 
 
@@ -259,51 +258,37 @@ public class DizaynPage extends  BasePage {
         assertTrue(urunListesiGriDikdortgen.isDisplayed());
     }
 
-    int ilkDeger=0;
-    public void UrunListesiGizle() {
-        Driver.getDriver().switchTo().frame(griDikdortgenIframe);
-        System.out.println("listenin ilk size = "+ griDikdortgenIframeler.size());
-        ilkDeger=griDikdortgenIframeler.size();
-        Driver.getDriver().switchTo().defaultContent();
-        Driver.getDriver().navigate().refresh();
-        click(websayfasi);
-        TestUtils.wait(3);
-        Actions action= new Actions(Driver.getDriver());
-        action.moveToElement(UrunListesiGizlemeIconu).build().perform();
-        TestUtils.wait(3);
-        UrunListesiGizlemeIconu.click();
+    static int ilkDeger=0;
+    public void urunListesiGizle() {
+            Driver.getDriver().switchTo().frame(griDikdortgenIframe);
+            ilkDeger=griDikdortgenIframeler.size();
+            Driver.getDriver().switchTo().defaultContent();
+            TestUtils.clickWithMouse(UrunListesiGizlemeIconu);
     }
 
     int sonDeger;
-    public void UrunListesiGizlediginiDogrula() {
-
+    public void urunListesiGizlediginiDogrula() {
         Driver.getDriver().switchTo().frame(griDikdortgenIframe);
-        TestUtils.wait(2);
-        System.out.println("Listenin son size ="+(griDikdortgenIframeler).size());
+        TestUtils.waitForVisibility(By.xpath("//div[@class='site-preloader']"),15);
+        TestUtils.waitForInVisibility(By.xpath("//div[@class='site-preloader']"),15);
         sonDeger=griDikdortgenIframeler.size();
         assertEquals(sonDeger,ilkDeger-1);
     }
 
-    public void UrunListesiSilme() {
+    public void urunListesiSilme() {
+        TestUtils.waitFor(2);
         ilkUrunListesiSayisi= tumUrunListesi.size();
-        System.out.println(ilkUrunListesiSayisi);
-        TestUtils.wait(3);
-        Actions action= new Actions(Driver.getDriver());
-        action.moveToElement(urunSil).build().perform();
-        TestUtils.waitForClickablility(urunSil,3);
-        TestUtils.clickWithJS(urunSil);
-
+        TestUtils.clickWithMouse(urunSil);
+        TestUtils.clickWithMouse(urunSil);
+//        TestUtils.clickWithJS(urunSil);
     }
 
-    public void UrunListesiSildiginiDogrula() {
+    public void urunListesiSildiginiDogrula() {
+        TestUtils.waitFor(3);
         sonUrunListesiSayisi= tumUrunListesi.size();
-        System.out.println(sonUrunListesiSayisi);
+//        sonUrunListesiSayisi= tumUrunListesi.size();
         assertEquals(ilkUrunListesiSayisi-1,sonUrunListesiSayisi);
-
     }
-
-/// eda
-
 
     public void deleteLogoImage() {
         click(logoGorselKaldirButton);
@@ -402,6 +387,7 @@ public class DizaynPage extends  BasePage {
     }
     public void genislikSec() {
         sayfaGenisligiButon.click();
+        TestUtils.waitFor(1);
         fullsec.click();
 
     }
@@ -431,8 +417,7 @@ public class DizaynPage extends  BasePage {
     }
 
     public void popUpValid() {
-        WebElement islemBasarili = TestUtils.waitForVisibility(By.xpath("//div[@aria-label='İşlem başarılı']"),5);
-        assertTrue(islemBasarili.isDisplayed());
+        assertTrue(TestUtils.waitForVisibility(By.xpath("//div[@aria-label='İşlem başarılı']/ancestor::div[@id='toast-container']"),5).isDisplayed());
     }
 
     public void tiklaMain() {
@@ -578,5 +563,18 @@ public class DizaynPage extends  BasePage {
 
     public void openPageList() {
         click(pageListOpener);
+    }
+
+
+    static int count = 0;
+    public void getProductListCount() {
+        if(TestUtils.isElementPresent(By.xpath("//*[text()='Ürün listesi']"))){
+            count = Driver.getDriver().findElements(By.xpath("//*[text()='Ürün listesi']")).size();
+        }
+    }
+
+    public void verifyProductListAdded() {
+        TestUtils.waitFor(2);
+        assertEquals(count+1,Driver.getDriver().findElements(By.xpath("//*[text()='Ürün listesi']")).size());
     }
 }

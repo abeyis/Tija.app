@@ -520,10 +520,8 @@ public class TestUtils {
         loginToGmail(username,password);
 
         waitForClickablility(By.xpath("//a[text()='Gmail']"),15).click();
-        waitForClickablility(By.xpath("(//span[@name='Tija'])[2]"),30).click();
-
+        waitForClickablility(By.xpath("//span[@class='zF' and @name='Tija']/ancestor::tr"),30).click();
         waitForPageToLoad(30);
-        TestUtils.bekle(3);
         List<String> elmTexts = getElementsText(By.xpath("//a[contains(@id,'clickCode')]//strong"));
         String otp = elmTexts.get(elmTexts.size()-1);
 

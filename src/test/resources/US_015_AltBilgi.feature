@@ -1,5 +1,5 @@
 @wip
-
+@regression
 Feature: Alt Bilgi Bölümünün Ayarları
 
   Background: login_ol_and_dizaynsayfasına_git

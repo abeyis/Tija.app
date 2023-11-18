@@ -1,37 +1,40 @@
+@wip
+@regression
 Feature: [US_001] Urun Listesi ekleme
 
   Background:
 
-    * login to app
-    * Click the Online Magaza button
-    * Click panel Dizayn
-    * Click panel abeyisWeb
+    Given login to app
+    When Click the "Online Mağaza" module button
+    When Click the "Dizayn" module button
+    And  Dizayn etmek istediği sayfaya tıkla
 
   Scenario:[TC_001] Urun Listesi butonuna tiklama
 
-    * Kullanıcı Bolum Ekle butonuna tıklar
-    * Kullanıcı Urun Listesi butonuna tıklar
+    * Click the "Bölüm ekle" module button
+    * Get product list count
+    * Click the "Ürün Listesi" module button
     * Kullanıcı Urun Listesi butonunun eklendigini dogrular
 
 
   Scenario: [TC_002] Urun Listesini gizleme
 
-    * Kullanıcı Bolum Ekle butonuna tıklar
-    * Kullanıcı Urun Listesi butonuna tıklar
+    * Click the "Bölüm ekle" module button
+    * Click the "Ürün Listesi" module button
     * Kullanici Urun Listesini gizler
     * Kullanici Urun Listesini gizledigini dogrular
 
   Scenario: [TC_003] Urun Listesini silme
 
-    * Kullanıcı Bolum Ekle butonuna tıklar
-    * Kullanıcı Urun Listesi butonuna tıklar
+    * Click the "Bölüm ekle" module button
+    * Click the "Ürün Listesi" module button
     * Kullanici Urun Listesini siler
     * Kullanici Urun Listesini sildigini dogrular
 
   Scenario: [TC_004] Ozel Kolesksiyon ekleme testi
 
-    * Kullanıcı Bolum Ekle butonuna tıklar
-    * Kullanıcı Urun Listesi butonuna tıklar
+    * Click the "Bölüm ekle" module button
+    * Click the "Ürün Listesi" module button
     * Dropdown menuden Ozel Koleksiyon secilir
     * Koleksiyon sec butonuna tiklanir
     * Acilan ekranda herhangi bir koleksiyon secilir
@@ -43,8 +46,8 @@ Feature: [US_001] Urun Listesi ekleme
   @inci
   Scenario: [TC_005] Urun ekleme testi
 
-    * Kullanıcı Bolum Ekle butonuna tıklar
-    * Kullanıcı Urun Listesi butonuna tıklar
+    * Click the "Bölüm ekle" module button
+    * Click the "Ürün Listesi" module button
     * Dropdown menuden Urun Sec secilir
     * Daha fazla ekle butonuna tiklanir
     * Urun secmek icin tiklayin butonuna tiklanir

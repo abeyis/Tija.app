@@ -1,4 +1,4 @@
-
+@regression
 Feature: New price lists should be able to be added, deleted and updated for companies that are sub-company
 
     Background:

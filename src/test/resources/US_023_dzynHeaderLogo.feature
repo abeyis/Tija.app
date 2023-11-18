@@ -1,4 +1,5 @@
 @dzynLogo
+@regression
 Feature: [TG7-57] Logo image should be able to be added and deleted on the design page
 
   Background:

@@ -2,30 +2,37 @@ package stepdefinitions;
 
 import io.cucumber.java.en.*;
 import pages.DizaynPage;
+import utilities.TestUtils;
 
 
-public class DizaynStepDefs  {
+public class DizaynStepDefs {
 
 
     DizaynPage dzyn = new DizaynPage();
 
-    @And("Dizayn etmek istediği sayfaya tıkla")
-    public void dizaynEtmekIstediğiSayfayaTıkla() {
-
-        dzyn.clickWebAbeyis();
+    @Then("Get product list count")
+    public void getProductListCount() {
+        dzyn.getProductListCount();
     }
 
+    @And("Kullanıcı Urun Listesi butonunun eklendigini dogrular")
+    public void verifyProductListAdded() {
+        dzyn.verifyProductListAdded();
+    }
+
+    @And("Dizayn etmek istediği sayfaya tıkla")
+    public void dizaynEtmekIstediğiSayfayaTıkla() {
+        dzyn.clickWebAbeyis();
+    }
 
     @And("Dizayn sayfasında oldugunu dogrula")
     public void dizaynSayfasındaOldugunuDogrula() {
         dzyn.sayfaDogrulama("b2c/theme");
-
     }
 
     @Given("Başlık butonuna tıkla")
     public void baslikButonunaTikla() {
         dzyn.baslikTikla();
-
     }
 
     @When("Sayfa Ayarları butonuna tıkla")
@@ -94,6 +101,7 @@ public class DizaynStepDefs  {
     public void sayfaninSilindiginiDogrula() {
         dzyn.silindiginiDogrula();
     }
+
     @Given("Bilgileri doğrula")
     public void bilgileriDogrula() {
         dzyn.gorunurluguDogrula();
@@ -127,7 +135,6 @@ public class DizaynStepDefs  {
     @And("Huawei AppGallery Link textine link gir")
     public void huaweiAppGalleryLinkTextineLinkGir() {
         dzyn.huaweiText();
-
     }
 
     @And("App Store Link textine link gire")
@@ -164,6 +171,7 @@ public class DizaynStepDefs  {
     public void youtubeLinkTextineLinkGir() {
         dzyn.youtubeText();
     }
+
     @And("Kaydete tıkla")
     public void kaydeteTikla() {
         dzyn.kaydeteTikla();
@@ -191,7 +199,6 @@ public class DizaynStepDefs  {
 
     }
 
-
     @Given("Fill in the login title textbox and click the Kaydet button.")
     public void fillInTheLoginTitleTextboxAndClickTheKaydetButton() {
         dzyn.FillLoginTitleTextAndClickSave();
@@ -203,16 +210,11 @@ public class DizaynStepDefs  {
 
     }
 
-    // eda
-
-
     @Given("Delete logo image")
 
     public void Delete_logo_image() {
-
         dzyn.deleteLogoImage();
     }
-
 
     @Given("Verify that the Logo Image has been deleted")
     public void verifyThatTheLogoImageHasBeenDeleted() {
@@ -220,116 +222,98 @@ public class DizaynStepDefs  {
 
     }
 
-
-
     @Given("Update Login Title")
     public void Update_Login_Title() {
-
         dzyn.updateLoginTitle();
-
     }
 
 
     @Given("Verify that the login title has updated")
     public void Verify_that_the_login_title_has_updated() {
         dzyn.VerifyUpdatedLoginTitle();
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @Given("Dropdown menuden Ozel Koleksiyon secilir")
     public void dropdown_menuden_ozel_koleksiyon_secilir() {
         dzyn.OzelKoleksiyonSec();
     }
+
     @Given("Koleksiyon sec butonuna tiklanir")
     public void koleksiyon_sec_butonuna_tiklanir() {
         dzyn.KoleksiyonSecButonTiklama();
     }
+
     @Given("Acilan ekranda herhangi bir koleksiyon secilir")
     public void acilan_ekranda_herhangi_bir_koleksiyon_secilir() {
         dzyn.EkranKoleksiyonSec();
-
     }
+
     @Given("Urun Sayisi sliderindan urun sayisi secilir")
     public void urun_sayisi_sliderindan_urun_sayisi_secilir() {
         dzyn.UrunSSliderSec();
     }
+
     @Given("Satir Urun Sayisi sliderindan urun sayisi secilir")
     public void satir_urun_sayisi_sliderindan_urun_sayisi_secilir() {
         dzyn.SatirUrunSSliderSec();
     }
+
     @Given("Ekranin sag ust tarafinda bulunan Kaydet secenegine tiklanir")
     public void ekranin_sag_ust_tarafinda_bulunan_kaydet_secenegine_tiklanir() {
         dzyn.KaydetButonTikla();
     }
+
     @Given("Eklenen Ozel Koleksiyonun eklendigi dogrulanir")
     public void eklenen_ozel_koleksiyonun_eklendigi_dogrulanir() {
-
     }
+
     @Given("Dropdown menuden Urun Sec secilir")
     public void dropdown_menuden_urun_sec_secilir() {
         dzyn.DropUrunSec();
     }
+
     @Given("Urun secmek icin tiklayin butonuna tiklanir")
     public void urun_secmek_icin_tiklayin_butonuna_tiklanir() {
         dzyn.UrunSecTiklayinButon();
     }
+
     @Given("Acilan ekranda herhangi bir urun secilir")
     public void acilan_ekranda_herhangi_bir_urun_secilir() {
         dzyn.EkranUrunSecGalaxyButon();
     }
+
     @Given("Daha fazla ekle butonuna tiklanir")
     public void daha_fazla_ekle_butonuna_tiklanir() {
         dzyn.DahaFazlaEkleButon();
     }
+
     @Given("Eklenen urunlerin eklendigi dogrulanir")
     public void eklenen_urunlerin_eklendigi_dogrulanir() {
         dzyn.EklenenUrunDogrula();
-
     }
+
     @Then("Open Page List")
     public void openPageList() {
         dzyn.openPageList();
+    }
+
+    @Given("Kullanici Urun Listesini gizler")
+    public void kullanici_urun_listesini_gizler() {
+        dzyn.urunListesiGizle();
+    }
+
+    @Given("Kullanici Urun Listesini gizledigini dogrular")
+    public void kullanici_urun_listesini_gizlendigini_dogrular() {
+        dzyn.urunListesiGizlediginiDogrula();
+    }
+
+    @Given("Kullanici Urun Listesini siler")
+    public void kullanici_urun_listesini_siler() {
+        dzyn.urunListesiSilme();
+    }
+
+    @Given("Kullanici Urun Listesini sildigini dogrular")
+    public void kullanici_urun_listesini_sildigini_dogrular() {
+        dzyn.urunListesiSildiginiDogrula();
     }
 }
