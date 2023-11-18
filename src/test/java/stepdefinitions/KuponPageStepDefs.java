@@ -12,14 +12,9 @@ public class KuponPageStepDefs {
 
     KuponPage mp = new KuponPage();
 
-    @Given("Click the Online Magaza button")
-    public void clickTheOnlineMagazaButton() {
-        mp.clickPanelButton("Online Mağaza");
-    }
-
-    @When("Click the Kupon button")
-    public void clickTheKuponButton() {
-        mp.clickPanelButton("Kupon");
+    @When("Click the {string} module button")
+    public void clickTheKuponButton(String panelBtn) {
+        mp.clickPanelButton(panelBtn);
     }
 
     @And("Enter test data to some required fields")
