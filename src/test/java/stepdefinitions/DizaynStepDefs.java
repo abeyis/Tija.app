@@ -2,24 +2,12 @@ package stepdefinitions;
 
 import io.cucumber.java.en.*;
 import pages.DizaynPage;
-import utilities.TestUtils;
 
 
 public class DizaynStepDefs  {
 
 
     DizaynPage dzyn = new DizaynPage();
-
-    @When("Online Magaza butonuna tıkla")
-    public void onlineMagazaButonunaTıkla() {
-        dzyn.clickPanelButton("Online Mağaza");
-
-    }
-
-    @When("Dizayn butonuna tıkla")
-    public void dizaynButonunaTıkla() {
-        dzyn.clickPanelButton("Dizayn");
-    }
 
     @And("Dizayn etmek istediği sayfaya tıkla")
     public void dizaynEtmekIstediğiSayfayaTıkla() {
@@ -62,7 +50,7 @@ public class DizaynStepDefs  {
 
     @And("Kaydet butonuna tıkla")
     public void kaydetButonunaTikla() {
-        dzyn.kaydetTikla();
+        dzyn.sayfayiKaydet();
     }
 
     @And("İşlem başarılı pop up ının görüldüğünü dogrula")
@@ -121,19 +109,14 @@ public class DizaynStepDefs  {
         dzyn.ucCizgiTikla();
     }
 
-    @When("Ayarlar butonuna tıkla")
-    public void ayarlarButonunaTikla() {
-        dzyn.ayarlarTikla();
-    }
-
     @And("Web Sitesi butonuna tıkla")
     public void webSitesiButonunaTikla() {
         dzyn.webSitesiTikla();
     }
 
-    @And("Web sitesinin Düzenle butonuna tıkla")
-    public void webSitesininDuzenleButonunaTikla() {
-        dzyn.duzenleTıkla();
+    @And("{string} Düzenle butonuna tıkla")
+    public void webSitesininDuzenleButonunaTikla(String option) {
+        dzyn.clickToEdit(option);
     }
 
     @And("Sosyal Medya butonuna tıkla")
@@ -345,39 +328,8 @@ public class DizaynStepDefs  {
         dzyn.EklenenUrunDogrula();
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Then("Open Page List")
+    public void openPageList() {
+        dzyn.openPageList();
+    }
 }

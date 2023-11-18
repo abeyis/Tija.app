@@ -1,15 +1,13 @@
-Feature: asfdsfsdfr
-
-  Feature Description
+Feature: Login Function Test
 
   @wip
   Scenario: test
     Given login to app
 
   @yanlısEmaillegiris
-  Scenario: yanlıs email ile giris
+  Scenario: Login with invalid email
     Given Yanlıs emaille hata dogrula
 
   @yanlısDogrulamakoduilegiris
-  Scenario: yanlıs dogrulama kodu ile giris
+  Scenario: Login with invalid OTP
     Given Yanlıs dogrulama koduyla hata dogrula

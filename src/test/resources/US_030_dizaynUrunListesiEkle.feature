@@ -1,5 +1,3 @@
-
-
 Feature: [US_001] Urun Listesi ekleme
 
   Background:

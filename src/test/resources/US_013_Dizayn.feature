@@ -1,13 +1,12 @@
 @Dizayn
+Feature: Dizayn Page Verification Test
 
-Feature: Dizayn
-
-  Background: login_ol
+  Background: Login to Tija
     Given login to app
 
   @dizaynButton
   Scenario: Dizayn sayfasına git
-    Given Online Magaza butonuna tıkla
-    When Dizayn butonuna tıkla
+    When Click the "Online Mağaza" module button
+    When Click the "Dizayn" module button
     And  Dizayn etmek istediği sayfaya tıkla
     Then Dizayn sayfasında oldugunu dogrula

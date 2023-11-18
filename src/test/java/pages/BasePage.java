@@ -2,6 +2,7 @@ package pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.support.FindBy;
 import utilities.TestUtils;
 import java.util.List;
@@ -55,7 +56,11 @@ public abstract class BasePage {
 
 
     protected static void type(WebElement element, String text) {
-        TestUtils.waitForClickablility(element, 15).sendKeys(text);
+        try{
+            TestUtils.waitForClickablility(element, 15).sendKeys(text);
+        }catch (ElementNotInteractableException e){
+            type(element,text);
+        }
     }
 
     /**
@@ -132,18 +137,18 @@ public abstract class BasePage {
      *
      * @param buttonText Text of the Button
      */
-    public static void clickPanelButton(String buttonText) {
-        WebElement element = Driver.getDriver().findElement(By.xpath("//*[text()='"+ buttonText + "']"));
-        TestUtils.waitForClickablility(element, 15).click();
+    public void clickPanelButton(String buttonText) {
+        WebElement btn = Driver.getDriver().findElement(By.xpath("//*[text()='"+buttonText+"']"));
+//        TestUtils.clickWithMouse(btn);
+        click(btn);
     }
 
 
     public static void verifyPopUpIsDisplayed(String message){
-        WebElement element = Driver.getDriver().findElement(By.xpath(
-                "//div[starts-with(@aria-label, '"+ message +"')]"));
+        TestUtils.waitForPageToLoad(10);
+        WebElement element = Driver.getDriver().findElement(By.xpath("//div[starts-with(@aria-label, '"+ message +"')]"));
         Assert.assertTrue(element.isDisplayed());
-        TestUtils.waitForInVisibility(By.xpath(
-                "//div[starts-with(@aria-label, '"+ message +"')]"),5);
+        TestUtils.waitForInVisibility(By.xpath("//div[starts-with(@aria-label, '"+ message +"')]"),5);
     }
 
 }

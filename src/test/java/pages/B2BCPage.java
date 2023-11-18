@@ -1,5 +1,6 @@
 package pages;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -42,6 +43,9 @@ public class B2BCPage extends BasePage{
     @FindBy(xpath = "(//input[@aria-autocomplete='list'])[3]")
     private WebElement ilceSecDropDownMenu;
 
+    @FindBy(xpath = "//table//tr[1]/td[2]")
+    private WebElement firstCompanyFromTable;
+
 
     public void validationB2BCPage() {
 
@@ -50,26 +54,26 @@ public class B2BCPage extends BasePage{
         Assert.assertTrue(getElementText(fiyatListesiText).contains("Firma Listesi"));
     }
 
-
-    public void SearchCompanyWithAraButton(String aranacakFirmaAdi) {
-
-        type(firmaArayinTextbox,aranacakFirmaAdi);
+    static String companyName;
+    public void searchCompanyWithAraButton() {
+        companyName = getElementText(firstCompanyFromTable);
+        type(firmaArayinTextbox,companyName);
         TestUtils.bekle(3);
         click(araButton);
         TestUtils.bekle(3);
     }
 
     public void verifyCompanyInformation() {
-
-        Assert.assertTrue(arananFirma.isDisplayed());
+        String actualCompanyName = getElementText(Driver.getDriver().findElement(By.xpath("//table//tr[1]/td[2]")));
+        Assert.assertEquals(companyName,actualCompanyName);
     }
 
 
-    public void SearchCompanyWithEnterKey(String aranacakFirmaAdi) {
-        type(firmaArayinTextbox,aranacakFirmaAdi);
+    public void searchCompanyWithEnterKey() {
+        companyName = getElementText(firstCompanyFromTable);
+        type(firmaArayinTextbox,companyName);
         firmaArayinTextbox.sendKeys(Keys.ENTER);
         TestUtils.bekle(3);
-
     }
 
 

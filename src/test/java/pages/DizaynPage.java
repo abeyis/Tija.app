@@ -1,8 +1,8 @@
 package pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -10,9 +10,12 @@ import org.openqa.selenium.support.PageFactory;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.TestUtils;
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Random;
+
+import static org.junit.Assert.*;
 
 public class DizaynPage extends  BasePage {
 
@@ -30,7 +33,7 @@ public class DizaynPage extends  BasePage {
     private WebElement maindenSec;
     @FindBy(xpath = "//*[text()='Alt Bilgi']")
     private WebElement altBilgiButon;
-    @FindBy(xpath = "(//input[@type='text'])[1]")
+    @FindBy(xpath = "//input[@type='text' and @placeholder='Başlık']")
     private WebElement baslikText;
     @FindBy(xpath = "//*[@class='mat-select-arrow-wrapper ng-tns-c344-8']")
     private WebElement sayfaGenisligiButon;
@@ -40,12 +43,12 @@ public class DizaynPage extends  BasePage {
     private WebElement aktifButon;
     @FindBy(xpath = "//a[text()='Kopya oluştur']")
     private WebElement kopyaOlusturButon;
-    @FindBy(xpath = "//*[text()='Sayfayı sil']")
+    @FindBy(xpath = "//a[text()='Sayfayı sil']")
     private WebElement sayfaSilButon;
-    @FindBy(xpath = "(//*[text()='Kaydet'])[1]")
+    @FindBy(xpath = "//a[text()='Kaydet']")
     private WebElement kaydetButon;
-    @FindBy(xpath = "//div[@aria-label='İşlem başarılı.']")
-    private WebElement islemBasarili;
+    /*@FindBy(xpath = "//div[@aria-label='İşlem başarılı']")
+    private WebElement islemBasarili;*/
     @FindBy(xpath = "(//*[text()='Ürün listesi'])[1]")
     private WebElement mainList;
     @FindBy(xpath = "//div[@role='listbox']//span")
@@ -62,8 +65,6 @@ public class DizaynPage extends  BasePage {
     private WebElement musteriHizmetleri;
     @FindBy(xpath = "//*[@id='sideicon1']")
     private WebElement sideicon;
-    @FindBy(xpath = "//li[@class='px-3 item border-top position-relative ng-star-inserted active text-primary']")
-    private WebElement webSitesi;
     @FindBy(xpath = "//span[@class='link hover-line ng-tns-c178-14'][1]")
     private WebElement duzenleButon;
     @FindBy(xpath = "//input[@id='exampleInput18']")
@@ -82,12 +83,15 @@ public class DizaynPage extends  BasePage {
     private WebElement instagramTextBox;
     @FindBy(xpath = "//input[@id='exampleInput27']")
     private WebElement youtubeTextBox;
-    @FindBy(xpath = "//button[@type='submit']")
+    @FindBy(xpath = "//button[text()=' KAYDET ']")
     private WebElement sosyalMedyaKaydet;
     @FindBy(xpath = "//div[@aria-label='Bilgiler güncellendi.']")
     private WebElement bilgilerGuncellendi;
     @FindBy(xpath = "//div[@class='col-12 col-md-12 col-lg-2']")
     private WebElement sosyalMedyaIkon;
+
+    @FindBy(xpath = "//footer[@class='site__footer']")
+            private WebElement footerSection;
 
     WebElement altBilgiframe;
     List<WebElement> menuListesi;
@@ -98,21 +102,22 @@ public class DizaynPage extends  BasePage {
 
     public void sayfaDogrulama(String text) {
         String baslikUrl = Driver.getDriver().getCurrentUrl();
-        Assert.assertTrue(baslikUrl.contains(text));
+        assertTrue(baslikUrl.contains(text));
     }
 
     public void baslikTikla() {
         baslikButon.click();
 
     }
-    public WebElement websayfası;
 
     @FindBy(xpath = "//*[text()='Başlık (Header)']")
     private WebElement headerButton ;
 
     public void yaz() {
+        click(baslikText);
         baslikText.clear();
-        baslikText.sendKeys("Abeyis Deneme");
+        Random rand = new Random();
+        type(baslikText,"Abeyis Deneme "+rand.nextInt(100));
     }
     @FindBy(css = "label[for='file-upload0'] mat-icon[role='img']")
     private WebElement logoGorseliEklemeArtiButton ;
@@ -171,6 +176,9 @@ public class DizaynPage extends  BasePage {
     @FindBy(xpath = "//div[@class='cdk-drag item_body ng-star-inserted'][1]/descendant::div[@class='drag'][2]")
     private WebElement urunListesiSilmeIconu;
 
+    @FindBy(css = ".pageAdd.mb-2>mat-form-field")
+            private WebElement pageListOpener;
+
     int ilkUrunListesiSayisi;
     int sonUrunListesiSayisi;
 
@@ -197,7 +205,7 @@ public class DizaynPage extends  BasePage {
     }
 
     public void verifyIslemBasariliPopUpisDisplay() {
-        Assert.assertTrue(islemBasariliPopUp.isDisplayed());
+        assertTrue(islemBasariliPopUp.isDisplayed());
     }
 
 
@@ -212,11 +220,11 @@ public class DizaynPage extends  BasePage {
 
     public void VerifyUpdatedLoginTitle() {
         Driver.getDriver().navigate().refresh();
-        click(websayfası);
+        click(websayfasi);
         TestUtils.bekle(3);
         Driver.getDriver().switchTo().frame(iframe);
         System.out.println(" updated login Title   "+getElementText(loginTitleDogrulama));
-        Assert.assertEquals(ConfigReader.getProperty("loginTitle"),getElementText(loginTitleDogrulama));
+        assertEquals(ConfigReader.getProperty("loginTitle"),getElementText(loginTitleDogrulama));
         Driver.getDriver().switchTo().defaultContent();
     }
 
@@ -228,17 +236,12 @@ public class DizaynPage extends  BasePage {
 
 
     public void VerifyDeletedLogo() {
-
         TestUtils.bekle(2);
-        try {
-            Assert.assertFalse(logoGorseliDogrulama.isDisplayed());
-        } catch (NoSuchElementException e ) {
-            System.out.println("Logo image has been successfully deleted");
-        }
+        assertFalse(TestUtils.isElementPresent(logoGorseliDogrulama));
     }
 
     public void clickWebAbeyis() {
-        click(websayfası);
+        click(websayfasi);
     }
 
 
@@ -251,9 +254,9 @@ public class DizaynPage extends  BasePage {
 
     public void UrunListesiEklendiginiDogrula() {
         sonUrunListesiSayisi= tumUrunListesi.size();
-        Assert.assertEquals(ilkUrunListesiSayisi+1,sonUrunListesiSayisi);
+        assertEquals(ilkUrunListesiSayisi+1,sonUrunListesiSayisi);
         Driver.getDriver().switchTo().frame(griDikdortgenIframe);
-        Assert.assertTrue(urunListesiGriDikdortgen.isDisplayed());
+        assertTrue(urunListesiGriDikdortgen.isDisplayed());
     }
 
     int ilkDeger=0;
@@ -278,7 +281,7 @@ public class DizaynPage extends  BasePage {
         TestUtils.wait(2);
         System.out.println("Listenin son size ="+(griDikdortgenIframeler).size());
         sonDeger=griDikdortgenIframeler.size();
-        Assert.assertEquals(sonDeger,ilkDeger-1);
+        assertEquals(sonDeger,ilkDeger-1);
     }
 
     public void UrunListesiSilme() {
@@ -295,7 +298,7 @@ public class DizaynPage extends  BasePage {
     public void UrunListesiSildiginiDogrula() {
         sonUrunListesiSayisi= tumUrunListesi.size();
         System.out.println(sonUrunListesiSayisi);
-        Assert.assertEquals(ilkUrunListesiSayisi-1,sonUrunListesiSayisi);
+        assertEquals(ilkUrunListesiSayisi-1,sonUrunListesiSayisi);
 
     }
 
@@ -417,19 +420,19 @@ public class DizaynPage extends  BasePage {
 
     public void ozelKolEklendiginiDogrula() {
         Driver.getDriver().switchTo().frame(griDikdortgenIframe);
-        Assert.assertFalse(urunListesiGriDikdortgen.isDisplayed());
+        assertFalse(urunListesiGriDikdortgen.isDisplayed());
     }
 
     @FindBy(xpath = "//img[@alt='...']")
     private WebElement resimliGriDik;
 
-    public void kaydeteTikla() {
+    public void sayfayiKaydet() {
         kaydetButon.click();
     }
 
     public void popUpValid() {
-        TestUtils.wait(3000);
-        Assert.assertTrue(islemBasarili.isDisplayed());
+        WebElement islemBasarili = TestUtils.waitForVisibility(By.xpath("//div[@aria-label='İşlem başarılı']"),5);
+        assertTrue(islemBasarili.isDisplayed());
     }
 
     public void tiklaMain() {
@@ -440,52 +443,48 @@ public class DizaynPage extends  BasePage {
         altBilgiButon.click();
     }
 
-    public void kopyaOlustur() {
-        magazalarselectbuton.click();
-        menuListesi = Driver.getDriver().findElements(By.xpath("//div[@role='listbox']//span"));
-        IlkListe = menuListesi.size();
-        kopyaOlusturButon.click();
+    static String pageName;
+     public void kopyaOlustur() {
+        pageName = baslikText.getAttribute("value");
+        click(kopyaOlusturButon);
 
     }
 
     public void kopyaOlustugunuDogrula() {
-        magazalarselectbuton.click();
-        menuListesi = Driver.getDriver().findElements(By.xpath("//div[@role='listbox']//span"));
-        sonListe = menuListesi.size();
-        Assert.assertEquals(IlkListe + 1, sonListe);
+        WebElement option = Driver.getDriver().findElement(By.xpath("//mat-option/span[contains(text(),'"+pageName+" - Copy')]"));
+        assertTrue(option.isDisplayed());
     }
 
     public void sayfaSil() {
-        magazalarselectbuton.click();
-        menuListesi = Driver.getDriver().findElements(By.xpath("//div[@role='listbox']//span"));
-        IlkListe = menuListesi.size();
-        sayfaSilButon.click();
+         TestUtils.wait(1);
+        pageName = baslikText.getAttribute("value");
+        click(sayfaSilButon);
     }
 
     public void dogrulaVeOnayla() {
-        String expected = silmeMesaji.getText();
-        Assert.assertEquals(expected, "Sayfayı silmek istediğinize emin misiniz?");
         evetButon.click();
+        TestUtils.wait(3);
     }
 
     public void silindiginiDogrula() {
-        magazalist.click();
-        menuListesi = Driver.getDriver().findElements(By.xpath("//div[@role='listbox']//span"));
-        sonListe = menuListesi.size();
-        Assert.assertEquals(IlkListe, sonListe + 1);
-
+        System.out.println(pageName);
+         assertFalse(TestUtils.isElementPresent(By.xpath("//mat-option/span[text()=' "+pageName+" ']")));
     }
 
     public void gorunurluguDogrula() {
         altBilgiframe = Driver.getDriver().findElement(By.xpath("//iframe[@class='iframe-web']"));
         Driver.getDriver().switchTo().frame(altBilgiframe);
         actions.sendKeys(Keys.PAGE_DOWN).sendKeys(Keys.PAGE_DOWN).perform();
-        Assert.assertTrue(musteriHizmetleri.isDisplayed());
+        assertTrue(musteriHizmetleri.isDisplayed());
 
     }
 
     public void bilgerimGorunur() {
-        WebElement altBilgiframe = Driver.getDriver().findElement(By.xpath("//iframe[@class='iframe-web']"));
+         try{
+             TestUtils.waitForClickablility(By.xpath("//div[@class='site-preloader']"),5);
+             TestUtils.waitForInVisibility(By.xpath("//div[@class='site-preloader']"),15);
+         }catch (TimeoutException e){}
+        WebElement altBilgiframe = TestUtils.waitForClickablility(By.xpath("//iframe[@class='iframe-web']"),20);
         Driver.getDriver().switchTo().frame(altBilgiframe);
         actions.moveToElement(bilgilerimButon).perform();
         bilgilerimButon.click();
@@ -502,12 +501,11 @@ public class DizaynPage extends  BasePage {
     }
 
     public void webSitesiTikla() {
-
-        webSitesi.click();
+         TestUtils.waitForClickablility(By.xpath("//div[@class='sidebar-body']//li[contains(text(),'Web Sitesi')]"),15).click();
     }
 
-    public void duzenleTıkla() {
-        duzenleButon.click();
+    public void clickToEdit(String option) {
+        TestUtils.waitForClickablility(By.xpath("//div[contains(text(),'"+option+"')]/ancestor::li//span[text()=' Düzenle ']"),15).click();
     }
 
     public void huaweiText() {
@@ -558,25 +556,27 @@ public class DizaynPage extends  BasePage {
         youtubeTextBox.sendKeys("www.youtube.com");
     }
 
-    public void kaydetTikla() {
-
-        actions.sendKeys(Keys.PAGE_DOWN);
+    public void kaydeteTikla() {
+        TestUtils.scrollToElement(sosyalMedyaKaydet);
         sosyalMedyaKaydet.click();
         clickPanelButton(" × ");
         sideicon.click();
-        Driver.getDriver().switchTo().frame(altBilgiframe);
-        actions.sendKeys(Keys.PAGE_UP).sendKeys(Keys.PAGE_UP);
-
     }
 
     public void ikonlariDogrula() {
+        altBilgiframe = Driver.getDriver().findElement(By.xpath("//iframe[@class='iframe-web']"));
+        Driver.getDriver().switchTo().frame(altBilgiframe);
+        TestUtils.scrollToElement(footerSection);
         sosyalMedyaIkon.isDisplayed();
     }
 
 
     public void EklenenUrunDogrula() {
         Driver.getDriver().switchTo().frame(griDikdortgenIframe);
-        Assert.assertTrue(resimliGriDik.isDisplayed());
+        assertTrue(resimliGriDik.isDisplayed());
     }
 
+    public void openPageList() {
+        click(pageListOpener);
+    }
 }

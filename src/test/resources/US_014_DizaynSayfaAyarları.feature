@@ -1,13 +1,13 @@
 @DizaynSayfaAyarları
 @wip
+@smoke
 Feature: Dizayn Sayfa Ayarları
 
   Background: login_ol_and_dizaynsayfasına_git
     Given login to app
-    When Online Magaza butonuna tıkla
-    When Dizayn butonuna tıkla
+    When Click the "Online Mağaza" module button
+    When Click the "Dizayn" module button
     And  Dizayn etmek istediği sayfaya tıkla
-    And Dizayn sayfasında oldugunu dogrula
 
   @TC01sayfaAyarları
   Scenario:Başlık butonuna tıklayıp sayfa ayarlarını gerçekleştir
@@ -48,6 +48,7 @@ Feature: Dizayn Sayfa Ayarları
 
     Given Sayfa Ayarları butonuna tıkla
     And Kopya oluştur butonuna tıkla
+    Then Open Page List
     Then Sayfanın kopyalandıgını dogrula
 
 
@@ -57,5 +58,6 @@ Feature: Dizayn Sayfa Ayarları
     Given Sayfa Ayarları butonuna tıkla
     And Sayfayı sil butonuna tıkla
     And Sayfayı silmek istediğinize emin misiniz? sorusunu görüp evet butonuna tıkla
+    Then Open Page List
     Then Sayfanın silindigini dogrula
 

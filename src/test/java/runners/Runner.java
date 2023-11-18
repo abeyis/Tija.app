@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources",
         glue = "stepdefinitions",
         dryRun = false,
-        tags = "@DizaynSayfaAyarları")
+        tags = "@smoke")
 
 public class Runner {
 }

@@ -565,5 +565,17 @@ public class TestUtils {
     }
 
 
+    public static Boolean isElementPresent(By locator){
+        try{
+            Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
+            return Driver.getDriver().findElement(locator).isDisplayed();
+        }catch (NoSuchElementException e){
+            return false;
+        }
+    }
+
+    public static void clickWithMouse(WebElement elm){
+        actions.moveToElement(elm).click(elm).build().perform();
+    }
 
 }

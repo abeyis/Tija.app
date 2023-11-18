@@ -1,7 +1,6 @@
 package stepdefinitions;
 import io.cucumber.java.en.Given;
 import pages.B2BCPage;
-import pages.BasePage;
 import utilities.ConfigReader;
 
 public class B2BCStepDefn {
@@ -11,7 +10,7 @@ public class B2BCStepDefn {
     @Given("Click panel BtwoBC")
     public void clickPanelBtwoBC() {
 
-        BasePage.clickPanelButton("B2BC");
+        b2bc.clickPanelButton("B2BC");
 
     }
 
@@ -25,7 +24,7 @@ public class B2BCStepDefn {
     @Given("Search Company With Ara Button")
     public void Search_Company_With_Ara_Button() {
 
-        b2bc.SearchCompanyWithAraButton(ConfigReader.getProperty("aranacakFirmaAdi"));
+        b2bc.searchCompanyWithAraButton();
     }
 
     @Given("Verify that company information is displayed on the page")
@@ -35,7 +34,7 @@ public class B2BCStepDefn {
 
     @Given("Search Company With Enter Key")
     public void Search_Company_With_Enter_Key() {
-        b2bc.SearchCompanyWithEnterKey(ConfigReader.getProperty("aranacakFirmaAdi"));
+        b2bc.searchCompanyWithEnterKey();
     }
 
     @Given("Verify that previously added companies are displayed")

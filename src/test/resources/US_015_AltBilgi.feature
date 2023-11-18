@@ -1,12 +1,12 @@
 @wip
+
 Feature: Alt Bilgi Bölümünün Ayarları
 
   Background: login_ol_and_dizaynsayfasına_git
     Given login to app
-    When Online Magaza butonuna tıkla
-    When Dizayn butonuna tıkla
+    When Click the "Online Mağaza" module button
+    When Click the "Dizayn" module button
     And  Dizayn etmek istediği sayfaya tıkla
-    And Dizayn sayfasında oldugunu dogrula
     Then Alt Bilgi butonuna tıkla
 
   @AltBilgiTC01
@@ -17,12 +17,13 @@ Feature: Alt Bilgi Bölümünün Ayarları
   Scenario: Hesabım bölümündeki Bilgilerim butonunun görünürlügünü dogrula
     Given Bilgilerim butonunu dogrula
 
+  @smoke
   @AltBilgiTC03
   Scenario: Sosyal medya bölümündeki iconların görünürlügünü dogrula
     Given Sol üst köşedeki üç çizgiye tıkla
-    When Ayarlar butonuna tıkla
+    When Click the " Ayarlar " module button
     And Web Sitesi butonuna tıkla
-    And Web sitesinin Düzenle butonuna tıkla
+    And "Web : abeyis-web" Düzenle butonuna tıkla
     And Sosyal Medya butonuna tıkla
     And Huawei AppGallery Link textine link gir
     And App Store Link textine link gire

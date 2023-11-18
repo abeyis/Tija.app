@@ -53,7 +53,7 @@ public class FiyatListesiStepDefs {
     @Given("Click panel Fiyat Listesi")
     public void click_panell_Fiyat_Listesi() {
 
-        BasePage.clickPanelButton("Fiyat Listesi");
+        fl.clickPanelButton("Fiyat Listesi");
     }
 
 
