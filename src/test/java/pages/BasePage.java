@@ -106,25 +106,6 @@ public abstract class BasePage {
                 .collect(Collectors.toList());
     }
 
-
-
-
-    /**
-<<<<<<< HEAD
-     * <h2>Clicks on Buttons Common to Text</h2>
-     * This method using for clicking to the web element.
-     * <p>
-     * <h4>Description Of Method :
-     * <h4/>
-     * It takes 'element' WebElement parameter.
-     *
-     * And click that.
-     * <p>
-     *
-     * @param moduleName
-
-     */
-
     /**
      * <h2>Click Button in the Main Panel
      * <h2/>
