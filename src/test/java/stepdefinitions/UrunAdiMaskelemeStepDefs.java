@@ -8,10 +8,7 @@ import pages.UrunAdiMaskelemePage;
 public class UrunAdiMaskelemeStepDefs {
 
     UrunAdiMaskelemePage up = new UrunAdiMaskelemePage();
-    @When("Click Urun Adi Maskeleme button")
-    public void clickUrunAdiMaskelemeButton() {
-        up.clickPanelButton("Ürün Adı Maskeleme");
-    }
+
     @And("Enter {string} and {string} for {string} to Mask fields")
     public void enterAndForToMaskFields(String yeniUrunAdi, String kdv, String maskeDegeri) {
         up.saveMaskeData(yeniUrunAdi, kdv, maskeDegeri);

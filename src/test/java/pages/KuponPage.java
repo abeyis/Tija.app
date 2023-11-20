@@ -84,36 +84,36 @@ public class KuponPage extends BasePage {
 
         int randomNo = random.nextInt(9);
 
-        if (randomNo != 0)
+        if (randomNo == 0)
             sendTextByTitle("Başlık", "Kupon-EksikGirisler");
 
-        if (randomNo != 1)
+        if (randomNo == 1)
             TestUtils.waitAndSendText(kuponKoduInputBox, "1");
 
-        if (randomNo != 2)
+        if (randomNo == 2)
         {clickInputArea("Tip");
             selectdropDownOption("Ücretsiz Kargo");}
 
-        if (randomNo != 3)
+        if (randomNo == 3)
         {clickInputArea("Uygulama Alanı");
             selectdropDownOption("Mevcut Siparişe");}
 
-        if (randomNo != 4)
+        if (randomNo == 4)
         {clickInputArea("Minimum Gereksinimler");
             selectdropDownOption("Yok");}
 
-        if (randomNo != 5)
+        if (randomNo == 5)
         {clickInputArea("Müşteri Uygunluğu");
             selectdropDownOption("Herkes");}
 
-        if (randomNo != 6)
+        if (randomNo == 6)
         {clickInputArea("Kullanım Limiti");
             selectdropDownOption("Toplamda x adet kadar uygulanabilir");}
 
-        if (randomNo != 7)
+        if (randomNo == 7)
             sendTextByTitle("Başlangıç Tarihi", "01-12-2023");
 
-        if (randomNo != 8)
+        if (randomNo == 8)
             sendTextByTitle("Başlangıç Saati", "08:00");
     }
 

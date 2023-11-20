@@ -17,7 +17,7 @@ import java.util.function.Function;
 public class TestUtils {
 
     static Actions actions = new Actions(Driver.getDriver());
-
+    public static WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(30));
     private static int timeout = 5;
 
     public static String getScreenshot(String name) throws IOException {
@@ -68,7 +68,8 @@ public class TestUtils {
 
     // ========Returns the Text of the element given an element locator==//
     public static List<String> getElementsText(By locator) {
-        List<WebElement> elems = Driver.getDriver().findElements(locator);
+
+        List<WebElement> elems = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
         List<String> elemTexts = new ArrayList<>();
         for (WebElement el : elems) {
             if (!el.getText().isEmpty()) {
@@ -100,8 +101,7 @@ public class TestUtils {
             }
         };
         try {
-            System.out.println("Waiting for page to load...");
-            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(timeOutInSeconds));
             wait.until(expectation);
         } catch (Throwable error) {
             System.out.println(
@@ -112,7 +112,7 @@ public class TestUtils {
     // ======Fluent Wait====//
     public static WebElement fluentWait(final WebElement webElement, int timeinsec) {
         FluentWait<WebDriver> wait = new FluentWait<WebDriver>(Driver.getDriver())
-                .withTimeout(Duration.ofSeconds(15)).pollingEvery(Duration.ofSeconds(15))
+                .withTimeout(Duration.ofSeconds(timeinsec)).pollingEvery(Duration.ofSeconds(timeinsec))
                 .ignoring(NoSuchElementException.class);
         WebElement element = wait.until(new Function<WebDriver, WebElement>() {
             public WebElement apply(WebDriver driver) {
@@ -520,10 +520,9 @@ public class TestUtils {
         loginToGmail(username,password);
 
         waitForClickablility(By.xpath("//a[text()='Gmail']"),15).click();
-        waitForClickablility(By.xpath("(//span[@name='Tija'])[2]"),30).click();
-
+        waitForClickablility(By.xpath("//span[@class='zF' and @name='Tija']/ancestor::tr"),30).click();
         waitForPageToLoad(30);
-        TestUtils.bekle(3);
+
         List<String> elmTexts = getElementsText(By.xpath("//a[contains(@id,'clickCode')]//strong"));
         String otp = elmTexts.get(elmTexts.size()-1);
 
@@ -565,5 +564,17 @@ public class TestUtils {
     }
 
 
+    public static Boolean isElementPresent(By locator){
+        try{
+            Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
+            return Driver.getDriver().findElement(locator).isDisplayed();
+        }catch (NoSuchElementException e){
+            return false;
+        }
+    }
+
+    public static void clickWithMouse(WebElement elm){
+        actions.moveToElement(elm).click(elm).build().perform();
+    }
 
 }

@@ -1,10 +1,10 @@
-
+@regression
 Feature: New price lists should be able to be added, deleted and updated for companies that are sub-company
 
     Background:
        * login to app
-       * Click the Online Magaza button
-       * Click panel Fiyat Listesi
+        * Click the "Online Mağaza" module button
+        * Click the "Fiyat Listesi" module button
 
     Scenario: TC0113 Testing redirect to price list page
     * Verify that it goes to the Fiyat Listesi Page
@@ -26,7 +26,7 @@ Feature: New price lists should be able to be added, deleted and updated for com
     * Delete price list
     * Verify that the Kolon Silindi pop-up is displayed
     * Verify that the new Price list has been deleted
-
+    @smok
     Scenario: TC0122 Testing to update price list information
     * Update price list information
     * Verify that the Kolon guncellendi pop-up is displayed

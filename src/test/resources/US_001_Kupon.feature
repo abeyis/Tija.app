@@ -1,13 +1,12 @@
-@smoke
+@wip
 @regression
 @US_001
-
 Feature: US_001 Kupon
 
   Background: Her senaryo öncesi login işlemi gerçekleştir
     Given login to app
-    Given Click the Online Magaza button
-    When Click the Kupon button
+    When Click the "Online Mağaza" module button
+    When Click the "Kupon" module button
 
   Scenario: TC_002 Zorunlu alanların tamamına bilgi girilmediğinde kuponun kaydedilemediğini doğrula
     And Enter test data to some required fields
@@ -21,9 +20,9 @@ Feature: US_001 Kupon
     Then Select koleksiyon members on the pop-up window
     And Click the "Seç" button
     Then Verify that the selection is complete
-
+  @smok
   Scenario: TC_011 Kaydedilen kuponların gerektiğinde silinebildini doğrula
     And Select Web:abeyis-web option from Web sitesi dropdown list
-    Then Click "Sil" button for "Kupon-ZorunluGirişler" in list
+    Then Click "Sil" button for "Kupon-BütünGirişler" in list
     And Click "Sil" confirmation button
     Then Verify that the deletion is complete

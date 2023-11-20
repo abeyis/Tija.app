@@ -1,12 +1,13 @@
 @dzynLoginTitle
+@regression
 Feature:[TG7-58] Login Title should be able to be update on the design page
 
         Background:
-       * login to app
-       * Click the Online Magaza button
-       * Click panel Dizayn
-       * Click panel abeyisWeb
-       * Click on the header button
+          * login to app
+          * Click the "Online Mağaza" module button
+          * Click the "Dizayn" module button
+          * Dizayn etmek istediği sayfaya tıkla
+          * Başlık butonuna tıkla
 
   Scenario: TC0150 Testing to update login title
 
