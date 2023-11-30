@@ -45,7 +45,7 @@ public class LoginPage extends BasePage {
         click(nextBtn);
     }
 
-    public void yanlisemail() {
+    public void yanlisEmail() {
         type(emailBox,"test@gamil.com");
         click(nextBtn);
         String expected= emailHataMesajı.getText();

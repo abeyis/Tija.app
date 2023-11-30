@@ -68,15 +68,19 @@ public class TestUtils {
 
     // ========Returns the Text of the element given an element locator==//
     public static List<String> getElementsText(By locator) {
-
-        List<WebElement> elems = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
-        List<String> elemTexts = new ArrayList<>();
-        for (WebElement el : elems) {
-            if (!el.getText().isEmpty()) {
-                elemTexts.add(el.getText());
+        try{
+            List<String> elemTexts = new ArrayList<>();
+            List<WebElement> elems = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+            for (WebElement el : elems) {
+                if (!el.getText().isEmpty()) {
+                    elemTexts.add(el.getText());
+                }
             }
+
+            return elemTexts;
+        }catch(StaleElementReferenceException e){
+            return getElementsText(locator);
         }
-        return elemTexts;
     }
 
     // ===============Thread.sleep Wait==============//
@@ -587,6 +591,36 @@ waitFor(3);
     public static void selectFromComboBox(WebElement comboBoxElement, String text) {
         Select comboBox = new Select(comboBoxElement);
         comboBox.selectByVisibleText(text);
+    }
+
+    /**
+     * Waits for element to be not stale
+     *
+     * @param element
+     */
+    public static void waitForStaleElement(WebElement element) {
+        int y = 0;
+        while (y <= 15) {
+            if (y == 1)
+                try {
+                    element.isDisplayed();
+                    break;
+                } catch (StaleElementReferenceException st) {
+                    y++;
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                } catch (WebDriverException we) {
+                    y++;
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+        }
     }
 
 }
