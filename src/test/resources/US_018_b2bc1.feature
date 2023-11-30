@@ -7,6 +7,7 @@ Feature: The information of the added sub-companies should be able to be viewed 
     * login to app
         * Click the "Online Mağaza" module button
         * Click the "B2BC" module button
+
     Scenario:TC0126 Testing redirect to B2BC page
     * Verify that it goes to the BtwoBC Page
 

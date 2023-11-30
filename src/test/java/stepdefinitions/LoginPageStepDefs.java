@@ -11,20 +11,20 @@ public class LoginPageStepDefs {
 
     @Given("login to app")
     public void loginToApp() {
-        lp.login();
+        lp.loginWithGoogleAccount();
     }
 
     @Given("Yanlıs emaille hata dogrula")
     public void yanlısEmailleHataDogrula() {
-        lp.yanlısemail();
+        lp.yanlisEmail();
     }
 
     @Given("Yanlıs dogrulama koduyla hata dogrula")
     public void yanlısDogrulamaKoduylaHataDogrula() {
-        lp.yanlısdogrulamakodu();
+        lp.yanlisDogrulamaKodu();
     }
 
-        //    @Given("login to app with {string}")
+//    @Given("login to app with {string}")
 //    public void loginToAppWith(String name) {
 //        lp.login(name);
 //    }
