@@ -63,8 +63,6 @@ public class LoginPage extends BasePage {
 
     }
 
-
-
     public void login() {
         type(emailBox, ConfigReader.getProperty("testUser"));
 
