@@ -69,4 +69,12 @@ public class KuponPageStepDefs {
         mp.verifyRecordIsDeleted();
     }
 
+    @And("Enter test data to all required fields")
+    public void enterTestDataToAllRequiredFields() {
+        mp.enterKuponDataAllRequired();
+    }
+
+    @Then("Verify that the kupon was saved")
+    public void verifyThatTheKuponWasSaved() {
+    }
 }
