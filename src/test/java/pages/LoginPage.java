@@ -35,24 +35,24 @@ public class LoginPage extends BasePage {
     private WebElement googleBtn;
 
 
-//    public void login() {
-//        type(emailBox, ConfigReader.getProperty("testUser"));
-//        click(nextBtn);
-//
-//        type(confirmationBox,
-//                TestUtils.getOtp(ConfigReader.getProperty("testUser"), ConfigReader.getProperty("testPassword")));
-//
-//        click(nextBtn);
-//    }
+    public void loginWithOtp() {
+        type(emailBox, ConfigReader.getProperty("testUser"));
+        click(nextBtn);
 
-    public void yanlısemail() {
+        type(confirmationBox,
+                TestUtils.getOtp(ConfigReader.getProperty("testUser"), ConfigReader.getProperty("testPassword")));
+
+        click(nextBtn);
+    }
+
+    public void yanlisEmail() {
         type(emailBox,"test@gamil.com");
         click(nextBtn);
         String expected= emailHataMesajı.getText();
         Assert.assertEquals(expected,"Kullanıcı Bulunamadı");
     }
 
-    public void yanlısdogrulamakodu() {
+    public void yanlisDogrulamaKodu() {
 
         type(emailBox, ConfigReader.getProperty("testUser"));
         click(nextBtn);
@@ -63,7 +63,9 @@ public class LoginPage extends BasePage {
 
     }
 
-    public void login() {
+
+
+    public void loginWithGoogleAccount() {
         type(emailBox, ConfigReader.getProperty("testUser"));
 
         click(googleBtn);
