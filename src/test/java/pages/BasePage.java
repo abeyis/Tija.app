@@ -127,6 +127,7 @@ public abstract class BasePage {
 
     public static void verifyPopUpIsDisplayed(String message){
         TestUtils.waitForPageToLoad(10);
+        TestUtils.wait(1);
         WebElement element = Driver.getDriver().findElement(By.xpath("//div[starts-with(@aria-label, '"+ message +"')]"));
         Assert.assertTrue(element.isDisplayed());
         TestUtils.waitForInVisibility(By.xpath("//div[starts-with(@aria-label, '"+ message +"')]"),5);
