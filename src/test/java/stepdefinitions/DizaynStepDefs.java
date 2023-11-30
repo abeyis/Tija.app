@@ -60,7 +60,7 @@ public class DizaynStepDefs {
         dzyn.sayfayiKaydet();
     }
 
-    @And("İşlem başarılı pop up ının görüldüğünü dogrula")
+    @And("Verify that the transaction successful pop up appears")
     public void islemBasariliPopUpIninGoruldugunuDogrula() {
         dzyn.popUpValid();
     }

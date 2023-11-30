@@ -19,7 +19,7 @@ Feature: Dizayn Sayfa Ayarları
     And Sayfa genişliğini seç
     And Aktif butonuna tıkla
     And Kaydet butonuna tıkla
-    And İşlem başarılı pop up ının görüldüğünü dogrula
+    And Verify that the transaction successful pop up appears
 
   @TC02sayfaAyarları
   Scenario: Main butonuna tıklayıp sayfa ayarlarını gerçekleştir
@@ -30,7 +30,7 @@ Feature: Dizayn Sayfa Ayarları
     And Sayfa genişliğini seç
     And Aktif butonuna tıkla
     And Kaydet butonuna tıkla
-    And İşlem başarılı pop up ının görüldüğünü dogrula
+    And Verify that the transaction successful pop up appears
 
   @TC03sayfaAyarları
   Scenario: Alt Bilgi butonuna tıklayıp sayfa ayarlarını gerçekleştir
@@ -41,7 +41,7 @@ Feature: Dizayn Sayfa Ayarları
     And Sayfa genişliğini seç
     And Aktif butonuna tıkla
     And Kaydet butonuna tıkla
-    And İşlem başarılı pop up ının görüldüğünü dogrula
+    And Verify that the transaction successful pop up appears
 
 
   @TC04sayfaAyarları
