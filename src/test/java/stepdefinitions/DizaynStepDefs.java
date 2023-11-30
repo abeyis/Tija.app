@@ -1,8 +1,13 @@
 package stepdefinitions;
 
 import io.cucumber.java.en.*;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import pages.DizaynPage;
 import utilities.TestUtils;
+
+import static org.junit.Assert.assertTrue;
 
 
 public class DizaynStepDefs {
@@ -316,4 +321,31 @@ public class DizaynStepDefs {
     public void kullanici_urun_listesini_sildigini_dogrular() {
         dzyn.urunListesiSildiginiDogrula();
     }
+
+    @Then("Select the website to work on")
+    public void selectTheWebsiteToWorkOn() {
+        dzyn.clickWebAbeyis();
+    }
+
+    @Then("Select {string} option from page list")
+    public void selectOptionFromPageList(String pageName) {
+        dzyn.selectPage(pageName);
+    }
+    @Then("Send {string} text to {string}")
+    public void sendTextTo(String title, String text) {
+        dzyn.sendTextFromTitle(title, text);
+    }
+
+    @And("Select Liste for Menu Tipi")
+    public void selectListeForMenuTipi() {
+        dzyn.selectListe();
+    }
+
+    @Then("Verify that the {string} has been created")
+    public void verifyThatTheHasBeenCreated(String menuName) {
+        dzyn.popUpValid();
+        dzyn.verifyMenuName(menuName);
+
+    }
+
 }

@@ -160,6 +160,7 @@ public class TestUtils {
         int optionIndex = 1 + random.nextInt(weblist.size() - 1);
         select.selectByIndex(optionIndex);
         return select.getFirstSelectedOption();
+
     }
 
     public static void waitAndClick(WebElement element, int timeout) {
@@ -522,7 +523,7 @@ public class TestUtils {
         waitForClickablility(By.xpath("//a[text()='Gmail']"),15).click();
         waitForClickablility(By.xpath("//span[@class='zF' and @name='Tija']/ancestor::tr"),30).click();
         waitForPageToLoad(30);
-
+waitFor(3);
         List<String> elmTexts = getElementsText(By.xpath("//a[contains(@id,'clickCode')]//strong"));
         String otp = elmTexts.get(elmTexts.size()-1);
 
@@ -575,6 +576,17 @@ public class TestUtils {
 
     public static void clickWithMouse(WebElement elm){
         actions.moveToElement(elm).click(elm).build().perform();
+    }
+
+    public static void selectFromComboBox(By by, String text) {
+        WebElement comboBoxElement = Driver.getDriver().findElement(by);
+        Select comboBox = new Select(comboBoxElement);
+        comboBox.selectByVisibleText(text);
+    }
+
+    public static void selectFromComboBox(WebElement comboBoxElement, String text) {
+        Select comboBox = new Select(comboBoxElement);
+        comboBox.selectByVisibleText(text);
     }
 
 }
