@@ -189,6 +189,33 @@ public class KuponPage extends BasePage {
                 "//button[contains(text(), '" + buttonName + "')]"));
     }
 
+    public void enterKuponDataAllRequired(){
+
+        clickInputArea("Web Sitesi");
+        selectdropDownOption("Web : abeyis-web");
+
+        sendTextByTitle("Başlık", "Kupon-ZorunluGirisler");
+        TestUtils.waitAndSendText(kuponKoduInputBox, "1");
+
+        clickInputArea("Tip");
+        selectdropDownOption("Ücretsiz Kargo");
+
+        clickInputArea("Uygulama Alanı");
+        selectdropDownOption("Mevcut Siparişe");
+
+        clickInputArea("Minimum Gereksinimler");
+        selectdropDownOption("Yok");
+
+        clickInputArea("Müşteri Uygunluğu");
+        selectdropDownOption("Herkes");
+
+        clickInputArea("Kullanım Limiti");
+        selectdropDownOption("Toplamda x adet kadar uygulanabilir");
+
+        sendTextByTitle("Başlangıç Tarihi", "01-12-2023");
+        sendTextByTitle("Başlangıç Saati", "08:00");
+    }
+
 
 }
 
