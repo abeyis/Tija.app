@@ -94,6 +94,16 @@ public class DizaynPage extends BasePage {
 
     @FindBy(xpath = "//footer[@class='site__footer']")
     private WebElement footerSection;
+    @FindBy(xpath = "(//span[@class='mat-button-wrapper'])[1]")
+    private WebElement plusButton;
+    @FindBy(xpath = "//div[@class='mat-select-arrow-wrapper ng-tns-c306-2']")
+    private WebElement dropDownMenu;
+    @FindBy(xpath = "//button/span[contains(text(),'Koleksiyon')]")
+    private WebElement collectionButton;
+    @FindBy(xpath = "//button/span[contains(text(),'Ürün Detay')]")
+    private WebElement productDetailButton;
+    @FindBy(xpath = "// mat-option/span[text()=' Anasayfa 29 ']")
+    private WebElement anasayfa29;
 
     WebElement altBilgiframe;
     List<WebElement> menuListesi;
@@ -655,5 +665,41 @@ public class DizaynPage extends BasePage {
     }
 
 
+    public void clickPlus() {
+        plusButton.click();
+    }
+
+
+    public void verifyCollection() {
+        dropDownMenu.click();
+        pageName = collectionButton.getText();
+        click(collectionButton);
+        WebElement option = Driver.getDriver().findElement(By.xpath("//mat-option/span[contains(text(),'" + pageName + "')]"));
+        assertTrue(option.isDisplayed());
+    }
+
+    public void verifyProductDetail() {
+        dropDownMenu.click();
+        pageName = productDetailButton.getText();
+        click(productDetailButton);
+        WebElement option = Driver.getDriver().findElement(By.xpath("//mat-option/span[contains(text(),'" + pageName + "')]"));
+        assertTrue(option.isDisplayed());
+    }
+      String firstOption;
+    public void dropMenu() {
+        clickPanelButton(" Sayfa Ayarları ");
+        firstOption= baslikText.getText();
+        dropDownMenu.click();
+    }
+
+    public void verifyTransition() throws InterruptedException {
+        wait(3000);
+        clickPanelButton(" Sayfa Ayarları ");
+        String secondOption= baslikText.getText();
+        assertNotEquals(firstOption,secondOption);
+
+
+
+    }
 
 }

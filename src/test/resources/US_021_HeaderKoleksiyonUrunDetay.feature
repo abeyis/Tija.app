@@ -9,13 +9,13 @@ Feature: Header
     Scenario: Adding Collection page
 
     Given Click the + button in the Header section
-    When Click on the "collection button"
+    When Click on the "Koleksiyon" button
     When Verify collection page has been added
 
     Scenario: Adding Product Detail page
 
       Given Click the + button in the Header section
-      When Click on the "product detail button"
+      When Click on the "Ürün Detay" button
       When Verify product detail page has been added
 
 
