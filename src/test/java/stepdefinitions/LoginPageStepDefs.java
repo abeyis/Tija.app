@@ -11,7 +11,7 @@ public class LoginPageStepDefs {
 
     @Given("login to app")
     public void loginToApp() {
-        lp.loginWithGoogleAccount();
+        lp.loginWithOtp();
     }
 
     @Given("Yanlıs emaille hata dogrula")
