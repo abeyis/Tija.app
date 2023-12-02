@@ -94,16 +94,23 @@ public class DizaynPage extends BasePage {
 
     @FindBy(xpath = "//footer[@class='site__footer']")
     private WebElement footerSection;
-    @FindBy(xpath = "(//span[@class='mat-button-wrapper'])[1]")
+    @FindBy(xpath = "(//div[@class='icon ml-1 mr-2'])[1]")
     private WebElement plusButton;
-    @FindBy(xpath = "//div[@class='mat-select-arrow-wrapper ng-tns-c306-2']")
-    private WebElement dropDownMenu;
+
     @FindBy(xpath = "//button/span[contains(text(),'Koleksiyon')]")
     private WebElement collectionButton;
     @FindBy(xpath = "//button/span[contains(text(),'Ürün Detay')]")
     private WebElement productDetailButton;
     @FindBy(xpath = "// mat-option/span[text()=' Anasayfa 29 ']")
     private WebElement anasayfa29;
+    @FindBy(xpath = "//ul/li/a[text()='İade Koşulları']")
+    private WebElement iadeKosullari;
+    @FindBy(xpath = "//ul/li/a[text()='Telefon']")
+    private WebElement telephone;
+    @FindBy(xpath = "//ul/li/a[text()='Faks']")
+    private WebElement faks;
+    @FindBy(xpath = "//ul/li/a[text()='adres']")
+    private WebElement address;
 
     WebElement altBilgiframe;
     List<WebElement> menuListesi;
@@ -665,21 +672,24 @@ public class DizaynPage extends BasePage {
     }
 
 
-    public void clickPlus() {
+    public void clickPlus() throws InterruptedException {
+        wait(5000);
         plusButton.click();
     }
 
 
-    public void verifyCollection() {
-        dropDownMenu.click();
+    public void verifyCollection() throws InterruptedException {
+        wait(10000);
+        click(pageListOpener);
         pageName = collectionButton.getText();
         click(collectionButton);
         WebElement option = Driver.getDriver().findElement(By.xpath("//mat-option/span[contains(text(),'" + pageName + "')]"));
         assertTrue(option.isDisplayed());
     }
 
-    public void verifyProductDetail() {
-        dropDownMenu.click();
+    public void verifyProductDetail() throws InterruptedException {
+        wait(10000);
+        click(pageListOpener);
         pageName = productDetailButton.getText();
         click(productDetailButton);
         WebElement option = Driver.getDriver().findElement(By.xpath("//mat-option/span[contains(text(),'" + pageName + "')]"));
@@ -689,17 +699,29 @@ public class DizaynPage extends BasePage {
     public void dropMenu() {
         clickPanelButton(" Sayfa Ayarları ");
         firstOption= baslikText.getText();
-        dropDownMenu.click();
+        pageListOpener.click();
     }
 
     public void verifyTransition() throws InterruptedException {
-        wait(3000);
+        wait(10000);
         clickPanelButton(" Sayfa Ayarları ");
         String secondOption= baslikText.getText();
         assertNotEquals(firstOption,secondOption);
 
+    }
+
+
+    public void verifyCustomerService() {
+        altBilgiframe = Driver.getDriver().findElement(By.xpath("//iframe[@class='iframe-web']"));
+        Driver.getDriver().switchTo().frame(altBilgiframe);
+        Assert.assertEquals("İade Koşulları",iadeKosullari);
+        Assert.assertEquals("Telefon",telephone);
+        Assert.assertEquals("Faks",faks);
+        Assert.assertEquals("adres",address);
+
+
+
 
 
     }
-
 }

@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources",
         glue = "stepdefinitions",
         dryRun = false,
-        tags = "@regression")
+        tags = "@dizaynButton")
 
 public class Runner {
 }

@@ -1,3 +1,4 @@
+@Sayfalar
 Feature: Sayfalar
 
   Background: Login to Tija
@@ -6,5 +7,6 @@ Feature: Sayfalar
     When Click the "Dizayn" module button
     And  Dizayn etmek istediği sayfaya tıkla
 
-  Scenario: Verifying information at Customer Service
+    @SayfalarMusteriHizmetleri
+   Scenario: Verifying information at Customer Service
     Given Verify information with Customer Service

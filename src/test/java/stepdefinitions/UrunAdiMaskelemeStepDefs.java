@@ -22,24 +22,26 @@ public class UrunAdiMaskelemeStepDefs {
     }
 
 
-    @Given("Find mask value")
-    public void findMaskValue() {
-    }
 
-    @When("Enter new test data")
+
+    @Given("Enter new test data")
     public void enterNewTestData() {
+        up.newData();
     }
 
     @When("Click the Update button")
     public void clickTheUpdateButton() {
+        up.update();
     }
 
-    @When("Click on the delete button")
+    @Given("Click on the delete button")
     public void clickOnTheDeleteButton() {
+        up.delete();
     }
 
     @When("Click the Yes button")
     public void clickTheYesButton() {
+        up.yesButton();
     }
 }
 
