@@ -61,6 +61,7 @@ public abstract class BasePage {
         }catch (ElementNotInteractableException e){
             type(element,text);
         }
+
     }
 
     /**

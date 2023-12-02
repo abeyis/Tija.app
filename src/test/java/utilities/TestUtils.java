@@ -68,9 +68,10 @@ public class TestUtils {
 
     // ========Returns the Text of the element given an element locator==//
     public static List<String> getElementsText(By locator) {
-        try{
+        try {
             List<String> elemTexts = new ArrayList<>();
-            List<WebElement> elems = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+            List<WebElement> elems = wait.
+                    until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
             for (WebElement el : elems) {
                 if (!el.getText().isEmpty()) {
                     elemTexts.add(el.getText());
@@ -78,7 +79,7 @@ public class TestUtils {
             }
 
             return elemTexts;
-        }catch(StaleElementReferenceException e){
+        } catch (StaleElementReferenceException e) {
             return getElementsText(locator);
         }
     }
@@ -506,16 +507,16 @@ public class TestUtils {
     }
 
 
-    public static void loginToGmail(String username,String password){
-        waitForClickablility(By.cssSelector("span.gb_Hd"),15).click();
-        waitForClickablility(By.name("identifier"),15).sendKeys(username);
-        waitForClickablility(By.xpath("//span[text()='Sonraki' or text()='Next']"),15).click();
-        waitForClickablility(By.name("Passwd"),15).sendKeys(password);
-        waitForClickablility(By.xpath("//span[text()='Sonraki' or text()='Next']"),15).click();
+    public static void loginToGmail(String username, String password) {
+        waitForClickablility(By.cssSelector("span.gb_Hd"), 15).click();
+        waitForClickablility(By.name("identifier"), 15).sendKeys(username);
+        waitForClickablility(By.xpath("//span[text()='Sonraki' or text()='Next']"), 15).click();
+        waitForClickablility(By.name("Passwd"), 15).sendKeys(password);
+        waitForClickablility(By.xpath("//span[text()='Sonraki' or text()='Next']"), 15).click();
     }
 
 
-    public static String getOtp(String username,String password){
+    public static String getOtp(String username, String password) {
 
         String originalWindow = Driver.getDriver().getWindowHandle();
 
@@ -527,7 +528,7 @@ public class TestUtils {
         waitForClickablility(By.xpath("//a[text()='Gmail']"),15).click();
         waitForClickablility(By.xpath("//span[@class='zF' and @name='Tija']/ancestor::tr"),30).click();
         waitForPageToLoad(30);
-waitFor(3);
+        waitFor(3);
         List<String> elmTexts = getElementsText(By.xpath("//a[contains(@id,'clickCode')]//strong"));
         String otp = elmTexts.get(elmTexts.size()-1);
 
@@ -546,39 +547,40 @@ waitFor(3);
         return elemTexts;
     }
 
-    public static void scrollToElement(WebElement element){
+    public static void scrollToElement(WebElement element) {
         ((JavascriptExecutor) Driver.getDriver())
                 .executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    public static boolean isElementPresent(WebElement element){
+    public static boolean isElementPresent(WebElement element) {
         try {
             return element.isDisplayed();
         } catch (org.openqa.selenium.NoSuchElementException | org.openqa.selenium.StaleElementReferenceException e) {
             return false;
         }
     }
-    public static void clickInCycle(WebElement el){
+
+    public static void clickInCycle(WebElement el) {
         try {
             clickWithJS(el);
-            if(el.isDisplayed())
+            if (el.isDisplayed())
                 throw new RuntimeException();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             clickInCycle(el);
         }
     }
 
 
-    public static Boolean isElementPresent(By locator){
-        try{
+    public static Boolean isElementPresent(By locator) {
+        try {
             Driver.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
             return Driver.getDriver().findElement(locator).isDisplayed();
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
 
-    public static void clickWithMouse(WebElement elm){
+    public static void clickWithMouse(WebElement elm) {
         actions.moveToElement(elm).click(elm).build().perform();
     }
 
@@ -622,5 +624,32 @@ waitFor(3);
                 }
         }
     }
+
+    public static By waitToBePresent(By by) {
+        WebElement element = null;
+        for (int i = 0; i < 10; i++) {
+            try {
+                element = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(1))
+                        .until(ExpectedConditions.presenceOfElementLocated(by));
+                break;
+            } catch (NoSuchElementException e) {
+            }
+        }
+        return by;
+    }
+
+    public static WebElement handleStaleElement(By by) {
+        WebElement element = null;
+        for (int i = 0; i < 10; i++) {
+            try {
+                element = Driver.getDriver().findElement(by);
+                return element;
+            } catch (StaleElementReferenceException e) {
+                waitFor(1);
+            }
+        }
+        throw new StaleElementReferenceException("Element is still stale after multiple attempts.");
+    }
+
 
 }

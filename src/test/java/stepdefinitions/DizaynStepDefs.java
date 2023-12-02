@@ -1,11 +1,14 @@
 package stepdefinitions;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.DizaynPage;
 import utilities.TestUtils;
+
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
@@ -332,7 +335,7 @@ public class DizaynStepDefs {
         dzyn.selectPage(pageName);
     }
     @Then("Send {string} text to {string}")
-    public void sendTextTo(String title, String text) {
+    public void sendTextTo(String text, String title) {
         dzyn.sendTextFromTitle(title, text);
     }
 
@@ -341,11 +344,48 @@ public class DizaynStepDefs {
         dzyn.selectListe();
     }
 
-    @Then("Verify that the {string} has been created")
-    public void verifyThatTheHasBeenCreated(String menuName) {
-        dzyn.popUpValid();
-        dzyn.verifyMenuName(menuName);
-
+    @Then("Verify that the {string} has been {string}")
+    public void verifyThatTheHasBeen(String menuName, String menuCase) {
+        if (menuCase=="created"){
+            dzyn.verifyIslemBasariliPopUpisDisplay();
+        }
+        dzyn.verifyMenuName(menuName, menuCase);
     }
+
+    @And("Close the Menuler Panel")
+    public void closeTheMenulerPanel() {
+        dzyn.closeThePanel();
+    }
+
+    @Then("Select {string} option from Ana Menu list")
+    public void selectOptionFromAnaMenuList(String menuName) {
+        dzyn.selectAnaMenu(menuName);
+    }
+
+    @Then("Click the {string} tab")
+    public void clickTheTab(String tabTitle) {
+        dzyn.selectTheTab(tabTitle);
+    }
+
+    @Then("Click the {string} Button")
+    public void clickTheButton(String btnName) {
+        dzyn.clickMenuBtn(btnName);
+    }
+
+    @Then("Verify that the menu items have been created")
+    public void verifyThatTheMenuItemsHaveBeenCreated() {
+        TestUtils.waitForPageToLoad(15);
+        dzyn.verifyItemInMenu("Koleksiyon");
+        dzyn.verifyItemInMenu("Ürün");
+        dzyn.verifyItemInMenu("Marka");
+        dzyn.verifyItemInMenu("Mağaza");
+    }
+
+    @Then("Create menu items for koleksiyon, urun, marka and sayfa")
+    public void createMenuItemsForKoleksiyonUrunMarkaAndSayfa(DataTable elements) {
+        List<List<String>> listItems = elements.asLists(String.class);
+        dzyn.addMenuItems(listItems);
+    }
+
 
 }
