@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.DizaynPage;
+import utilities.Driver;
 import utilities.TestUtils;
 
 import java.util.List;
@@ -378,14 +379,68 @@ public class DizaynStepDefs {
         dzyn.verifyItemInMenu("Koleksiyon");
         dzyn.verifyItemInMenu("Ürün");
         dzyn.verifyItemInMenu("Marka");
-        dzyn.verifyItemInMenu("Mağaza");
+        dzyn.verifyItemInMenu("Mağazamız");
     }
 
     @Then("Create menu items for koleksiyon, urun, marka and sayfa")
-    public void createMenuItemsForKoleksiyonUrunMarkaAndSayfa(DataTable elements) {
-        List<List<String>> listItems = elements.asLists(String.class);
+    public void createMenuItemsForKoleksiyonUrunMarkaAndSayfa(DataTable dataTable) {
+        List<List<String>> listItems = dataTable.asLists(String.class);
         dzyn.addMenuItems(listItems);
     }
 
+    @Then("Click menu ogesi ekle icon")
+    public void clickMenuOgesiEkleIcon() {
+        dzyn.clickMenuOgesiEkle();
+    }
 
+    @Then("Send title {string} to Baslik")
+    public void sendTitleToBaslik(String menuTitle) {
+        dzyn.sendTitleToBaslik("Sayfamız");
+    }
+
+    @Then("Click the {string} button in Menuler")
+    public void clickTheButtonInMenuler(String btnTitle) {
+        dzyn.clickMenulerBtn(btnTitle);
+    }
+
+    @Then("Select {string} option as Item")
+    public void selectOptionAsItem(String guidance) {
+        dzyn.clickItemSelection(guidance);
+    }
+
+    @Then("Send {string} as web address")
+    public void sendAsWebAddress(String linkAddress) {
+        dzyn.sendLinkAddress(linkAddress);
+    }
+
+    @Then("Click the Kaydet button")
+    public void clickTheKaydetButton() {
+        dzyn.clickKaydet();
+    }
+
+    @Then("Click the Olustur button")
+    public void clickTheOlusturButton() {
+        dzyn.clickMenulerBtn("Olustur");
+    }
+
+    @Then("Verify that the link item {string} has been created")
+    public void verifyThatTheLinkItemHasBeenCreated(String itemName) {
+        TestUtils.waitForPageToLoad(15);
+        dzyn.verifyItemInMenu(itemName);
+    }
+
+    @Then("Change menu items for koleksiyon, urun, marka and sayfa")
+    public void changeMenuItemsForKoleksiyonUrunMarkaAndSayfa(DataTable dataTable) {
+        List<List<String>> listItems = dataTable.asLists(String.class);
+        dzyn.changeMenuItems(listItems);
+    }
+
+    @Then("Verify that the menu items have been changed")
+    public void verifyThatTheMenuItemsHaveBeenChanged() {
+        TestUtils.waitForPageToLoad(15);
+        dzyn.verifyItemInMenu("Seri Sonu");
+        dzyn.verifyItemInMenu("Sezonluk");
+        dzyn.verifyItemInMenu("Markalar");
+        dzyn.verifyItemInMenu("İletişim");
+    }
 }

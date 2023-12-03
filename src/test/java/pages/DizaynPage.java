@@ -683,21 +683,22 @@ public class DizaynPage extends BasePage {
     }
 
     public void clickMenuOgesiEkle(){
-        By by = TestUtils.waitToBePresent(By.xpath(
+        By by = TestUtils.handleStaleElement(By.xpath(
                 "//p[normalize-space()= 'Menü öğesi ekle']"));
         click(Driver.getDriver().findElement(by));
     }
 
     public void sendTitleToBaslik(String title){
-        By by = TestUtils.waitToBePresent(By.xpath(
+        By by = TestUtils.handleStaleElement(By.xpath(
                 "//h6[normalize-space()= 'Başlık']//following-sibling::input"));
+        Driver.getDriver().findElement(by).clear();
         type(Driver.getDriver().findElement(by), title);
     }
 
-
     public void clickMenulerBtn(String btnTitle){
-        click(Driver.getDriver().findElement(By.xpath(
-                "//div[normalize-space()= '" + btnTitle + "']")));
+        By by = By.xpath("//div[@id='menuCreated']//div[normalize-space()= '" + btnTitle + "']");
+        WebElement element = Driver.getDriver().findElement(TestUtils.handleStaleElement(by));
+        click(element);
     }
 
     public void clickItemSelection(String guidance){
@@ -725,6 +726,41 @@ public class DizaynPage extends BasePage {
             Assert.assertTrue(false);
         }
         Driver.getDriver().switchTo().defaultContent();
+    }
+
+    public void sendLinkAddress(String linkAddress){
+        By by = TestUtils.waitToBePresent(By.xpath(
+                "//input[@type='text'][contains(@placeholder, 'http')]"));
+        type(Driver.getDriver().findElement(by), linkAddress);
+    }
+
+    public void changeMenuItems(List<List<String>> listItems){
+        String title;
+        String newTitle;
+        String guidance;
+        String objectName;
+        for (int i=0; i<listItems.size(); i++) {
+            title = listItems.get(i).get(0);
+            newTitle = listItems.get(i).get(1);
+            guidance = listItems.get(i).get(2);
+            objectName = listItems.get(i).get(3);
+
+            clickItemChoise(title, "Düzenle");   //    Then Click the "Düzenle" for related menu item
+            sendTitleToBaslik(newTitle);                  //    Then Send menu title to Baslik
+            clickMenulerBtn("Yönlendir");          //    Then Click the "Yönlendir" button
+            clickItemSelection(guidance);                 //    Then Click guidance button on pop-up window
+            clickObjectSelection(objectName);             //    Then Click my object name in list
+            clickKaydet();                                //    Then Click the "Kaydet" button
+            clickMenulerBtn("Kaydet");             //    Then Click the "Kaydet" button
+            TestUtils.waitFor(1);
+        }
+    }
+
+    public void clickItemChoise(String title, String choiseText){
+        By by = TestUtils.handleStaleElement(By.xpath(
+                "//span[@class='nodeContent' and normalize-space()='" + title
+                              + "']/../following-sibling::div[normalize-space()='" + choiseText + "']"));
+        click(Driver.getDriver().findElement(by));
     }
 
 

@@ -638,14 +638,14 @@ public class TestUtils {
         return by;
     }
 
-    public static WebElement handleStaleElement(By by) {
+    public static By handleStaleElement(By by) {
         WebElement element = null;
         for (int i = 0; i < 10; i++) {
             try {
                 element = Driver.getDriver().findElement(by);
-                return element;
+                return by;
             } catch (StaleElementReferenceException e) {
-                waitFor(1);
+                wait(1);
             }
         }
         throw new StaleElementReferenceException("Element is still stale after multiple attempts.");
