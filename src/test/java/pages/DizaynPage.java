@@ -1,15 +1,10 @@
 package pages;
 
 import org.junit.Assert;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.TestUtils;
@@ -604,22 +599,33 @@ public class DizaynPage extends BasePage {
     private WebElement testPageTri;
     @FindBy(xpath = "//span[@class='mat-option-text']")
     private List<WebElement> testPageList;
-    @FindBy(xpath = "//p[.='Menü İsmi']//following::input[1]")
-    private WebElement inputMenuIsmi;
-    @FindBy(css = "div[class='mat-select-arrow-wrapper ng-tns-c306-13']")
-    private WebElement menuTipiDropDown;
     @FindBy(xpath = "//span[.='Liste']")
     private WebElement menuTipiListe;
     @FindBy(xpath = "(//mat-select[@role='combobox'])[1]")
-    private WebElement pageMatSelect;
+    private WebElement pageComboBox;
+    @FindBy(xpath = "//p[.='Menü İsmi']//following::input[1]")
+    private WebElement inputMenuIsmi;
+    @FindBy(xpath = "(//mat-select[@role='combobox'])[4]")
+    private WebElement menuTipiDropDown;
     @FindBy(xpath = "(//mat-select[@role='combobox'])[3]")
-    private WebElement anaMenuMatSelect;
+    private WebElement anaMenuComboBox;
+    @FindBy(css = "p[class='cp']")
+    private WebElement closePanel;
+    @FindBy(xpath = "//p[normalize-space()= 'Menü öğesi ekle']")
+    private WebElement addMenuItem;
 
 
     public void selectPage(String text){
-        matSelectFromList(pageMatSelect, text);
+        click(pageComboBox);
+        click(Driver.getDriver().findElement(By.xpath(
+                "//*[@class='mat-option-text'][contains(text(), '" + text + "')]/..")));
     }
 
+    public void selectAnaMenu(String text){
+        click(anaMenuComboBox);
+        click(Driver.getDriver().findElement(By.xpath(
+                "//*[@class='mat-option-text'][contains(text(), '" + text + "')]/..")));
+    }
     public void selectListe(){
         click(menuTipiDropDown);
         click(menuTipiListe);
@@ -631,29 +637,131 @@ public class DizaynPage extends BasePage {
         TestUtils.waitAndSendText(element, text);
     }
 
-    public void verifyMenuName(String menuName){
-        click(anaMenuMatSelect);
-        WebElement optionList = Driver.getDriver().findElement(By.cssSelector("span[class='mat-option-text']"));
-        Assert.assertTrue(isOptionPresent(optionList, menuName));
-    }
-
-    public void matSelectFromList(WebElement matSelectElement, String text) {
-        matSelectElement.click();
-        TestUtils.waitForVisibility(matSelectElement, 10);
-        WebElement optionList = Driver.getDriver().findElement(By.cssSelector("span[class='mat-option-text']"));
-        WebElement menuOption = optionList.findElement(By.xpath(".//*[contains(text(), ' " + text + " ')]"));
-        menuOption.click();
-    }
-
-    public boolean isOptionPresent(WebElement optionList, String optionText) {
+    public void verifyMenuName(String menuName, String menuCase){
+        boolean assertCase = menuCase.equals("created");
+        click(anaMenuComboBox);
         try {
-            optionList.findElement(By.xpath(".//*[contains(text(), '" + optionText + "')]"));
-            return true;
-        } catch (org.openqa.selenium.NoSuchElementException e) {
-            return false;
+            WebElement element = Driver.getDriver().findElement(By.xpath(
+                    "//span[normalize-space()='" + menuName + "']"));
+            Assert.assertTrue(assertCase);
+        } catch (NoSuchElementException e) {
+            Assert.assertTrue(!assertCase);
         }
     }
 
+    public void closeThePanel(){
+        click(closePanel);
+    }
+    public void selectTheTab(String tabTitle){
+        TestUtils.waitFor(5);
+        click(Driver.getDriver().findElement(By.xpath(
+                "//div[starts-with(@class, 'banner-')][normalize-space()= '" + tabTitle + "']")));
+    }
+
+    public void clickMenuBtn(String btnName){
+        click((Driver.getDriver().findElement(By.xpath(
+                "//div[@class = 'btn saveBtn mr-2' ][normalize-space()= '"+ btnName +"']"))));
+    }
+
+    public void addMenuItems(List<List<String>> listItems){
+        String title;
+        String guidance;
+        String objectName;
+        for (int i=0; i<listItems.size(); i++) {
+            title = listItems.get(i).get(0);
+            guidance = listItems.get(i).get(1);
+            objectName = listItems.get(i).get(2);
+
+            clickMenuOgesiEkle();                     //    Then Click the "Menu Ogesi Ekle" selection
+            sendTitleToBaslik(title);                 //    Then Send menu title to Baslik
+            clickMenulerBtn("Yönlendir");      //    Then Click the "Yönlendir" button
+            clickItemSelection(guidance);             //    Then Click guidance button on pop-up window
+            clickObjectSelection(objectName);         //    Then Click my object name name in list
+            clickKaydet();                            //    Then Click the "Kaydet" button
+            clickMenulerBtn("Olustur");        //    Then Click the "Oluştur" button
+        }
+    }
+
+    public void clickMenuOgesiEkle(){
+        By by = TestUtils.handleStaleElement(By.xpath(
+                "//p[normalize-space()= 'Menü öğesi ekle']"));
+        click(Driver.getDriver().findElement(by));
+    }
+
+    public void sendTitleToBaslik(String title){
+        By by = TestUtils.handleStaleElement(By.xpath(
+                "//h6[normalize-space()= 'Başlık']//following-sibling::input"));
+        Driver.getDriver().findElement(by).clear();
+        type(Driver.getDriver().findElement(by), title);
+    }
+
+    public void clickMenulerBtn(String btnTitle){
+        By by = By.xpath("//div[@id='menuCreated']//div[normalize-space()= '" + btnTitle + "']");
+        WebElement element = Driver.getDriver().findElement(TestUtils.handleStaleElement(by));
+        click(element);
+    }
+
+    public void clickItemSelection(String guidance){
+        click(Driver.getDriver().findElement(By.xpath(
+                "//div[@class='item mt-1 py-2 pl-3 d-flex align-items-center'][normalize-space()=  '"+ guidance +"']")));
+    }
+
+    public void clickObjectSelection(String objectName){
+        click(Driver.getDriver().findElement(By.xpath(
+                "//div[@placement='bottom'][normalize-space()= '"+ objectName +"']")));
+    }
+
+    public void clickKaydet(){
+        click(Driver.getDriver().findElement(By.xpath(
+                "//button[normalize-space()= 'Kaydet']")));
+    }
+
+    public void verifyItemInMenu(String itemName){
+        Driver.getDriver().switchTo().frame(iframe);
+        try {
+            WebElement element = Driver.getDriver().findElement(By.xpath(
+                    "//div[starts-with(@class,'menuContain')]//button[normalize-space()='"+ itemName +"']"));
+            Assert.assertTrue(true);
+        } catch (NoSuchElementException e) {
+            Assert.assertTrue(false);
+        }
+        Driver.getDriver().switchTo().defaultContent();
+    }
+
+    public void sendLinkAddress(String linkAddress){
+        By by = TestUtils.waitToBePresent(By.xpath(
+                "//input[@type='text'][contains(@placeholder, 'http')]"));
+        type(Driver.getDriver().findElement(by), linkAddress);
+    }
+
+    public void changeMenuItems(List<List<String>> listItems){
+        String title;
+        String newTitle;
+        String guidance;
+        String objectName;
+        for (int i=0; i<listItems.size(); i++) {
+            title = listItems.get(i).get(0);
+            newTitle = listItems.get(i).get(1);
+            guidance = listItems.get(i).get(2);
+            objectName = listItems.get(i).get(3);
+
+            clickItemChoise(title, "Düzenle");   //    Then Click the "Düzenle" for related menu item
+            sendTitleToBaslik(newTitle);                  //    Then Send menu title to Baslik
+            clickMenulerBtn("Yönlendir");          //    Then Click the "Yönlendir" button
+            clickItemSelection(guidance);                 //    Then Click guidance button on pop-up window
+            clickObjectSelection(objectName);             //    Then Click my object name in list
+            clickKaydet();                                //    Then Click the "Kaydet" button
+            clickMenulerBtn("Kaydet");             //    Then Click the "Kaydet" button
+            TestUtils.waitFor(1);
+        }
+    }
+
+    public void clickItemChoise(String title, String choiseText){
+        By by = TestUtils.handleStaleElement(By.xpath(
+                "//span[@class='nodeContent' and normalize-space()='" + title
+                              + "']/../following-sibling::div[normalize-space()='" + choiseText + "']"));
+        click(Driver.getDriver().findElement(by));
+    }
 
 
 }

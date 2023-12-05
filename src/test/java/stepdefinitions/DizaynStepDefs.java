@@ -1,11 +1,15 @@
 package stepdefinitions;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.DizaynPage;
+import utilities.Driver;
 import utilities.TestUtils;
+
+import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
@@ -332,7 +336,7 @@ public class DizaynStepDefs {
         dzyn.selectPage(pageName);
     }
     @Then("Send {string} text to {string}")
-    public void sendTextTo(String title, String text) {
+    public void sendTextTo(String text, String title) {
         dzyn.sendTextFromTitle(title, text);
     }
 
@@ -341,11 +345,102 @@ public class DizaynStepDefs {
         dzyn.selectListe();
     }
 
-    @Then("Verify that the {string} has been created")
-    public void verifyThatTheHasBeenCreated(String menuName) {
-        dzyn.popUpValid();
-        dzyn.verifyMenuName(menuName);
-
+    @Then("Verify that the {string} has been {string}")
+    public void verifyThatTheHasBeen(String menuName, String menuCase) {
+        if (menuCase=="created"){
+            dzyn.verifyIslemBasariliPopUpisDisplay();
+        }
+        dzyn.verifyMenuName(menuName, menuCase);
     }
 
+    @And("Close the Menuler Panel")
+    public void closeTheMenulerPanel() {
+        dzyn.closeThePanel();
+    }
+
+    @Then("Select {string} option from Ana Menu list")
+    public void selectOptionFromAnaMenuList(String menuName) {
+        dzyn.selectAnaMenu(menuName);
+    }
+
+    @Then("Click the {string} tab")
+    public void clickTheTab(String tabTitle) {
+        dzyn.selectTheTab(tabTitle);
+    }
+
+    @Then("Click the {string} Button")
+    public void clickTheButton(String btnName) {
+        dzyn.clickMenuBtn(btnName);
+    }
+
+    @Then("Verify that the menu items have been created")
+    public void verifyThatTheMenuItemsHaveBeenCreated() {
+        TestUtils.waitForPageToLoad(15);
+        dzyn.verifyItemInMenu("Koleksiyon");
+        dzyn.verifyItemInMenu("Ürün");
+        dzyn.verifyItemInMenu("Marka");
+        dzyn.verifyItemInMenu("Mağazamız");
+    }
+
+    @Then("Create menu items for koleksiyon, urun, marka and sayfa")
+    public void createMenuItemsForKoleksiyonUrunMarkaAndSayfa(DataTable dataTable) {
+        List<List<String>> listItems = dataTable.asLists(String.class);
+        dzyn.addMenuItems(listItems);
+    }
+
+    @Then("Click menu ogesi ekle icon")
+    public void clickMenuOgesiEkleIcon() {
+        dzyn.clickMenuOgesiEkle();
+    }
+
+    @Then("Send title {string} to Baslik")
+    public void sendTitleToBaslik(String menuTitle) {
+        dzyn.sendTitleToBaslik("Sayfamız");
+    }
+
+    @Then("Click the {string} button in Menuler")
+    public void clickTheButtonInMenuler(String btnTitle) {
+        dzyn.clickMenulerBtn(btnTitle);
+    }
+
+    @Then("Select {string} option as Item")
+    public void selectOptionAsItem(String guidance) {
+        dzyn.clickItemSelection(guidance);
+    }
+
+    @Then("Send {string} as web address")
+    public void sendAsWebAddress(String linkAddress) {
+        dzyn.sendLinkAddress(linkAddress);
+    }
+
+    @Then("Click the Kaydet button")
+    public void clickTheKaydetButton() {
+        dzyn.clickKaydet();
+    }
+
+    @Then("Click the Olustur button")
+    public void clickTheOlusturButton() {
+        dzyn.clickMenulerBtn("Olustur");
+    }
+
+    @Then("Verify that the link item {string} has been created")
+    public void verifyThatTheLinkItemHasBeenCreated(String itemName) {
+        TestUtils.waitForPageToLoad(15);
+        dzyn.verifyItemInMenu(itemName);
+    }
+
+    @Then("Change menu items for koleksiyon, urun, marka and sayfa")
+    public void changeMenuItemsForKoleksiyonUrunMarkaAndSayfa(DataTable dataTable) {
+        List<List<String>> listItems = dataTable.asLists(String.class);
+        dzyn.changeMenuItems(listItems);
+    }
+
+    @Then("Verify that the menu items have been changed")
+    public void verifyThatTheMenuItemsHaveBeenChanged() {
+        TestUtils.waitForPageToLoad(15);
+        dzyn.verifyItemInMenu("Seri Sonu");
+        dzyn.verifyItemInMenu("Sezonluk");
+        dzyn.verifyItemInMenu("Markalar");
+        dzyn.verifyItemInMenu("İletişim");
+    }
 }
