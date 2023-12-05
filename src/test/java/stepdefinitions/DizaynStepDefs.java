@@ -335,6 +335,7 @@ public class DizaynStepDefs {
     public void selectOptionFromPageList(String pageName) {
         dzyn.selectPage(pageName);
     }
+
     @Then("Send {string} text to {string}")
     public void sendTextTo(String text, String title) {
         dzyn.sendTextFromTitle(title, text);
@@ -347,7 +348,7 @@ public class DizaynStepDefs {
 
     @Then("Verify that the {string} has been {string}")
     public void verifyThatTheHasBeen(String menuName, String menuCase) {
-        if (menuCase=="created"){
+        if (menuCase == "created") {
             dzyn.verifyIslemBasariliPopUpisDisplay();
         }
         dzyn.verifyMenuName(menuName, menuCase);
@@ -424,9 +425,9 @@ public class DizaynStepDefs {
     }
 
     @Then("Verify that the link item {string} has been created")
-    public void verifyThatTheLinkItemHasBeenCreated(String itemName) {
+    public void verifyThatTheLinkItemHasBeenCreated(String linkName) {
         TestUtils.waitForPageToLoad(15);
-        dzyn.verifyItemInMenu(itemName);
+        dzyn.verifyItemInMenu(linkName);
     }
 
     @Then("Change menu items for koleksiyon, urun, marka and sayfa")
@@ -443,4 +444,16 @@ public class DizaynStepDefs {
         dzyn.verifyItemInMenu("Markalar");
         dzyn.verifyItemInMenu("İletişim");
     }
+
+    @Then("Click {string} icon for our item {string}")
+    public void clickIconForOurItem(String title, String choiseText) {
+        dzyn.clickItemChoise(choiseText, title);
+    }
+
+    @Then("Verify that the link item has been changed as {string}")
+    public void verifyThatTheLinkItemHasBeenChangedAs(String linkName) {
+        TestUtils.waitForPageToLoad(15);
+        dzyn.verifyItemInMenu(linkName);
+    }
+
 }
