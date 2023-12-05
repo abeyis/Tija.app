@@ -10,13 +10,13 @@ Feature: Urun Adi Maskeleme
    Scenario: Update mask values
     Given Enter new test data
     When Click the Update button
-    When Verify that the transaction successful pop up appears
+    When Verify the transaction is successful pop up
 
   @MaskelemeDelete
     Scenario: Delete mask values
       Given Click on the delete button
       When Click the Yes button
-      When Verify that the transaction successful pop up appears
+      When Verify the transaction is successful pop up
 
 
 

@@ -43,5 +43,10 @@ public class UrunAdiMaskelemeStepDefs {
     public void clickTheYesButton() {
         up.yesButton();
     }
+
+    @When("Verify the transaction is successful pop up")
+    public void verifyTheTransactionIsSuccessfulPopUp() {
+        up.verifyPopUpIsDisplayed("İşlem başarılı");
+    }
 }
 
