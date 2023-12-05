@@ -456,4 +456,8 @@ public class DizaynStepDefs {
         dzyn.verifyItemInMenu(linkName);
     }
 
+    @Then("Verify that the name has been {string} as {string}")
+    public void verifyThatTheNameHasBeenAs(String menuCase, String menuName) {
+        dzyn.verifyMenuName(menuName, menuCase);
+    }
 }

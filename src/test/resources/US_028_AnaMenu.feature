@@ -98,3 +98,16 @@ Feature: US_028 Ana Menu Duzenleme
     When Click the "Kaydet" button
     Then Verify that the "Abeyis Ana Menü" has been "deleted"
 
+# ---------------------------------------------------
+
+  Scenario: TC_029 Ana Menu bilgilerinin gerektiginde degistirilebildigini dogrula
+    Then Select "Abeyis Ana Menü" option from Ana Menu list
+    When Click the "Düzenle" module button
+    Then Send "Abeyis Ana Menü Yeni" text to "Menü İsmi"
+    When Click the "Kaydet" button
+    Then Verify that the Islem basarili PupUp is displayed
+    And Close the Menuler Panel
+    Then Verify that the name has been "changed" as "Abeyis Ana Menü Yeni"
+
+
+

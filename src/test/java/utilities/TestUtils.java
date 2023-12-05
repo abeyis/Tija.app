@@ -521,7 +521,7 @@ public class TestUtils {
         String originalWindow = Driver.getDriver().getWindowHandle();
 
         Driver.getDriver().switchTo().newWindow(WindowType.TAB);
-        Driver.getDriver().get("https://www.google.com/");
+        Driver.getDriver().get("https://www.google.com/?&hl=tr");
 
         loginToGmail(username,password);
 

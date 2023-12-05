@@ -634,11 +634,12 @@ public class DizaynPage extends BasePage {
     public void sendTextFromTitle(String title, String text){
         WebElement element = Driver.getDriver().findElement(By.xpath(
                 "( //p[.='" + title + "']//following::input)[1]"));
+        element.clear();
         TestUtils.waitAndSendText(element, text);
     }
 
     public void verifyMenuName(String menuName, String menuCase){
-        boolean assertCase = menuCase.equals("created");
+        boolean assertCase = menuCase.equals("created") || menuCase.equals("changed");
         click(anaMenuComboBox);
         try {
             WebElement element = Driver.getDriver().findElement(By.xpath(
