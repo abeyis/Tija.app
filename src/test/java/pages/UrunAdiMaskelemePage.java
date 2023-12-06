@@ -26,7 +26,12 @@ public class UrunAdiMaskelemePage extends BasePage{
     public WebElement maskeDegeriEkleButton;
     @FindBy (xpath = "//button[.='Sil']")
     public List<WebElement> maskeSilButtonList;
-
+    @FindBy(xpath = "(//div[@class='col-md-3 p-0'])[2]")
+    private WebElement eskiMaskeDegeri;
+    @FindBy(xpath = "(//div[@class='col-md-4 my-auto'])[1]")
+    private WebElement eskiYeniUrunDegeri;
+    @FindBy(xpath = "(//div[@class='col-md-2 my-auto'])[1]")
+    private WebElement eskiKdvDegeri;
 
     public void saveMaskeData(String yeniUrunAdi, String kdv, String maskeDegeri){
         TestUtils.waitAndSendText(maskeDegeriInputBox, maskeDegeri);
@@ -54,12 +59,12 @@ public class UrunAdiMaskelemePage extends BasePage{
 
     public void newData() {
 
-        maskeDegeriInputBox.clear();
-        maskeDegeriInputBox.sendKeys("degisen maske degeri");
-        maskeYeniUrunAdiInputBox.clear();
-        maskeYeniUrunAdiInputBox.sendKeys("degisen yeni urun degeri");
-        maskeKDVOraniInputBox.clear();
-        maskeKDVOraniInputBox.sendKeys("5");
+        eskiMaskeDegeri.clear();
+        eskiMaskeDegeri.sendKeys("degisen maske degeri");
+        eskiYeniUrunDegeri.clear();
+        eskiYeniUrunDegeri.sendKeys("degisen yeni urun degeri");
+        eskiKdvDegeri.clear();
+        eskiKdvDegeri.sendKeys("5");
     }
 
     public void update() {
