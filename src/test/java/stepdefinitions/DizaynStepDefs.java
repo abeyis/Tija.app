@@ -447,6 +447,7 @@ public class DizaynStepDefs {
 
     @Then("Click {string} icon for our item {string}")
     public void clickIconForOurItem(String title, String choiseText) {
+
         dzyn.dzyn(choiseText, title);
     }
 
@@ -492,6 +493,15 @@ public class DizaynStepDefs {
     @When("verify transition to new page")
     public void verifyTransitionToNewPage(){
         dzyn.verifyTransition();
+
+        dzyn.clickItemChoise(choiseText, title);
+    }
+
+    @Then("Verify that the link item has been changed as {string}")
+    public void verifyThatTheLinkItemHasBeenChangedAs(String linkName) {
+        TestUtils.waitForPageToLoad(15);
+        dzyn.verifyItemInMenu(linkName);
+
     }
 
 }
