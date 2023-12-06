@@ -73,6 +73,23 @@ Feature: US_028 Ana Menu Duzenleme
     Then Click the "Kaydet" Button
     Then Verify that the menu items have been changed
 
+  Scenario: TC_025 Ana Menudeki link yonlendirme menu ogesinin degistirilebildigini dogrula
+    Then Select "Abeyis Ana Menü" option from Ana Menu list
+    When Click the "Düzenle" module button
+    Then Click the "Menü Kırılımı" tab
+    Then Click "Düzenle" icon for our item "Sayfamız"
+    Then Send title "Ana Sayfamız" to Baslik
+    Then Click the "Yönlendir" button in Menuler
+    Then Select "Link" option as Item
+    Then Send "https://www.tija.app" as web address
+    Then Click the "Kaydet" button
+    Then Click the "Menü Bilgileri" tab
+    Then Click the "Kaydet" button
+    Then Verify that the Islem basarili PupUp is displayed
+    And Close the Menuler Panel
+    Then Click the "Kaydet" Button
+    Then Verify that the link item has been changed as "Ana Sayfamız"
+
   Scenario: TC_030 Ana Menunun gerektiginde silinebildigini dogrula
     Then Select "Abeyis Ana Menü" option from Ana Menu list
     When Click the "Düzenle" module button
