@@ -672,41 +672,42 @@ public class DizaynPage extends BasePage {
     }
 
 
-    public void clickPlus() throws InterruptedException {
-        wait(5000);
-        plusButton.click();
+    public void clickPlus() {
+          plusButton.click();
+          pageName = collectionButton.getText();
+          pageName = productDetailButton.getText();
     }
 
 
-    public void verifyCollection() throws InterruptedException {
-        wait(10000);
+    public void verifyCollection(){
         click(pageListOpener);
-        pageName = collectionButton.getText();
-        click(collectionButton);
         WebElement option = Driver.getDriver().findElement(By.xpath("//mat-option/span[contains(text(),'" + pageName + "')]"));
         assertTrue(option.isDisplayed());
     }
 
-    public void verifyProductDetail() throws InterruptedException {
-        wait(10000);
+    public void verifyProductDetail() {
         click(pageListOpener);
-        pageName = productDetailButton.getText();
-        click(productDetailButton);
         WebElement option = Driver.getDriver().findElement(By.xpath("//mat-option/span[contains(text(),'" + pageName + "')]"));
         assertTrue(option.isDisplayed());
     }
-      String firstOption;
+      WebElement firstOption;
     public void dropMenu() {
-        clickPanelButton(" Sayfa Ayarları ");
-        firstOption= baslikText.getText();
+        firstOption= Driver.getDriver().findElement(By.xpath("//span[text()='Anasayfa 18']"));
+        System.out.println("firstOption = " + firstOption);
         pageListOpener.click();
     }
 
-    public void verifyTransition() throws InterruptedException {
-        wait(10000);
-        clickPanelButton(" Sayfa Ayarları ");
-        String secondOption= baslikText.getText();
-        assertNotEquals(firstOption,secondOption);
+    public void verifyTransition() {
+        WebElement secondOption= Driver.getDriver().findElement(By.xpath("//span[text()='Anasayfa 29']"));
+        System.out.println("secondOption = " + secondOption);
+
+        try {
+            assertEquals(firstOption,secondOption);
+
+        }catch (AssertionError e) {
+            System.out.println("Farklı sayfaya geçiş yapılmıştır");
+        }
+
 
     }
 

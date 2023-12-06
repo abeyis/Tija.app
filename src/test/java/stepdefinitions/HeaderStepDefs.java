@@ -11,7 +11,7 @@ public class HeaderStepDefs {
 
 
     @Given("Click the + button in the Header section")
-    public void clickTheButtonInTheHeaderSection() throws InterruptedException {
+    public void clickTheButtonInTheHeaderSection()  {
             dizaynPage.clickPlus();
     }
 
@@ -21,14 +21,14 @@ public class HeaderStepDefs {
     }
 
     @When("Verify collection page has been added")
-    public void verifyCollectionPageHasBeenAdded() throws InterruptedException {
+    public void verifyCollectionPageHasBeenAdded()  {
         dizaynPage.verifyCollection();
 
 
     }
 
     @When("Verify product detail page has been added")
-    public void verifyProductDetailPageHasBeenAdded() throws InterruptedException {
+    public void verifyProductDetailPageHasBeenAdded(){
         dizaynPage.verifyProductDetail();
     }
 
@@ -44,7 +44,7 @@ public class HeaderStepDefs {
     }
 
     @When("verify transition to new page")
-    public void verifyTransitionToNewPage() throws InterruptedException {
+    public void verifyTransitionToNewPage(){
         dizaynPage.verifyTransition();
     }
 
