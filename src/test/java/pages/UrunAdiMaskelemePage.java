@@ -52,5 +52,25 @@ public class UrunAdiMaskelemePage extends BasePage{
     }
 
 
+    public void newData() {
 
+        maskeDegeriInputBox.clear();
+        maskeDegeriInputBox.sendKeys("degisen maske degeri");
+        maskeYeniUrunAdiInputBox.clear();
+        maskeYeniUrunAdiInputBox.sendKeys("degisen yeni urun degeri");
+        maskeKDVOraniInputBox.clear();
+        maskeKDVOraniInputBox.sendKeys("5");
+    }
+
+    public void update() {
+        clickPanelButton("Güncelle");
+    }
+
+    public void delete() {
+        clickPanelButton("Sil");
+    }
+
+    public void yesButton() {
+        clickPanelButton("Evet");
+    }
 }
