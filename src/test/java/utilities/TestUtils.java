@@ -629,7 +629,7 @@ public class TestUtils {
         WebElement element = null;
         for (int i = 0; i < 10; i++) {
             try {
-                element = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(1))
+                element = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10))
                         .until(ExpectedConditions.presenceOfElementLocated(by));
                 break;
             } catch (NoSuchElementException e) {

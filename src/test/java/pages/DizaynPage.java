@@ -1,7 +1,9 @@
 package pages;
 
 import org.junit.Assert;
+import org.junit.Test;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -203,6 +205,7 @@ public class DizaynPage extends BasePage {
     }
 
     public void verifyIslemBasariliPopUpisDisplay() {
+//        assertTrue(Driver.getDriver().findElement(By.xpath("//div[@aria-label='İşlem başarılı.']")).isDisplayed());
         assertTrue(islemBasariliPopUp.isDisplayed());
     }
 
@@ -685,8 +688,11 @@ public class DizaynPage extends BasePage {
 
     public void clickMenuOgesiEkle(){
         By by = TestUtils.handleStaleElement(By.xpath(
-                "//p[normalize-space()= 'Menü öğesi ekle']"));
-        click(Driver.getDriver().findElement(by));
+                "//div[@class='svg']//*[local-name() = 'svg' and @class='Polaris-Icon__Svg_375hu']"));
+//        By by = TestUtils.handleStaleElement(By.xpath(
+//                "//p[normalize-space()= 'Menü öğesi ekle']"));
+        click(TestUtils.waitForClickablility(Driver.getDriver().findElement(by), 5));
+
     }
 
     public void sendTitleToBaslik(String title){
@@ -764,5 +770,105 @@ public class DizaynPage extends BasePage {
         click(Driver.getDriver().findElement(by));
     }
 
+    public void verifyIslemBasarili(String menuCase){
+        if (menuCase.equalsIgnoreCase("created")) {
+            verifyIslemBasariliPopUpisDisplay();
+        }
+    }
+
+    public void createCategoricalMenuItems(List<String> listItems){
+        String title;
+        for (int i=0; i<listItems.size(); i++) {
+            title = listItems.get(i);
+
+            clickMenuOgesiEkle();                     //    Then Click the "Menu Ogesi Ekle" selection
+            sendTitleToBaslik(title);                 //    Then Send menu title to Baslik
+            clickMenulerBtn("Olustur");        //    Then Click the "Oluştur" button
+            moveItemOnto(title, "Markalar");    //    Then Move the new Item on to "Markalar"
+        }
+    }
+
+    public WebElement elementByItem(String title){
+        By by = TestUtils.waitToBePresent(TestUtils.handleStaleElement(By.xpath(
+                "//span[@class='nodeContent' and normalize-space()='" + title + "']/..")));
+        return (Driver.getDriver().findElement(by));
+    }
+    public void moveItemOnto(String item, String target){
+        Actions actions = new Actions(Driver.getDriver());
+        WebElement elementItem = elementByItem(item);
+        WebElement elementTarget = elementByItem(target);
+        Action action = actions.dragAndDrop(elementItem, elementTarget).build();
+        action.perform();
+        TestUtils.waitForPageToLoad(15);
+    }
+
+    public void verifyItemsInMenu(List<List<String>> menuList){
+        TestUtils.waitForPageToLoad(15);
+        By byHamburger = TestUtils.waitToBePresent(By.xpath("//button[@class='mobile-header__menu-button']"));
+        if (Driver.getDriver().findElement(byHamburger).isEnabled()){
+            Driver.getDriver().findElement(TestUtils.handleStaleElement(byHamburger)).click();
+        }
+
+        for (int i=0; i< menuList.size(); i++){
+                verifyItemInCategorical(menuList.get(i));
+        }
+    }
+
+    public void verifyItemInCategorical(List<String> itemList){
+        Driver.getDriver().switchTo().frame(iframe);
+        String itemName;
+        for (int i = 0; i < itemList.size(); i++) {
+            itemName = itemList.get(i);
+
+            if (!itemName.isEmpty()){
+                verifyMenuItems(i, itemList.size(), itemName);
+            }
+        }
+
+        Driver.getDriver().switchTo().defaultContent();
+    }
+
+    public void verifyMenuItems(int i, int ListSize, String itemName){
+        boolean isLast = ListSize-i >0 ? true : false;
+        if (i==0) {
+            verifyFirstItem(itemName, isLast);
+        }
+        else {
+            verifyCategoricalItem(itemName, isLast);
+        }
+    }
+
+    public void verifyFirstItem(String itemName, boolean isLast){
+        try {
+            WebElement element = Driver.getDriver().findElement(TestUtils.handleStaleElement(By.xpath(
+                    "//div[starts-with(@class,'menuContain')]//button[normalize-space()='"+ itemName +"']")));
+            Assert.assertTrue(true);
+            if (!isLast) {
+                element.click();
+            }
+        } catch (NoSuchElementException e) {
+            Assert.assertTrue(false);
+        }
+    }
+
+    public void verifyCategoricalItem(String itemName, boolean isLast){
+        try {
+            WebElement element = Driver.getDriver().findElement(TestUtils.handleStaleElement(By.xpath(
+                    "//div[starts-with(@class,'mat-menu-content')]//span[normalize-space()='" + itemName + "']")));
+            Assert.assertTrue(true);
+            if (!isLast) {
+                element.click();
+            }
+        } catch (NoSuchElementException e) {
+            Assert.assertTrue(false);
+        }
+    }
+
+    public void verifyPopUpMessage(String msg){
+        By by = TestUtils.waitToBePresent(By.xpath(
+                "//div[@aria-label='" + msg + "']"));
+        Assert.assertTrue(Driver.getDriver().findElement(by).isDisplayed());
+        TestUtils.waitForInVisibility(by, 5);
+    }
 
 }
