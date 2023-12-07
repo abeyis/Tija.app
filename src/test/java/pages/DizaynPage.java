@@ -638,31 +638,31 @@ public class DizaynPage extends BasePage {
     private WebElement addMenuItem;
 
 
-    public void selectPage(String text){
+    public void selectPage(String text) {
         click(pageComboBox);
         click(Driver.getDriver().findElement(By.xpath(
                 "//*[@class='mat-option-text'][contains(text(), '" + text + "')]/..")));
     }
 
-    public void selectAnaMenu(String text){
+    public void selectAnaMenu(String text) {
         click(anaMenuComboBox);
         click(Driver.getDriver().findElement(By.xpath(
                 "//*[@class='mat-option-text'][contains(text(), '" + text + "')]/..")));
     }
 
-    public void selectListe(){
+    public void selectListe() {
         click(menuTipiDropDown);
         click(menuTipiListe);
     }
 
-    public void sendTextFromTitle(String title, String text){
+    public void sendTextFromTitle(String title, String text) {
         WebElement element = Driver.getDriver().findElement(By.xpath(
                 "( //p[.='" + title + "']//following::input)[1]"));
         element.clear();
         TestUtils.waitAndSendText(element, text);
     }
 
-    public void verifyMenuName(String menuName, String menuCase){
+    public void verifyMenuName(String menuName, String menuCase) {
         boolean assertCase = menuCase.equals("created") || menuCase.equals("changed");
         click(anaMenuComboBox);
         try {
@@ -674,32 +674,32 @@ public class DizaynPage extends BasePage {
         }
     }
 
-    public void closeThePanel(){
+    public void closeThePanel() {
         click(closePanel);
     }
 
-    public void selectTheTab(String tabTitle){
+    public void selectTheTab(String tabTitle) {
         TestUtils.waitFor(5);
         click(Driver.getDriver().findElement(By.xpath(
                 "//div[starts-with(@class, 'banner-')][normalize-space()= '" + tabTitle + "']")));
     }
 
     public void clickPlus() {
-          plusButton.click();
-          pageName = collectionButton.getText();
-          pageName = productDetailButton.getText();
+        plusButton.click();
+        pageName = collectionButton.getText();
+        pageName = productDetailButton.getText();
     }
 
-    public void clickMenuBtn(String btnName){
+    public void clickMenuBtn(String btnName) {
         click((Driver.getDriver().findElement(By.xpath(
-                "//div[@class = 'btn saveBtn mr-2' ][normalize-space()= '"+ btnName +"']"))));
+                "//div[@class = 'btn saveBtn mr-2' ][normalize-space()= '" + btnName + "']"))));
     }
 
-    public void addMenuItems(List<List<String>> listItems){
+    public void addMenuItems(List<List<String>> listItems) {
         String title;
         String guidance;
         String objectName;
-        for (int i=0; i<listItems.size(); i++) {
+        for (int i = 0; i < listItems.size(); i++) {
             title = listItems.get(i).get(0);
             guidance = listItems.get(i).get(1);
             objectName = listItems.get(i).get(2);
@@ -714,7 +714,7 @@ public class DizaynPage extends BasePage {
         }
     }
 
-    public void verifyCollection(){
+    public void verifyCollection() {
         click(pageListOpener);
         WebElement option = Driver.getDriver().findElement(By.xpath("//mat-option/span[contains(text(),'" + pageName + "')]"));
         assertTrue(option.isDisplayed());
@@ -726,7 +726,7 @@ public class DizaynPage extends BasePage {
         assertTrue(option.isDisplayed());
     }
 
-    public void clickMenuOgesiEkle(){
+    public void clickMenuOgesiEkle() {
         By by = TestUtils.handleStaleElement(By.xpath(
                 "//div[@class='svg']//*[local-name() = 'svg' and @class='Polaris-Icon__Svg_375hu']"));
         click(TestUtils.waitForClickablility(Driver.getDriver().findElement(by), 5));
@@ -734,20 +734,21 @@ public class DizaynPage extends BasePage {
     }
 
     WebElement firstOption;
+
     public void dropMenu() {
-        firstOption= Driver.getDriver().findElement(By.xpath("//span[text()='Anasayfa 18']"));
+        firstOption = Driver.getDriver().findElement(By.xpath("//span[text()='Anasayfa 18']"));
         System.out.println("firstOption = " + firstOption);
         pageListOpener.click();
     }
 
     public void verifyTransition() {
-        WebElement secondOption= Driver.getDriver().findElement(By.xpath("//span[text()='Anasayfa 29']"));
+        WebElement secondOption = Driver.getDriver().findElement(By.xpath("//span[text()='Anasayfa 29']"));
         System.out.println("secondOption = " + secondOption);
 
         try {
-            assertEquals(firstOption,secondOption);
+            assertEquals(firstOption, secondOption);
 
-        }catch (AssertionError e) {
+        } catch (AssertionError e) {
             System.out.println("Farklı sayfaya geçiş yapılmıştır");
         }
 
@@ -756,45 +757,45 @@ public class DizaynPage extends BasePage {
     public void verifyCustomerService() {
         altBilgiframe = Driver.getDriver().findElement(By.xpath("//iframe[@class='iframe-web']"));
         Driver.getDriver().switchTo().frame(altBilgiframe);
-        Assert.assertEquals("İade Koşulları",iadeKosullari);
-        Assert.assertEquals("Telefon",telephone);
-        Assert.assertEquals("Faks",faks);
-        Assert.assertEquals("adres",address);
+        Assert.assertEquals("İade Koşulları", iadeKosullari);
+        Assert.assertEquals("Telefon", telephone);
+        Assert.assertEquals("Faks", faks);
+        Assert.assertEquals("adres", address);
     }
 
-    public void sendTitleToBaslik(String title){
+    public void sendTitleToBaslik(String title) {
         By by = TestUtils.handleStaleElement(By.xpath(
                 "//h6[normalize-space()= 'Başlık']//following-sibling::input"));
         Driver.getDriver().findElement(by).clear();
         type(Driver.getDriver().findElement(by), title);
     }
 
-    public void clickMenulerBtn(String btnTitle){
+    public void clickMenulerBtn(String btnTitle) {
         By by = By.xpath("//div[@id='menuCreated']//div[normalize-space()= '" + btnTitle + "']");
         WebElement element = Driver.getDriver().findElement(TestUtils.handleStaleElement(by));
         click(element);
     }
 
-    public void clickItemSelection(String guidance){
+    public void clickItemSelection(String guidance) {
         click(Driver.getDriver().findElement(By.xpath(
-                "//div[@class='item mt-1 py-2 pl-3 d-flex align-items-center'][normalize-space()=  '"+ guidance +"']")));
+                "//div[@class='item mt-1 py-2 pl-3 d-flex align-items-center'][normalize-space()=  '" + guidance + "']")));
     }
 
-    public void clickObjectSelection(String objectName){
+    public void clickObjectSelection(String objectName) {
         click(Driver.getDriver().findElement(By.xpath(
-                "//div[@placement='bottom'][normalize-space()= '"+ objectName +"']")));
+                "//div[@placement='bottom'][normalize-space()= '" + objectName + "']")));
     }
 
-    public void clickKaydet(){
+    public void clickKaydet() {
         click(Driver.getDriver().findElement(By.xpath(
                 "//button[normalize-space()= 'Kaydet']")));
     }
 
-    public void verifyItemInMenu(String itemName){
+    public void verifyItemInMenu(String itemName) {
         Driver.getDriver().switchTo().frame(iframe);
         try {
             WebElement element = Driver.getDriver().findElement(By.xpath(
-                    "//div[starts-with(@class,'menuContain')]//button[normalize-space()='"+ itemName +"']"));
+                    "//div[starts-with(@class,'menuContain')]//button[normalize-space()='" + itemName + "']"));
             Assert.assertTrue(true);
         } catch (NoSuchElementException e) {
             Assert.assertTrue(false);
@@ -802,18 +803,18 @@ public class DizaynPage extends BasePage {
         Driver.getDriver().switchTo().defaultContent();
     }
 
-    public void sendLinkAddress(String linkAddress){
+    public void sendLinkAddress(String linkAddress) {
         By by = TestUtils.waitToBePresent(By.xpath(
                 "//input[@type='text'][contains(@placeholder, 'http')]"));
         type(Driver.getDriver().findElement(by), linkAddress);
     }
 
-    public void changeMenuItems(List<List<String>> listItems){
+    public void changeMenuItems(List<List<String>> listItems) {
         String title;
         String newTitle;
         String guidance;
         String objectName;
-        for (int i=0; i<listItems.size(); i++) {
+        for (int i = 0; i < listItems.size(); i++) {
             title = listItems.get(i).get(0);
             newTitle = listItems.get(i).get(1);
             guidance = listItems.get(i).get(2);
@@ -830,22 +831,22 @@ public class DizaynPage extends BasePage {
         }
     }
 
-    public void clickItemChoise(String title, String choiseText){
+    public void clickItemChoise(String title, String choiseText) {
         By by = TestUtils.handleStaleElement(By.xpath(
                 "//span[@class='nodeContent' and normalize-space()='" + title
-                              + "']/../following-sibling::div[normalize-space()='" + choiseText + "']"));
+                        + "']/../following-sibling::div[normalize-space()='" + choiseText + "']"));
         click(Driver.getDriver().findElement(by));
     }
 
-    public void verifyIslemBasarili(String menuCase){
+    public void verifyIslemBasarili(String menuCase) {
         if (menuCase.equalsIgnoreCase("created")) {
             verifyIslemBasariliPopUpisDisplay();
         }
     }
 
-    public void createCategoricalMenuItems(List<String> listItems){
+    public void createCategoricalMenuItems(List<String> listItems) {
         String title;
-        for (int i=0; i<listItems.size(); i++) {
+        for (int i = 0; i < listItems.size(); i++) {
             title = listItems.get(i);
 
             clickMenuOgesiEkle();                     //    Then Click the "Menu Ogesi Ekle" selection
@@ -855,12 +856,13 @@ public class DizaynPage extends BasePage {
         }
     }
 
-    public WebElement elementByItem(String title){
+    public WebElement elementByItem(String title) {
         By by = TestUtils.waitToBePresent(TestUtils.handleStaleElement(By.xpath(
                 "//span[@class='nodeContent' and normalize-space()='" + title + "']/..")));
         return (Driver.getDriver().findElement(by));
     }
-    public void moveItemOnto(String item, String target){
+
+    public void moveItemOnto(String item, String target) {
         Actions actions = new Actions(Driver.getDriver());
         WebElement elementItem = elementByItem(item);
         WebElement elementTarget = elementByItem(target);
@@ -869,73 +871,79 @@ public class DizaynPage extends BasePage {
         TestUtils.waitForPageToLoad(15);
     }
 
-    public void verifyItemsInMenu(List<List<String>> menuList){
+    public void verifyItemsInMenu(List<List<String>> menuList) {
+        Driver.getDriver().switchTo().frame(iframe);
         TestUtils.waitForPageToLoad(15);
+        TestUtils.waitFor(5);
         By byHamburger = TestUtils.waitToBePresent(By.xpath("//button[@class='mobile-header__menu-button']"));
-        if (Driver.getDriver().findElement(byHamburger).isEnabled()){
+        if (Driver.getDriver().findElement(byHamburger).isEnabled()) {
             Driver.getDriver().findElement(TestUtils.handleStaleElement(byHamburger)).click();
         }
 
-        for (int i=0; i< menuList.size(); i++){
-                verifyItemInCategorical(menuList.get(i));
-        }
-    }
-
-    public void verifyItemInCategorical(List<String> itemList){
-        Driver.getDriver().switchTo().frame(iframe);
-        String itemName;
-        for (int i = 0; i < itemList.size(); i++) {
-            itemName = itemList.get(i);
-
-            if (!itemName.isEmpty()){
-                verifyMenuItems(i, itemList.size(), itemName);
-            }
+        for (int i = 0; i < menuList.size(); i++) {
+            verifyItemInCategorical(menuList.get(i));
         }
 
         Driver.getDriver().switchTo().defaultContent();
     }
 
-    public void verifyMenuItems(int i, int ListSize, String itemName){
-        boolean isLast = ListSize-i >0 ? true : false;
-        if (i==0) {
-            verifyFirstItem(itemName, isLast);
+    public void verifyItemInCategorical(List<String> itemList) {
+        String itemName;
+        for (int i = 0; i < itemList.size(); i++) {
+            itemName = itemList.get(i);
+
+            if (!itemName.isEmpty()) {
+                verifyMenuItems(i, itemList.size(), itemName);
+            }
         }
-        else {
+    }
+
+    public void verifyMenuItems(int indexNo, int ListSize, String itemName) {
+        boolean isLast = ListSize - indexNo == 1;
+        if (indexNo == 0) {
+            verifyFirstItem(itemName, isLast);
+        } else {
             verifyCategoricalItem(itemName, isLast);
         }
     }
 
-    public void verifyFirstItem(String itemName, boolean isLast){
+    public void verifyFirstItem(String itemName, boolean isLast) {
         try {
             WebElement element = Driver.getDriver().findElement(TestUtils.handleStaleElement(By.xpath(
-                    "//div[starts-with(@class,'menuContain')]//button[normalize-space()='"+ itemName +"']")));
+                    "//div[starts-with(@class,'menuContain')]//button[normalize-space()='" + itemName + "']")));
             Assert.assertTrue(true);
             if (!isLast) {
-                element.click();
+                selectMenuItem(itemName);
             }
         } catch (NoSuchElementException e) {
             Assert.assertTrue(false);
         }
     }
 
-    public void verifyCategoricalItem(String itemName, boolean isLast){
+    public void verifyCategoricalItem(String itemName, boolean isLast) {
         try {
             WebElement element = Driver.getDriver().findElement(TestUtils.handleStaleElement(By.xpath(
                     "//div[starts-with(@class,'mat-menu-content')]//span[normalize-space()='" + itemName + "']")));
             Assert.assertTrue(true);
             if (!isLast) {
-                element.click();
+                selectMenuItem(itemName);
             }
         } catch (NoSuchElementException e) {
             Assert.assertTrue(false);
         }
     }
 
-    public void verifyPopUpMessage(String msg){
+    public void verifyPopUpMessage(String msg) {
         By by = TestUtils.waitToBePresent(By.xpath(
                 "//div[@aria-label='" + msg + "']"));
         Assert.assertTrue(Driver.getDriver().findElement(by).isDisplayed());
-        TestUtils.waitForInVisibility(by, 5);
+        TestUtils.waitForInVisibility(by, 10);
+    }
+
+    public void selectMenuItem(String menuName) {
+        By by = TestUtils.handleStaleElement(By.xpath(
+                "//div[@class='mobile-links__item-title']/a[normalize-space()='" + menuName + "']//following::button[1]"));
+        click(TestUtils.waitForClickablility(Driver.getDriver().findElement(by), 5));
     }
 
 }
