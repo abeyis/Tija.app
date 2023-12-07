@@ -133,4 +133,10 @@ public abstract class BasePage {
         TestUtils.waitForInVisibility(By.xpath("//div[starts-with(@aria-label, '"+ message +"')]"),5);
     }
 
+    public static void clickKaydetButton(){
+        WebElement btn = Driver.getDriver().findElement(By.xpath("//button[contains(text(), 'Kaydet')]"));
+        //TestUtils.clickWithMouse(btn);
+        click(btn);
+    }
+
 }
