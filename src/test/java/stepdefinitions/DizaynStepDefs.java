@@ -512,4 +512,33 @@ public class DizaynStepDefs {
     public void verifyThatThePopUpIsDisplayed(String msg) {
         dzyn.verifyPopUpMessage(msg);
     }
+
+    @Then("save topbar type as a text: {string}")
+    public void saveTopbarTypeAsAText(String text) {
+        dzyn.saveTopbarAsAText(text);
+    }
+
+    @Then("confirm topbar type as a text: {string}")
+    public void confirmTopbarTypeAsAText(String text) {
+        dzyn.confirmTopbarAsAText(text);
+    }
+
+
+    @Then("save topbar type as visual")
+    public void saveTopbarTypeAsVisual() {
+    }
+
+
+    @Then("confirm topbar type as visual added")
+    public void confirmTopbarTypeAsVisualAdded() {
+    }
+
+
+    @Then("delete the image")
+    public void deleteTheImage() {
+    }
+
+    @Then("confirm the image deleted")
+    public void confirmTheImageDeleted() {
+    }
 }

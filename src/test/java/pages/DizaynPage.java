@@ -938,4 +938,54 @@ public class DizaynPage extends BasePage {
         TestUtils.waitForInVisibility(by, 5);
     }
 
+    @FindBy(xpath = "//span[@class='mat-option-text' and contains(text(), 'Yazı')]")
+    private WebElement yaziFromTopbarType;
+
+    @FindBy(xpath = "//span[@class='mat-option-text' and contains(text(), 'Görsel')]")
+    private WebElement gorselFromTopbarType;
+
+    @FindBy(xpath = "(//input[@name='Metin' and   @type='text' ])[1] ")
+    private WebElement metinForTopbar;
+
+    @FindBy(xpath = "(//input[@name='Metin' and   @type='text' ])[3] ")
+    private WebElement yonlendirmeLinkiForTopbar;
+
+    @FindBy(xpath = "(//input[@class='w-100'])[1]")
+    private WebElement yaziRengiForTopbar;
+
+    @FindBy(xpath = "(//input[@class='w-100'])[2]")
+    private WebElement arkaplanRengiForTopbar;
+
+    @FindBy(xpath = "//mat-slider[@aria-valuenow='32']")
+    private WebElement fontBoyutuForTopbar;
+
+    public void saveTopbarAsAText(String text){
+        TestUtils.waitForPageToLoad(3);
+        TestUtils.clickWithJS(dropdownMenu);
+        TestUtils.wait(1);
+        TestUtils.clickWithJS(yaziFromTopbarType);
+        TestUtils.wait(1);
+        metinForTopbar.sendKeys(text);
+        yonlendirmeLinkiForTopbar.sendKeys(ConfigReader.getProperty("yonlendirmeLinkiForTopbar"));
+        fontBoyutuForTopbar.click();
+        yaziRengiForTopbar.sendKeys(ConfigReader.getProperty("yaziRengiForTopbar"));
+        arkaplanRengiForTopbar.sendKeys(ConfigReader.getProperty("arkaplanRengiForTopbar"));
+        sayfayiKaydet();
+
+    }
+
+    @FindBy(xpath = "//a[@href='https://abeyis-web.tija.app/']")
+    private WebElement topbarTextInWebsite;
+
+    public void confirmTopbarAsAText(String text){
+
+        TestUtils.waitForVisibility(islemBasariliPopUp,1);
+        verifyIslemBasariliPopUpisDisplay();
+        TestUtils.waitForInVisibility(By.xpath("//div[@aria-label='İşlem başarılı.']"),2);
+        TestUtils.waitForPageToLoad(5);
+        String actualResult= topbarTextInWebsite.getText();
+        Assert.assertEquals(text,actualResult);
+
+    }
+
 }
