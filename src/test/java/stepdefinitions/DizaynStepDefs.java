@@ -345,9 +345,7 @@ public class DizaynStepDefs {
 
     @Then("Verify that the {string} has been {string}")
     public void verifyThatTheHasBeen(String menuName, String menuCase) {
-        if (menuCase == "created") {
-            dzyn.verifyIslemBasariliPopUpisDisplay();
-        }
+        dzyn.verifyIslemBasarili(menuCase);
         dzyn.verifyMenuName(menuName, menuCase);
     }
 
@@ -444,13 +442,13 @@ public class DizaynStepDefs {
 
     @Then("Click {string} icon for our item {string}")
     public void clickIconForOurItem(String title, String choiseText) {
-        dzyn.dzyn(choiseText, title);
+        dzyn.clickItemChoise(choiseText, title);
     }
 
     @Then("Verify that the link item has been changed as {string}")
     public void verifyThatTheLinkItemHasBeenChangedAs(String linkName) {
         TestUtils.waitForPageToLoad(15);
-        dzyn.dzyn(linkName);
+        dzyn.verifyItemInMenu(linkName);
     }
 
     @Given("Click the + button in the Header section")
@@ -493,4 +491,25 @@ public class DizaynStepDefs {
 
 
 
+    @Then("Verify that the name has been {string} as {string}")
+    public void verifyThatTheNameHasBeenAs(String menuCase, String menuName) {
+        dzyn.verifyMenuName(menuName, menuCase);
+    }
+
+    @Then("Create categorical menu items")
+    public void createCategoricalMenuItems(DataTable dataTable) {
+        List<String> listItems = dataTable.asList(String.class);
+        dzyn.createCategoricalMenuItems(listItems);
+    }
+
+    @Then("Verify that all menu items have been created")
+    public void verifyThatAllMenuItemsHaveBeenCreated(DataTable dataTable) {
+        List<List<String>> menuList = dataTable.asLists(String.class);
+        dzyn.verifyItemsInMenu(menuList);
+    }
+
+    @Then("Verify that the {string} pop-up is displayed")
+    public void verifyThatThePopUpIsDisplayed(String msg) {
+        dzyn.verifyPopUpMessage(msg);
+    }
 }

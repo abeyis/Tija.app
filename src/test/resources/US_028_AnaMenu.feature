@@ -32,7 +32,7 @@ Feature: US_028 Ana Menu Duzenleme
             | Mağazamız  | Sayfa      | Bilgi Güvenliği         |
     Then Click the "Menü Bilgileri" tab
     Then Click the "Kaydet" button
-    Then Verify that the Islem basarili PupUp is displayed
+    Then Verify that the "İşlem başarılı." pop-up is displayed
     And Close the Menuler Panel
     Then Click the "Kaydet" Button
     Then Verify that the menu items have been created
@@ -90,6 +90,15 @@ Feature: US_028 Ana Menu Duzenleme
     Then Click the "Kaydet" Button
     Then Verify that the link item has been changed as "Ana Sayfamız"
 
+  Scenario: TC_029 Ana Menu bilgilerinin gerektiginde degistirilebildigini dogrula
+    Then Select "Abeyis Ana Menü" option from Ana Menu list
+    When Click the "Düzenle" module button
+    Then Send "Abeyis Ana Menü Yeni" text to "Menü İsmi"
+    When Click the "Kaydet" button
+    Then Verify that the Islem basarili PupUp is displayed
+    And Close the Menuler Panel
+    Then Verify that the name has been "changed" as "Abeyis Ana Menü Yeni"
+
   Scenario: TC_030 Ana Menunun gerektiginde silinebildigini dogrula
     Then Select "Abeyis Ana Menü" option from Ana Menu list
     When Click the "Düzenle" module button
@@ -97,4 +106,27 @@ Feature: US_028 Ana Menu Duzenleme
     When Click the "Kaldır" button
     When Click the "Kaydet" button
     Then Verify that the "Abeyis Ana Menü" has been "deleted"
+
+# ---------------------------------------------------
+
+  Scenario: TC_026 Ana Menude kategorik menuler olusturulabildigini dogrula
+    Then Select "Abeyis Ana Menü" option from Ana Menu list
+    When Click the "Düzenle" module button
+    Then Click the "Menü Kırılımı" tab
+    Then Create categorical menu items
+      | Apple Ürünleri   |
+      | Samsung Ürünleri |
+      | Cep Telefonu     |
+
+    Then Click the "Menü Bilgileri" tab
+    Then Click the "Kaydet" button
+    Then Verify that the "İşlem başarılı." pop-up is displayed
+    And Close the Menuler Panel
+    Then Click the "Kaydet" Button
+    Then Verify that all menu items have been created
+      | Markalar  | Apple Ürünleri   |
+      | Markalar  | Samsung Ürünleri |
+      | Markalar  | Cep Telefonu     |
+
+
 

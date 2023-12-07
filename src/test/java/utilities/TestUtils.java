@@ -521,7 +521,7 @@ public class TestUtils {
         String originalWindow = Driver.getDriver().getWindowHandle();
 
         Driver.getDriver().switchTo().newWindow(WindowType.TAB);
-        Driver.getDriver().get("https://www.google.com/");
+        Driver.getDriver().get("https://www.google.com/?&hl=tr");
 
         loginToGmail(username,password);
 
@@ -629,7 +629,7 @@ public class TestUtils {
         WebElement element = null;
         for (int i = 0; i < 10; i++) {
             try {
-                element = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(1))
+                element = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10))
                         .until(ExpectedConditions.presenceOfElementLocated(by));
                 break;
             } catch (NoSuchElementException e) {
