@@ -1,17 +1,14 @@
 package stepdefinitions;
 
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.*;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import pages.DizaynPage;
-import utilities.Driver;
 import utilities.TestUtils;
 
 import java.util.List;
-
-import static org.junit.Assert.assertTrue;
 
 
 public class DizaynStepDefs {
@@ -453,6 +450,46 @@ public class DizaynStepDefs {
         TestUtils.waitForPageToLoad(15);
         dzyn.verifyItemInMenu(linkName);
     }
+
+    @Given("Click the + button in the Header section")
+    public void clickTheButtonInTheHeaderSection()  {
+        dzyn.clickPlus();
+    }
+
+    @When("Click on the {string} button")
+    public void clickOnTheButton(String string) {
+        dzyn.clickPanelButton(string);
+    }
+
+    @When("Verify collection page has been added")
+    public void verifyCollectionPageHasBeenAdded()  {
+        dzyn.verifyCollection();
+
+
+    }
+
+    @When("Verify product detail page has been added")
+    public void verifyProductDetailPageHasBeenAdded(){
+        dzyn.verifyProductDetail();
+    }
+
+    @Given("Click on the dropdown button")
+    public void clickOnTheDropdownButton() {
+        dzyn.dropMenu();
+    }
+
+    @When("Choose a new page")
+    public void chooseANewPage() {
+        dzyn.clickPanelButton(" Anasayfa 29 ");
+
+    }
+
+    @When("verify transition to new page")
+    public void verifyTransitionToNewPage(){
+        dzyn.verifyTransition();
+    }
+
+
 
     @Then("Verify that the name has been {string} as {string}")
     public void verifyThatTheNameHasBeenAs(String menuCase, String menuName) {

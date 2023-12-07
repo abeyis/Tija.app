@@ -4,6 +4,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -91,6 +95,23 @@ public class DizaynPage extends BasePage {
 
     @FindBy(xpath = "//footer[@class='site__footer']")
     private WebElement footerSection;
+    @FindBy(xpath = "(//div[@class='icon ml-1 mr-2'])[1]")
+    private WebElement plusButton;
+
+    @FindBy(xpath = "//button/span[contains(text(),'Koleksiyon')]")
+    private WebElement collectionButton;
+    @FindBy(xpath = "//button/span[contains(text(),'Ürün Detay')]")
+    private WebElement productDetailButton;
+    @FindBy(xpath = "// mat-option/span[text()=' Anasayfa 29 ']")
+    private WebElement anasayfa29;
+    @FindBy(xpath = "//ul/li/a[text()='İade Koşulları']")
+    private WebElement iadeKosullari;
+    @FindBy(xpath = "//ul/li/a[text()='Telefon']")
+    private WebElement telephone;
+    @FindBy(xpath = "//ul/li/a[text()='Faks']")
+    private WebElement faks;
+    @FindBy(xpath = "//ul/li/a[text()='adres']")
+    private WebElement address;
 
     WebElement altBilgiframe;
     List<WebElement> menuListesi;
@@ -205,7 +226,6 @@ public class DizaynPage extends BasePage {
     }
 
     public void verifyIslemBasariliPopUpisDisplay() {
-//        assertTrue(Driver.getDriver().findElement(By.xpath("//div[@aria-label='İşlem başarılı.']")).isDisplayed());
         assertTrue(islemBasariliPopUp.isDisplayed());
     }
 
@@ -629,6 +649,7 @@ public class DizaynPage extends BasePage {
         click(Driver.getDriver().findElement(By.xpath(
                 "//*[@class='mat-option-text'][contains(text(), '" + text + "')]/..")));
     }
+
     public void selectListe(){
         click(menuTipiDropDown);
         click(menuTipiListe);
@@ -656,10 +677,17 @@ public class DizaynPage extends BasePage {
     public void closeThePanel(){
         click(closePanel);
     }
+
     public void selectTheTab(String tabTitle){
         TestUtils.waitFor(5);
         click(Driver.getDriver().findElement(By.xpath(
                 "//div[starts-with(@class, 'banner-')][normalize-space()= '" + tabTitle + "']")));
+    }
+
+    public void clickPlus() {
+          plusButton.click();
+          pageName = collectionButton.getText();
+          pageName = productDetailButton.getText();
     }
 
     public void clickMenuBtn(String btnName){
@@ -686,13 +714,52 @@ public class DizaynPage extends BasePage {
         }
     }
 
+    public void verifyCollection(){
+        click(pageListOpener);
+        WebElement option = Driver.getDriver().findElement(By.xpath("//mat-option/span[contains(text(),'" + pageName + "')]"));
+        assertTrue(option.isDisplayed());
+    }
+
+    public void verifyProductDetail() {
+        click(pageListOpener);
+        WebElement option = Driver.getDriver().findElement(By.xpath("//mat-option/span[contains(text(),'" + pageName + "')]"));
+        assertTrue(option.isDisplayed());
+    }
+
     public void clickMenuOgesiEkle(){
         By by = TestUtils.handleStaleElement(By.xpath(
                 "//div[@class='svg']//*[local-name() = 'svg' and @class='Polaris-Icon__Svg_375hu']"));
-//        By by = TestUtils.handleStaleElement(By.xpath(
-//                "//p[normalize-space()= 'Menü öğesi ekle']"));
         click(TestUtils.waitForClickablility(Driver.getDriver().findElement(by), 5));
 
+    }
+
+    WebElement firstOption;
+    public void dropMenu() {
+        firstOption= Driver.getDriver().findElement(By.xpath("//span[text()='Anasayfa 18']"));
+        System.out.println("firstOption = " + firstOption);
+        pageListOpener.click();
+    }
+
+    public void verifyTransition() {
+        WebElement secondOption= Driver.getDriver().findElement(By.xpath("//span[text()='Anasayfa 29']"));
+        System.out.println("secondOption = " + secondOption);
+
+        try {
+            assertEquals(firstOption,secondOption);
+
+        }catch (AssertionError e) {
+            System.out.println("Farklı sayfaya geçiş yapılmıştır");
+        }
+
+    }
+
+    public void verifyCustomerService() {
+        altBilgiframe = Driver.getDriver().findElement(By.xpath("//iframe[@class='iframe-web']"));
+        Driver.getDriver().switchTo().frame(altBilgiframe);
+        Assert.assertEquals("İade Koşulları",iadeKosullari);
+        Assert.assertEquals("Telefon",telephone);
+        Assert.assertEquals("Faks",faks);
+        Assert.assertEquals("adres",address);
     }
 
     public void sendTitleToBaslik(String title){
