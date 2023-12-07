@@ -1,6 +1,6 @@
 Feature: TG7-55  | US_022 | Header - Top bar configuration tests
 
-  Background Perform login process to app and Baslık section before each scenario
+  Background: Perform login process to app and Baslık section before each scenario
 
     * login to app
     * Click the "Online Mağaza" module button
