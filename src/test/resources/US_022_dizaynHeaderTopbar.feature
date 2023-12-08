@@ -13,12 +13,15 @@ Feature: TG7-55  | US_022 | Header - Top bar configuration tests
     Then save topbar type as a text: "DENEME"
     Then confirm topbar type as a text: "DENEME"
 
-  Scenario: TC0206 - TG7-222 | Test to visually organized the topbar type
-
-    Then save topbar type as visual
-    Then confirm topbar type as visual added
-
   Scenario: TC0207 - TG7 - 223 | Test to delete image added by visually organized in topbar
 
     Then delete the image
     Then confirm the image deleted
+
+
+
+  Scenario: TC0206 - TG7-222 | Test to visually organized the topbar type
+    #sonradan uzerinde calisacagim, o nedenle silmedim
+
+    Then save topbar type as visual
+    Then confirm topbar type as visual added

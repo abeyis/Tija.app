@@ -956,36 +956,111 @@ public class DizaynPage extends BasePage {
     @FindBy(xpath = "(//input[@class='w-100'])[2]")
     private WebElement arkaplanRengiForTopbar;
 
-    @FindBy(xpath = "//mat-slider[@aria-valuenow='32']")
+    @FindBy(xpath = "//span[@class='mat-slider-thumb-label-text' and //span[text()='32']]")
     private WebElement fontBoyutuForTopbar;
 
+
     public void saveTopbarAsAText(String text){
+
         TestUtils.waitForPageToLoad(3);
         TestUtils.clickWithJS(dropdownMenu);
         TestUtils.wait(1);
         TestUtils.clickWithJS(yaziFromTopbarType);
         TestUtils.wait(1);
+        metinForTopbar.clear();
         metinForTopbar.sendKeys(text);
+        yonlendirmeLinkiForTopbar.clear();
         yonlendirmeLinkiForTopbar.sendKeys(ConfigReader.getProperty("yonlendirmeLinkiForTopbar"));
-        fontBoyutuForTopbar.click();
+        TestUtils.wait(1);
+        TestUtils.clickInCycle(fontBoyutuForTopbar);
+        TestUtils.scrollToElement(yaziRengiForTopbar);
         yaziRengiForTopbar.sendKeys(ConfigReader.getProperty("yaziRengiForTopbar"));
+        TestUtils.scrollToElement(arkaplanRengiForTopbar);
         arkaplanRengiForTopbar.sendKeys(ConfigReader.getProperty("arkaplanRengiForTopbar"));
+        yonlendirmeLinkiForTopbar.click();
+        // renk secenekleri kapanmadigi icin kaydet butonu gorunmuyor herhangi bir yere tiklamak gerekiyor
+        // diye buraya tiklama koydum
+        TestUtils.scrollToElement(kaydetButon);
+        TestUtils.waitForVisibility(By.xpath("//div[text()='Kaydet']"),5);
         sayfayiKaydet();
 
     }
 
-    @FindBy(xpath = "//a[@href='https://abeyis-web.tija.app/']")
-    private WebElement topbarTextInWebsite;
+      @FindBy(xpath = "//a[@href='https://abeyis-web.tija.app/' and contains(text(), 'DENEME')]")
+      private WebElement topbarTextInWebsite;
 
     public void confirmTopbarAsAText(String text){
 
         TestUtils.waitForVisibility(islemBasariliPopUp,1);
         verifyIslemBasariliPopUpisDisplay();
-        TestUtils.waitForInVisibility(By.xpath("//div[@aria-label='İşlem başarılı.']"),2);
+        Driver.getDriver().navigate().refresh();
+        DizaynPage dzyn=new DizaynPage();
+        dzyn.clickWebAbeyis();
         TestUtils.waitForPageToLoad(5);
-        String actualResult= topbarTextInWebsite.getText();
-        Assert.assertEquals(text,actualResult);
+        TestUtils.wait(3);
+
+        Driver.getDriver().switchTo().frame(iframe);
+        assertEquals(text, getElementText(topbarTextInWebsite));
+        Driver.getDriver().switchTo().defaultContent();
 
     }
+
+    public void deleteTheImageAddedForTopbar(){
+
+        TestUtils.waitForPageToLoad(3);
+        TestUtils.clickWithJS(dropdownMenu);
+        TestUtils.wait(1);
+        TestUtils.clickWithJS(gorselFromTopbarType);
+        TestUtils.wait(1);
+        WebElement addGorselIconForTopbar = Driver.getDriver().findElement(
+                By.xpath("//a[@class='text-danger' and text()='Görseli kaldır']"));
+        addGorselIconForTopbar.click();
+        TestUtils.scrollToElement(kaydetButon);
+        TestUtils.waitForVisibility(By.xpath("//div[text()='Kaydet']"),5);
+        sayfayiKaydet();
+
+    }
+
+    public void confirmTheImageDeletedForTopbar(){
+
+        TestUtils.waitForVisibility(islemBasariliPopUp,1);
+        verifyIslemBasariliPopUpisDisplay();
+        Driver.getDriver().navigate().refresh();
+        DizaynPage dzyn=new DizaynPage();
+        dzyn.clickWebAbeyis();
+        TestUtils.waitForPageToLoad(5);
+        TestUtils.wait(3);
+        Driver.getDriver().switchTo().frame(iframe);
+        WebElement topbarImageInWebsite = Driver.getDriver().findElement(
+                By.xpath("//div[@class='headerImg']"));
+        Assert.assertTrue(topbarImageInWebsite.isDisplayed());
+        Driver.getDriver().switchTo().defaultContent();
+
+    }
+
+
+    public void saveTopbarAsVisual(){
+     /*   TestUtils.waitForPageToLoad(3);
+        TestUtils.clickWithJS(dropdownMenu);
+        TestUtils.wait(1);
+        TestUtils.clickWithJS(gorselFromTopbarType);
+        TestUtils.wait(1);
+        WebElement addGorselIconForTopbar = Driver.getDriver().findElement(
+                By.xpath("//mat-icon[@role='img' and text()='add']"));
+        addGorselIconForTopbar.click();
+       //???
+        arkaplanRengiForTopbar.sendKeys(ConfigReader.getProperty("arkaplanRengiForTopbar"));
+        yonlendirmeLinkiForTopbar.click();
+        TestUtils.scrollToElement(kaydetButon);
+        TestUtils.waitForVisibility(By.xpath("//div[text()='Kaydet']"),5);
+        sayfayiKaydet();
+
+         daha sonra bunun ile ilgili calisma yapacagim icin buradan silmedim
+
+      */
+
+
+    }
+
 
 }
