@@ -524,21 +524,24 @@ public class DizaynStepDefs {
     }
 
 
-    @Then("save topbar type as visual")
-    public void saveTopbarTypeAsVisual() {
+    @Then("delete the image")
+    public void deleteTheImage() {
+        dzyn.deleteTheImageAddedForTopbar();
     }
 
+    @Then("confirm the image deleted")
+    public void confirmTheImageDeleted() {
+        dzyn.confirmTheImageDeletedForTopbar();
+    }
+
+
+    @Then("save topbar type as visual")
+    public void saveTopbarTypeAsVisual() {
+        dzyn.saveTopbarAsVisual();
+    }
 
     @Then("confirm topbar type as visual added")
     public void confirmTopbarTypeAsVisualAdded() {
     }
 
-
-    @Then("delete the image")
-    public void deleteTheImage() {
-    }
-
-    @Then("confirm the image deleted")
-    public void confirmTheImageDeleted() {
-    }
 }
