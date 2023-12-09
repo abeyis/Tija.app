@@ -391,7 +391,7 @@ public class DizaynStepDefs {
 
     @Then("Send title {string} to Baslik")
     public void sendTitleToBaslik(String menuTitle) {
-        dzyn.sendTitleToBaslik("Sayfamız");
+        dzyn.sendTitleToBaslik(menuTitle);
     }
 
     @Then("Click the {string} button in Menuler")
@@ -511,5 +511,33 @@ public class DizaynStepDefs {
     @Then("Verify that the {string} pop-up is displayed")
     public void verifyThatThePopUpIsDisplayed(String msg) {
         dzyn.verifyPopUpMessage(msg);
+    }
+
+    @Then("Click the expand icon for {string}")
+    public void clickTheExpandIconFor(String menuName) {
+        dzyn.clickItemExpand(menuName);
+    }
+
+    @Then("Move {string} on to {string}")
+    public void moveOnTo(String menuName, String targetName) {
+        dzyn.moveItemOnto(menuName, targetName);
+    }
+
+    @Then("Click the add button for {string}")
+    public void clickTheAddButtonFor(String menuName) {
+        dzyn.clickMenuOgesiEkle(menuName);
+        dzyn.sendTitleToBaslik("Philips Ürünleri");
+        dzyn.clickMenulerBtn("Olustur");
+    }
+
+    @And("Approve the {string} button")
+    public void approveTheButton(String title) {
+        dzyn.clickOnayBtn(title);
+    }
+
+    @Then("Verify that all categorical menu items is available")
+    public void verifyThatAllCategoricalMenuItemsIsAvailable(DataTable dataTable) {
+        List<List<String>> menuList = dataTable.asLists(String.class);
+        dzyn.verifyItemsInMenu(menuList);
     }
 }
