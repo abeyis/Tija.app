@@ -1,4 +1,4 @@
-Feature:
+Feature: New media should be able to be added, deleted and sorted on media pages.
   Background:
     * login to app
     * Click the "Online Mağaza" module button
