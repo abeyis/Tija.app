@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.TestUtils;
@@ -1061,6 +1062,236 @@ public class DizaynPage extends BasePage {
 
 
     }
+
+    public void gorselSayisi() {
+        if (TestUtils.isElementPresent(By.xpath("//*[text()='Görsel']"))) {
+            count = Driver.getDriver().findElements(By.xpath("//*[text()='Görsel']")).size();
+        }
+    }
+    @FindBy(xpath = "(//div[@class='drag'])[7]")
+    private WebElement gorselGizlemeIconu;
+    public void gorselGizleme() {
+        TestUtils.wait(3);
+        Driver.getDriver().switchTo().frame(griDikdortgenIframe);
+        ilkDeger = griDikdortgenIframeler.size();
+        System.out.println(ilkDeger);
+        Driver.getDriver().switchTo().defaultContent();
+        TestUtils.wait(3);
+        TestUtils.clickWithMouse(gorselGizlemeIconu);
+        TestUtils.wait(3);
+    }
+    public void gorselGizleDogrula() {
+        Driver.getDriver().switchTo().frame(griDikdortgenIframe);
+        TestUtils.wait(3);
+        sonDeger = griDikdortgenIframeler.size();
+        assertEquals(ilkDeger-1,sonDeger);
+    }
+    public void gorselSilme() {
+        TestUtils.waitFor(3);
+        Driver.getDriver().switchTo().frame(griDikdortgenIframe);
+        ilkUrunListesiSayisi = griDikdortgenIframeler.size();
+        System.out.println(griDikdortgenIframeler.size());
+        TestUtils.wait(2);
+        Driver.getDriver().switchTo().defaultContent();
+        TestUtils.wait(2);
+        TestUtils.clickWithMouse(urunSil);
+        TestUtils.clickWithMouse(urunSil);
+        TestUtils.wait(3);
+    }
+    public void gorselSildiginiDogrula() {
+        TestUtils.waitFor(3);
+        sonUrunListesiSayisi = tumUrunListesi.size();
+//        sonUrunListesiSayisi= tumUrunListesi.size();
+        assertEquals(ilkUrunListesiSayisi - 1, sonUrunListesiSayisi);
+    }
+    @FindBy(xpath = "//span[normalize-space()='Görsel']")
+    private WebElement gorselButton;
+    @FindBy(xpath = "//span[normalize-space()='Banner ekle']")
+    private WebElement bannerEkleButton;
+    @FindBy(xpath = "//div[@class='inpts mt-4 ng-star-inserted']//input[@type='text']")
+    private WebElement bannerIsmi;
+    @FindBy(xpath = "//span[normalize-space()='Sabit']")
+    private WebElement gosterimTipiSabit;
+    @FindBy(xpath = "//button[@class='btn ml-2']")
+    private WebElement bannerKaydetButon;
+    @FindBy(xpath = "//span[@class='slider']")
+    private WebElement bannerAktifButon;
+    public void bannerEkle() {
+        TestUtils.wait(3);
+        click(gorselButton);
+        TestUtils.wait(2);
+        click(bannerEkleButton);
+        TestUtils.wait(2);
+        actions.click(bannerIsmi).sendKeys("TestBanner").sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
+        TestUtils.wait(2);
+        click(gosterimTipiSabit);
+        click(bannerAktifButon);
+        TestUtils.wait(3);
+        click(bannerKaydetButon);
+        TestUtils.wait(3);
+    }
+    public void bannerEkleDogrula() {
+        Assert.assertTrue(gorselPopup.isDisplayed());
+    }
+    @FindBy(xpath = "//span[normalize-space()='Düzenle']")
+    private WebElement gorselDuzenleButon;
+    @FindBy(xpath = "//input[@class='form-control ng-pristine ng-valid ng-touched']")
+    private WebElement gorselDuzenleBaslik;
+    @FindBy(xpath = "//div[@class='pc']//button[@class='btn btn-primary ladda-button'][normalize-space()='Uygula']")
+    private WebElement gorselDuzenleUygula;
+    @FindBy(xpath = "//span[normalize-space()='Aktif']")
+    private WebElement gorselDuzenleAktif;
+    public void gorselDuzenle() {
+        TestUtils.wait(3);
+        click(gorselButton);
+        TestUtils.clickWithJS(bannerKolon);
+        TestUtils.wait(2);
+        Select select = new Select(bannerKolon);
+        select.selectByVisibleText("Test");
+        click(gorselDuzenleButon);
+        click(gorselDuzenleBaslik);
+        gorselDuzenleBaslik.clear();
+        actions.sendKeys("DENEME").perform();
+        click(gorselDuzenleAktif);
+        click(gorselDuzenleUygula);
+    }
+    @FindBy(xpath = "//div[@aria-label='İşlem başarılı.']")
+    private WebElement gorselPopup;
+    public void gorselDuzenlendiginiDogrula() {
+        Assert.assertTrue(gorselPopup.isDisplayed());
+    }
+    @FindBy(xpath = "//span[@class='delete-button']//*[name()='svg']")
+    private WebElement bannerGorselSilmeIconu;
+    @FindBy(xpath = "//button[@class='btn btn-danger']")
+    private WebElement bannerGorselKaldir;
+    @FindBy(xpath = "//div[@class='ng-tns-c49-78 ng-star-inserted ng-trigger ng-trigger-flyInOut ngx-toastr toast-success']")
+    private WebElement bannerGorselKaldirPopup;
+    public void bannerGorselSilme() {
+        click(bannerGorselSilmeIconu);
+        click(bannerGorselKaldir);
+    }
+    public void bannerGorselSilDogrula() {
+        Assert.assertTrue(bannerGorselKaldirPopup.isDisplayed());
+    }
+    @FindBy(xpath = "//button[@class='btn']")
+    private WebElement bannerSilButon;
+    @FindBy(xpath = "//button[text()='Kaldır']")
+    private WebElement bannerSilKaldir;
+    static int ilkOptionCount =0;
+    int sonOptionCount =0;
+    public void bannerSilme() {
+        TestUtils.wait(2);
+        click(bannerSilButon);
+        TestUtils.wait(2);
+        click(bannerSilKaldir);
+    }
+    @FindBy(css=("//span[text()='Görsel seçin']"))
+    public WebElement bannerKolon;
+    public void bannerSilDogrula() {
+        click(bannerKolon);
+        WebElement dropdown = Driver.getDriver().findElement(By.id("mat-select-4-panel"));
+        List<WebElement> options = dropdown.findElements(By.tagName("option"));
+        sonOptionCount  = options.size();
+        Assert.assertEquals(ilkOptionCount-1,sonOptionCount);
+    }
+    public void bannerDuzenleme() {
+        click(bannerIsmi);
+        bannerIsmi.clear();
+        actions.sendKeys("Deneme").perform();
+    }
+    public void BannerinDuzenleDogrula() {
+        Assert.assertTrue(bannerGorselKaldirPopup.isDisplayed());
+    }
+    @FindBy(xpath = "//span[normalize-space()='Kolon ekle']")
+    private WebElement kolonEkleButon;
+    //div[@class='mat-select-arrow-wrapper ng-tns-c268-29']
+    @FindBy(xpath = "//div[@id='mat-select-value-13']")
+    private WebElement ikinciKolonButon;
+    public void bannerKolonEkle() {
+        click(kolonEkleButon);
+        click(Driver.getDriver().findElement(By.xpath("(//span[text()='Görsel seçin'])[2]")));
+        TestUtils.wait(2);
+        click(Driver.getDriver().findElement(By.xpath("//span[text()=' TestBanner ']")));
+    }
+    public void bannerKolonEkleDogrula() {
+        Assert.assertTrue(Driver.getDriver().findElement(By.xpath("//span[@class='mat-select-value-text ng-tns-c306-22 ng-star-inserted']")).isDisplayed());
+    }
+    public void bannerEkKolonDuz() {
+        //Kalem iconu tıklama
+        click(Driver.getDriver().findElement(By.xpath("//div[@class='icon ml-2 ng-star-inserted']")));
+        TestUtils.wait(2);
+        click(bannerIsmi);
+        bannerIsmi.clear();
+        actions.sendKeys("DenemeBanner").perform();
+        TestUtils.wait(2);
+        click(bannerKaydetButon);
+        TestUtils.wait(2);
+    }
+    public void bannerEkKolonDuzDogrula() {
+        Assert.assertTrue(Driver.getDriver().findElement(By.xpath("//div[@aria-label='İşlem başarılı.']")).isDisplayed());}
+    public void clickDuzenleButton() {
+        Driver.getDriver().findElement(By.xpath("//span[text()='Görsel']")).click();
+        TestUtils.wait(2);
+        Driver.getDriver().findElement(By.xpath("//span[text()='Görsel seçin']")).click();
+        TestUtils.wait(2);
+        Driver.getDriver().findElement(By.xpath("//span[text()=' Test ']")).click();
+        TestUtils.wait(2);
+        Driver.getDriver().findElement(By.xpath("//div[@class='icon ml-2 ng-star-inserted']")).click();
+        TestUtils.wait(2);
+        Driver.getDriver().findElement(By.xpath("//mat-panel-title[text()=' Görsel ']")).click();
+        TestUtils.wait(2);
+        Driver.getDriver().findElement(By.xpath("//span[text()='Düzenle']")).click();
+        TestUtils.wait(2);
+        Driver.getDriver().findElement(By.xpath("//div[text()=' Yönlendir ']")).click();
+        TestUtils.wait(2);
+    }
+    public void clicks(String clickOne, String clickTwo) {
+        if (clickOne.equals("Link"))  {
+            Driver.getDriver().findElement(By.xpath("//*[text()='"+clickOne+"']")).click();
+            TestUtils.wait(3);
+            Driver.getDriver().findElement(By.xpath("//input[@placeholder='https://tija.app/']")).click();
+            TestUtils.wait(2);
+            // //input[@placeholder='https://tija.app/']
+            type(Driver.getDriver().findElement(By.xpath("//input[@placeholder='https://tija.app/']")),clickTwo);
+            // scrollToElement
+            TestUtils.clickWithMouse( Driver.getDriver().findElement(By.xpath("//button[text()=' Uygula ']")));
+            TestUtils.wait(2);
+        }
+        else
+        {
+            Driver.getDriver().findElement(By.xpath("//*[text()='"+clickOne+"']")).click();
+            TestUtils.wait(3);
+            Driver.getDriver().findElement(By.xpath("//*[text()='"+clickTwo+"']")).click();
+            TestUtils.wait(3);
+            Driver.getDriver().findElement(By.xpath("//button[text()='Kaydet']")).click();
+            TestUtils.wait(3);
+            TestUtils.clickWithMouse( Driver.getDriver().findElement(By.xpath("//button[text()=' Uygula ']")));
+            TestUtils.wait(2);
+        }
+    }
+    public void verifyRedirect(String clickTwo) {
+        Driver.getDriver().findElement(By.xpath("//span[text()='Düzenle']")).click();
+        TestUtils.wait(2);
+        if (clickTwo.equals("Smart Watch")){
+            Assert.assertTrue(Driver.getDriver().findElement(By.xpath("//input[@placeholder='/collection/Smart-Watch']")).isDisplayed());
+        }
+        else if (clickTwo.equals("Galaxy Buds2")){
+            Assert.assertTrue(Driver.getDriver().findElement(By.xpath("//input[@placeholder='/product/galaxy-buds2']")).isDisplayed());
+        }
+        else if (clickTwo.equals("Apple")){
+            Assert.assertTrue(Driver.getDriver().findElement(By.xpath("//input[@placeholder='/brand/2854']")).isDisplayed());
+        }
+        else if (clickTwo.equals("İade Koşulları")) {
+            Assert.assertTrue(Driver.getDriver().findElement(By.xpath("//input[@placeholder='/site/typography/iade-kosullari']")).isDisplayed());
+        }
+        else if (clickTwo.equals("Christmas")){
+            Assert.assertTrue(Driver.getDriver().findElement(By.xpath("//input[@placeholder='Christmas']")).isDisplayed());
+        }
+        Driver.quitDriver();
+    }
+
+
+
 
 
 }
