@@ -571,4 +571,96 @@ public class DizaynStepDefs {
     @Then("confirm topbar type as visual added")
     public void confirmTopbarTypeAsVisualAdded() {
     }
+
+    @When("Kullanici Görsel butonunun eklendigini dogrular")
+    public void kullanici_gorsel_butonunun_eklendigini_dogrular() {
+    }
+    @When("Gorsel urun listesi sayisi")
+    public void gorsel_urun_listesi_sayisi() {
+        dzyn.gorselSayisi();
+    }
+    @When("Kullanici gorselini gizler")
+    public void kullanici_gorselini_gizler() {
+        dzyn.gorselGizleme();
+    }
+    @When("Kullanici gorselini gizledigini dogrular")
+    public void kullanici_gorselini_gizledigini_dogrular() {
+        dzyn.gorselGizleDogrula();
+    }
+    @When("Kullanici Gorselini siler")
+    public void kullanici_gorselini_siler() {
+        dzyn.gorselSilme();
+    }
+    @When("Kullanici Gorselini sildigini dogrular")
+    public void kullanici_gorselini_sildigini_dogrular() {
+        dzyn.gorselSildiginiDogrula();
+    }
+    @When("Banner ekleme")
+    public void banner_ekleme() {
+        dzyn.bannerEkle();
+    }
+    @Then("Banner eklendigini dogrula")
+    public void bannerEklendiginiDogrula() {
+        dzyn.bannerEkleDogrula();
+    }
+    @Then("Bannera eklenen gorseli duzenleme")
+    public void banneraEklenenGorseliDuzenleme() {
+        dzyn.gorselDuzenle();
+    }
+    @Then("Bannera eklenen gorseli duzenlendigini dogrulama")
+    public void banneraEklenenGorseliDuzenlendiginiDogrulama() {
+        dzyn.gorselDuzenlendiginiDogrula();
+    }
+    @Then("Bannera eklenen gorselin silindigini dogrulama")
+    public void banneraEklenenGorselinSilindiginiDogrulama() {
+        dzyn.bannerGorselSilDogrula();
+    }
+    @Then("Bannera eklenen gorseli silme")
+    public void banneraEklenenGorseliSilme() {
+        dzyn.bannerGorselSilme();
+    }
+    @Then("Eklenen banneri silme")
+    public void eklenenBanneriSilme() {
+        dzyn.bannerSilme();
+    }
+    @Then("Eklenen bannerin silindigini dogrulama")
+    public void eklenenBannerinSilindiginiDogrulama() {
+        dzyn.bannerSilDogrula();
+    }
+    @Then("Eklenen banneri duzenleme")
+    public void eklenenBanneriDuzenleme() {
+        dzyn.bannerDuzenleme();
+    }
+    @Then("Eklenen bannerin duzenlendigini dogrulama")
+    public void eklenenBannerinDuzenlendiginiDogrulama() {
+        dzyn.BannerinDuzenleDogrula();
+    }
+    @Then("Bannera kolon ekleme")
+    public void banneraKolonEkleme() {
+        dzyn.bannerKolonEkle();
+    }
+    @Then("Bannera kolon eklendigini dogrula")
+    public void banneraKolonEklendiginiDogrula() {
+        dzyn.bannerKolonEkleDogrula();
+    }
+    @Then("Bannera eklenen kolonu duzenleme")
+    public void banneraEklenenKolonuDuzenleme() {
+        dzyn.bannerEkKolonDuz();
+    }
+    @Then("Bannera eklenen kolonun duzenlendigini dogrulama")
+    public void banneraEklenenKolonunDuzenlendiginiDogrulama() {
+        dzyn.bannerEkKolonDuzDogrula();
+    }
+    @Then("click duzenle button")
+    public void clickDuzenleButton() {
+        dzyn.clickDuzenleButton();
+    }
+    @Then("click {string} and click {string}")
+    public void clickAndClick( String clickOne, String clickTwo) {
+        dzyn.clicks(clickOne,clickTwo);
+    }
+    @Then("verify {string} redirect")
+    public void verifyRedirect(String clickTwo) {
+        dzyn.verifyRedirect(clickTwo);
+    }
 }
