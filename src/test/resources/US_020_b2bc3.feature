@@ -1,4 +1,4 @@
-Feature:
+Feature: Code should be able to be added, deleted and updated for companies
   Background:
     * login to app
     * Click the "Online Mağaza" module button
