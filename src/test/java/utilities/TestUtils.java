@@ -627,9 +627,9 @@ public class TestUtils {
 
     public static By waitToBePresent(By by) {
         WebElement element = null;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             try {
-                element = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10))
+                element = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(1))
                         .until(ExpectedConditions.presenceOfElementLocated(by));
                 break;
             } catch (NoSuchElementException e) {

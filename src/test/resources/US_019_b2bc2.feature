@@ -1,4 +1,4 @@
-Feature:
+Feature:New company should be able to be added, deleted and updated
   Background:
     * login to app
     * Click the "Online Mağaza" module button

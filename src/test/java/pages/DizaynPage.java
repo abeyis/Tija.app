@@ -696,7 +696,12 @@ public class DizaynPage extends BasePage {
                 "//div[@class = 'btn saveBtn mr-2' ][normalize-space()= '"+ btnName +"']"))));
     }
 
-    public void addMenuItems(List<List<String>> listItems){
+    public void clickOnayBtn(String btnName) {
+        click((Driver.getDriver().findElement(By.xpath(
+                "//button[@class = 'btn btn-danger' ][.= '" + btnName + "']"))));
+    }
+
+    public void addMenuItems(List<List<String>> listItems) {
         String title;
         String guidance;
         String objectName;
@@ -731,7 +736,6 @@ public class DizaynPage extends BasePage {
         By by = TestUtils.handleStaleElement(By.xpath(
                 "//div[@class='svg']//*[local-name() = 'svg' and @class='Polaris-Icon__Svg_375hu']"));
         click(TestUtils.waitForClickablility(Driver.getDriver().findElement(by), 5));
-
     }
 
     WebElement firstOption;
@@ -805,7 +809,7 @@ public class DizaynPage extends BasePage {
 
     public void sendLinkAddress(String linkAddress){
         By by = TestUtils.waitToBePresent(By.xpath(
-                "//input[@type='text'][contains(@placeholder, 'http')]"));
+                "//input[@type='text'][contains(@placeholder, 'https://tija.app/')]"));
         type(Driver.getDriver().findElement(by), linkAddress);
     }
 
@@ -835,6 +839,12 @@ public class DizaynPage extends BasePage {
         By by = TestUtils.handleStaleElement(By.xpath(
                 "//span[@class='nodeContent' and normalize-space()='" + title
                               + "']/../following-sibling::div[normalize-space()='" + choiseText + "']"));
+        click(Driver.getDriver().findElement(by));
+    }
+
+    public void clickItemExpand(String menuName) {
+        By by = TestUtils.handleStaleElement(By.xpath(
+                "(//span[@class='nodeContent' and normalize-space()='" + menuName + "']/..)/..//button"));
         click(Driver.getDriver().findElement(by));
     }
 
@@ -869,75 +879,102 @@ public class DizaynPage extends BasePage {
         action.perform();
         TestUtils.waitForPageToLoad(15);
     }
-
-    public void verifyItemsInMenu(List<List<String>> menuList){
+    public static boolean mobile = false;
+    public void verifyItemsInMenu(List<List<String>> menuList) {
+        Driver.getDriver().switchTo().frame(iframe);
         TestUtils.waitForPageToLoad(15);
-        By byHamburger = TestUtils.waitToBePresent(By.xpath("//button[@class='mobile-header__menu-button']"));
-        if (Driver.getDriver().findElement(byHamburger).isEnabled()){
-            Driver.getDriver().findElement(TestUtils.handleStaleElement(byHamburger)).click();
-        }
+        TestUtils.waitFor(5);
 
-        for (int i=0; i< menuList.size(); i++){
-                verifyItemInCategorical(menuList.get(i));
+            By byHamburger = TestUtils.waitToBePresent(By.xpath("//button[@class='mobile-header__menu-button']"));
+            try{
+                if (Driver.getDriver().findElement(byHamburger).isEnabled()) {
+                    Driver.getDriver().findElement(TestUtils.handleStaleElement(byHamburger)).click();
+                    mobile = true;
+                }
+            } catch (ElementNotInteractableException e){
+            }
+
+        for (int i = 0; i < menuList.size(); i++) {
+            verifyItemInCategorical(menuList.get(i));
+            resetWebMenuView(menuList.size());
+        }
+        Driver.getDriver().switchTo().defaultContent();
+    }
+
+    public void resetWebMenuView(int branchCount){
+        Actions actions = new Actions(Driver.getDriver());
+        for (int i = 0; i < branchCount; i++) {
+            actions.sendKeys(Keys.ESCAPE).perform();
         }
     }
 
-    public void verifyItemInCategorical(List<String> itemList){
-        Driver.getDriver().switchTo().frame(iframe);
+    public void verifyItemInCategorical(List<String> itemList) {
         String itemName;
         for (int i = 0; i < itemList.size(); i++) {
             itemName = itemList.get(i);
 
-            if (!itemName.isEmpty()){
-                verifyMenuItems(i, itemList.size(), itemName);
+            if (itemName!=null) {
+                verifyMenuItems(itemName, i);
             }
         }
-
-        Driver.getDriver().switchTo().defaultContent();
     }
 
-    public void verifyMenuItems(int i, int ListSize, String itemName){
-        boolean isLast = ListSize-i >0 ? true : false;
-        if (i==0) {
-            verifyFirstItem(itemName, isLast);
-        }
-        else {
-            verifyCategoricalItem(itemName, isLast);
+    public void verifyMenuItems(String itemName, int rank) {
+      if (mobile) {
+          verifyMobileMenu(itemName);
+        }else {
+          verifyWebMenu(itemName, rank);
         }
     }
 
-    public void verifyFirstItem(String itemName, boolean isLast){
+    public void verifyMobileMenu(String itemName) {
+        WebElement element = null;
         try {
-            WebElement element = Driver.getDriver().findElement(TestUtils.handleStaleElement(By.xpath(
-                    "//div[starts-with(@class,'menuContain')]//button[normalize-space()='"+ itemName +"']")));
+            element = Driver.getDriver().findElement(By.xpath(
+                    "//div[@class='mobile-links__item']//a[.='" + itemName + "']"));
             Assert.assertTrue(true);
-            if (!isLast) {
-                element.click();
-            }
+
         } catch (NoSuchElementException e) {
-            Assert.assertTrue(false);
+                Assert.assertTrue(false);
         }
     }
 
-    public void verifyCategoricalItem(String itemName, boolean isLast){
+    public void verifyWebMenu(String itemName, int rank) {
+        WebElement element = null;
         try {
-            WebElement element = Driver.getDriver().findElement(TestUtils.handleStaleElement(By.xpath(
-                    "//div[starts-with(@class,'mat-menu-content')]//span[normalize-space()='" + itemName + "']")));
-            Assert.assertTrue(true);
-            if (!isLast) {
-                element.click();
+            if (rank==0){
+                element = Driver.getDriver().findElement(By.xpath(
+                    "//div[contains(@class, 'menuContain')]//button[text()=' " + itemName + " ']"));
+                }
+            else {
+                element = Driver.getDriver().findElement(By.xpath(
+                        "//button[@role='menuitem']//span[.='" + itemName + "']"));
             }
+            Assert.assertTrue(true);
+            click(element);
+
         } catch (NoSuchElementException e) {
-            Assert.assertTrue(false);
+                Assert.assertTrue(false);
         }
     }
 
-    public void verifyPopUpMessage(String msg){
+    public void verifyPopUpMessage(String msg) {
         By by = TestUtils.waitToBePresent(By.xpath(
                 "//div[@aria-label='" + msg + "']"));
         Assert.assertTrue(Driver.getDriver().findElement(by).isDisplayed());
-        TestUtils.waitForInVisibility(by, 5);
+        TestUtils.waitFor(3);
     }
+
+
+    public void clickMenuOgesiEkle(String menuName) {
+        By by = TestUtils.handleStaleElement(By.xpath(
+                "//div[@class='svg']//*[local-name() = 'svg' and " +
+                        "@class='addMenuElement']//following::b[.='" + menuName + "']"));
+        click(TestUtils.waitForClickablility(Driver.getDriver().findElement(by), 5));
+
+    }
+
+
 
     @FindBy(xpath = "//span[@class='mat-option-text' and contains(text(), 'Yazı')]")
     private WebElement yaziFromTopbarType;
